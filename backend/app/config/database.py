@@ -22,7 +22,11 @@ connect = psycopg2.connect(
 def main():
     cursor = connect.cursor()
     cursor.execute("SELECT * FROM users")
-    print(cursor.fetchall())
+
+    for row in cursor.fetchall():
+        print(row)
+
+    cursor.close()
 
 
 if __name__ == "__main__":
