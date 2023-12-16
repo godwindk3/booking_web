@@ -1,4 +1,4 @@
-from ..config.database import connect
+from ..configs.database import connect
 
 def _get_users():
     cursor = connect.cursor()
