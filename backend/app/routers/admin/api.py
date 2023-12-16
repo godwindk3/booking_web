@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..services.crud import _get_users
+from ...services.crud import _get_users
 
 router = APIRouter(prefix="/api/v1")
 
