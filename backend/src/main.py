@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from routers.admin import api
+import admin_api
 
 app = FastAPI()
 
-app.include_router(api.router)
+app.include_router(admin_api.router)
 
 
 @app.get("/")
