@@ -1,5 +1,4 @@
 from database import SessionLocal
-from typing import List
 import data_models
 import validation_models
 from fastapi import HTTPException, status
@@ -21,7 +20,7 @@ def get_user_by_id(user_id: int):
 
     if (temp is None):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            details=f"user with ID={user_id} does not exists.")
+                            detail=f"user with ID={user_id} does not exists.")
 
     return temp
 
@@ -48,11 +47,7 @@ def create_user(user: validation_models.User):
 
 
 def update_user(user_id: int, user: validation_models):
-    user_to_update = db.query(data_models.User).filter(
-        data_models.User.id == user_id).first()
-    if (user_to_update is None):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            details=f"user with ID={user_id} does not exists.")
+    user_to_update = get_user_by_id(user_id)
 
     user_to_update.name = user.name
     user_to_update.email = user.email
@@ -63,13 +58,10 @@ def update_user(user_id: int, user: validation_models):
 
     return user_to_update
 
+
 def delete_user(user_id: int):
-    user_to_delete = db.query(data_models.User).filter(
-        data_models.User.id == user_id).first()
-    if (user_to_delete is None):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            details=f"user with ID={user_id} does not exists.")
-    
+    user_to_delete = get_user_by_id(user_id)
+
     db.delete(user_to_delete)
     db.commit()
 

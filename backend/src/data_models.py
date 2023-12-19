@@ -22,7 +22,7 @@ class User(Base):
 class Accommodation(Base):
     __tablename__ = "accommodations"
     id = Column(Integer, primary_key=True)
-    name = Column(String(255), nullable=False)
+    name = Column(String(255), nullable=False, unique=True)
     location = Column(String(255), nullable=False)
 
     def __repr__(self):
