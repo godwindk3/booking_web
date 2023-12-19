@@ -10,9 +10,6 @@ import room_services
 router = APIRouter(prefix="/admin")
 
 
-db = SessionLocal()
-
-
 @router.get("/")
 async def test_router():
     return user_services.test()

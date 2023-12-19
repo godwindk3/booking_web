@@ -11,5 +11,4 @@ engine = create_engine(DB_URL, echo=True)
 Base = declarative_base()
 SessionLocal = sessionmaker(bind=engine)
 
-print(DB_URL)
 

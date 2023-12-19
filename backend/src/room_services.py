@@ -9,12 +9,16 @@ db = SessionLocal()
 def get_all_rooms():
     return db.query(data_models.Room).all()
 
+
 def get_room_by_id(room_id):
-    temp = db.query(data_models.Room).filter(data_models.Room.id == room_id).first()
+    temp = db.query(data_models.Room).filter(
+        data_models.Room.id == room_id).first()
     if (temp is None):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Room with ID = {room_id} does not exists.")
-    
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Room with ID = {room_id} does not exists.")
+
     return temp
+
 
 def get_rooms_by_accommodation_id(accommodation_id: int):
     return db.query(data_models.Room).filter(data_models.Room.accommodationID == accommodation_id).all()
@@ -46,6 +50,7 @@ def create_room(room: validation_models.Room):
 
     return new_room
 
+
 def update_room(room_id: int, room: validation_models.Room):
     room_to_update = get_room_by_id(room_id)
 
@@ -56,9 +61,11 @@ def update_room(room_id: int, room: validation_models.Room):
     room_to_update.tier = room.tier
     room_to_update.status = room.status
 
+    print(room_to_update)
+
     db.commit()
 
-    return room_to_update 
+    return room_to_update
 
 
 def delete_room(room_id):
@@ -68,4 +75,3 @@ def delete_room(room_id):
     db.commit()
 
     return room_to_del
-
