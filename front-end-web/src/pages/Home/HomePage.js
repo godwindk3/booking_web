@@ -7,11 +7,11 @@ const HomePage = () => {
   return (
     <div className="home-page-container">
       <header className="header">
-        <h1>Welcome to Your Website</h1>
+        <h1>Welcome to Booking</h1>
       </header>
 
       <section className="main-content">
-        <p>This is a simple and beautiful home page for your React application.</p>
+        <p>Nhom 15</p>
         <p>Feel free to customize and add more content.</p>
 
         <div className="cta-buttons">
