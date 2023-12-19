@@ -7,12 +7,11 @@ class BaseModelConfig(BaseModel):
         orm_mode = True
 
 class Accomodation(BaseModelConfig):
-    accomodationID: int
-    accomodation_name: str
+    name: str
+    location: str
 
 
 class Room(BaseModelConfig):
-    roomID: int
     accommodationID: int
     room_number: int
     capacity: int
@@ -31,31 +30,26 @@ class User(BaseModelConfig):
 
 
 class RoomImage(BaseModelConfig):
-    id: int
     roomID: int
     url: str
 
 
 
 class AccomodationImage(BaseModelConfig):
-    id: int
     accommodationID: int
     url: str
 
 
 
 class RoomAmenity(BaseModelConfig):
-    id: int
     name: str
 
 
 class AccommodationAmenity(BaseModelConfig):
-    id: int
     name: str
 
 
 class Review(BaseModelConfig):
-    id: int
     userID: int
     bookingID: int
     rating: int
@@ -63,7 +57,6 @@ class Review(BaseModelConfig):
 
 
 class Booking(BaseModelConfig):
-    id: int
     userID: int
     accommodationID: int
     checkin_date: date
