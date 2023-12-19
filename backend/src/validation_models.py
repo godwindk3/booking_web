@@ -14,10 +14,10 @@ class Accomodation(BaseModelConfig):
 class Room(BaseModelConfig):
     accommodationID: int
     room_number: int
-    capacity: int
+    capacity: int = 1
     price: float
-    status: bool
-    tier: str
+    status: bool = False
+    tier: str = "B"
 
 
 
@@ -25,7 +25,7 @@ class User(BaseModelConfig):
     name: str | None = "Anonymous"
     email: str
     password: str
-    role: int
+    role: int = 0
 
 
 
@@ -53,7 +53,7 @@ class Review(BaseModelConfig):
     userID: int
     bookingID: int
     rating: int
-    comment: str
+    comment: str | None = None
 
 
 class Booking(BaseModelConfig):
