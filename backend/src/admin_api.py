@@ -1,39 +1,40 @@
-from fastapi import APIRouter, status, HTTPException
+from fastapi import APIRouter, status
 from database import SessionLocal
 from typing import List
-import data_models
 import validation_models
+import user_services
 
-router = APIRouter(prefix="/admin/api/v1")
+router = APIRouter(prefix="/admin")
 
 
 db = SessionLocal()
 
+
 @router.get("/")
 async def test_router():
-    return {
-        "message": "Test API v1"
-    }
+    return user_services.test()
+
 
 @router.get("/users", response_model=List[validation_models.User], status_code=status.HTTP_200_OK)
 async def fetch_all_users():
-    return db.query(data_models.User).all()
+    return user_services.get_all_users()
+
+
+@router.get("/users/{user_id}", response_model=validation_models.User, status_code=status.HTTP_200_OK)
+async def fetch_user_by_id(user_id: int):
+    return user_services.get_user_by_id(user_id)
+
 
 @router.post("/users", response_model=validation_models.User, status_code=status.HTTP_201_CREATED)
 async def create_new_user(user: validation_models.User):
-    new_user = data_models.User(
-        name = user.name,
-        email = user.email,
-        password = user.password,
-        role = user.role
-    )
+    return user_services.create_user(user)
 
-    temp = db.query(data_models.User).filter(data_models.User.email == new_user.email).first()
 
-    if (temp is not None):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"User with email = {new_user.email} already exists.")
-    
-    db.add(new_user)
-    db.commit()
+@router.put("/users/{user_id}", response_model=validation_models.User, status_code=status.HTTP_200_OK)
+async def update_user_by_id(user_id: int, user: validation_models.User):
+    return user_services.update_user(user_id, user)
 
-    return f"Created new user: \n{new_user}"
+
+@router.delete("/users/{user_id}", response_model=validation_models.User, status_code=status.HTTP_200_OK)
+async def delete_user_by_id(user_id: int):
+    return user_services.delete_user(user_id)
