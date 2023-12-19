@@ -1,0 +1,31 @@
+/* AboutPage.css */
+
+.About-Page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .About-Page h1 {
+    color: #2e4a62;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .About-Page p {
+    color: #495057;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  /* Additional styling for individual paragraphs if needed */
+  .About-Page p:nth-child(odd) {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
