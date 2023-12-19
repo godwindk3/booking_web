@@ -111,13 +111,6 @@ class AccommodationImage(Base):
     accommodationID = Column(Integer, ForeignKey("accommodations.id"))
     id = Column(Integer, primary_key=True)
     url = Column(String)
-
-
-# Run this code only once
     
-def main():
+def create_db():
     Base.metadata.create_all(engine)
-
-
-if __name__ == "__main__":
-    main()
