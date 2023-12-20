@@ -43,7 +43,7 @@ def create_room(room: validation_models.Room):
 
     if (temp is not None):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail=f"Room with Accommodation ID = {new_room.accommodationID} and Room ID = {new_room.id} already exists.")
+                            detail=f"Room with Accommodation ID = {new_room.accommodationID} and Room number = {new_room.room_number} already exists.")
 
     db.add(new_room)
     db.commit()

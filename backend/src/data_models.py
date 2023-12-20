@@ -1,10 +1,4 @@
-import sys, os
-from dotenv import load_dotenv
-load_dotenv()
-sys.path.append(os.getenv("CONFIG_PATH"))
-
 from database import Base, engine
-
 from sqlalchemy import String, Boolean, Integer, Column, Text, ForeignKey, Float, Date
 
 class User(Base):
