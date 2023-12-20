@@ -5,6 +5,7 @@ import validation_models
 import user_services
 import accommodation_services
 import room_services
+import booking_services
 
 
 router = APIRouter(prefix="/admin")
@@ -100,4 +101,31 @@ async def update_room(room_id: int, room: validation_models.Room):
 @router.delete("/rooms/{room_id}", response_model=validation_models.Room, status_code=status.HTTP_200_OK)
 async def delete_room(room_id: int):
     return room_services.delete_room(room_id)
+
+
+# Bookings
+@router.get("/bookings", response_model=List[validation_models.Booking], status_code=status.HTTP_200_OK)
+async def fetch_all_bookings():
+    return booking_services.get_all_bookings()
+
+@router.get("/bookings/{booking_id}", response_model=validation_models.Booking, status_code=status.HTTP_200_OK)
+async def fetch_booking_by_id(booking_id: int):
+    return booking_services.get_booking_by_id(booking_id)
+
+@router.post("/bookings", response_model=validation_models.Booking, status_code=status.HTTP_201_CREATED)
+async def create_booking(booking: validation_models.Booking):
+    return booking_services.create_booking(booking)
+
+@router.put("/bookings/{booking_id}", response_model=validation_models.Booking, status_code=status.HTTP_200_OK)
+async def update_booking(booking_id: int, booking: validation_models.Booking):
+    return booking_services.update_booking(booking_id, booking)
+
+@router.delete("/bookings/{booking_id}", response_model=validation_models.Booking, status_code=status.HTTP_200_OK)
+async def delete_booking(booking_id: int):
+    return booking_services.delete_booking(booking_id)
+
+
+
+
+
 
