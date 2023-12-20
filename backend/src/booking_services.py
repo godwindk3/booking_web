@@ -73,12 +73,12 @@ def update_booking(booking_id: int, booking: validation_models.Booking):
 
 
 def delete_booking(booking_id: int):
-    new_booking = get_booking_by_id(booking_id)
+    booking_to_del = get_booking_by_id(booking_id)
 
-    db.delete(booking_id)
+    db.delete(booking_to_del)
     db.commit()
 
-    return new_booking
+    return booking_to_del
 
 
 def __check_overlapping_bookings(booking: validation_models.Booking):
