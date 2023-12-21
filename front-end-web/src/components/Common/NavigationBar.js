@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavigationBar.css';
-const NavigationBar = () => {
+const NavigationBar = ({ toggleSideBar }) => {
   // State to track whether the user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -53,6 +53,7 @@ const NavigationBar = () => {
           Country Icon
         </div>
       </div>
+
     </nav>
   );
 };
