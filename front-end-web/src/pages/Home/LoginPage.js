@@ -1,18 +1,31 @@
-// components/pages/LoginPage.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 import './LoginPage.css'; // Import your stylesheet if needed
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Add your login logic here
-    console.log('Login button clicked');
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Perform login actions or API calls
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://your-fastapi-server-url/login', {
+        email,
+        password,
+      });
+
+      if (response.status === 200) {
+        // Login successful
+        console.log('Login successful');
+        // Additional logic after successful login
+      } else {
+        // Login failed
+        console.error('Login failed');
+        // Additional logic after failed login
+      }
+    } catch (error) {
+      console.error('Error during login:', error.message);
+    }
   };
 
   return (
