@@ -64,6 +64,11 @@ async def get_room_by_room_number(id: int, room_number: int):
     return room_services.get_specific_room_by_acco_and_room_number(id, room_number)
 
 
+@router.get("/accommodations/{id}/reviews", response_model=List[validation_models.Review], status_code=status.HTTP_200_OK)
+async def fetch_reviews_by_accommodation_id(id: int):
+    return review_services.get_reviews_in_accommodation(id)
+
+
 @router.post("/accommodations", response_model=validation_models.Accomodation, status_code=status.HTTP_201_CREATED)
 async def create_accommodation(accommodation: validation_models.Accomodation):
     return accommodation_services.create_accommodation(accommodation)
@@ -140,6 +145,11 @@ async def fetch_all_reviews():
 @router.get("/reviews/{review_id}", response_model=validation_models.Review, status_code=status.HTTP_200_OK)
 async def fetch_review_by_id(review_id: int):
     return review_services.get_review_by_id(review_id)
+
+
+@router.get("/reviews/user/{user_id}", response_model=List[validation_models.Review], status_code=status.HTTP_200_OK)
+async def fetch_reviews_by_user_id(user_id: int):
+    return review_services.get_reviews_of_user(user_id)
 
 
 @router.post("/reviews", response_model=validation_models.Review, status_code=status.HTTP_201_CREATED)

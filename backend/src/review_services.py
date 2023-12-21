@@ -4,6 +4,7 @@ import validation_models
 from fastapi import HTTPException, status
 from booking_services import get_booking_by_id
 from user_services import get_user_by_id
+from accommodation_services import get_accommodation_by_id
 
 db = SessionLocal()
 
@@ -17,6 +18,29 @@ def get_review_by_id(review_id):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"Review with ID = {review_id} does not exists.")
     
     return temp
+
+def get_reviews_in_accommodation(accommodationID: int):
+
+    __check_exist_accommodation(accommodationID)
+
+    reviews = db.query(data_models.Review).join(
+        data_models.Booking, 
+        onclause=(data_models.Booking.id == data_models.Review.bookingID)
+        ).filter(
+            data_models.Booking.accommodationID == accommodationID
+        ).all()
+
+    return reviews
+
+def get_reviews_of_user(user_id: int):
+    get_user_by_id(user_id)
+
+    reviews = db.query(data_models.Review).join(
+        data_models.Booking,
+        onclause=data_models.Booking.id == data_models.Review.bookingID
+    ).filter(data_models.Review.userID == user_id).all()
+
+    return reviews
 
 
 def create_review(review: validation_models.Review):
@@ -61,3 +85,5 @@ def __check_exist_user_and_booking_id(userID, bookingID):
     get_user_by_id(userID)
     get_booking_by_id(bookingID)
 
+def __check_exist_accommodation(accommodationID):
+    get_accommodation_by_id(accommodationID)
