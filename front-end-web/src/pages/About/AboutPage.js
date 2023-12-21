@@ -6,16 +6,16 @@ const AboutPage = () => {
     <div className='About-Page'>
       <h1>NHÓM 15</h1>
       <p>
-        BÙI NGUYÊN PHONG
+        BÙI NGUYÊN PHONG(Front-End)
       </p>
       <p>
-        NGUYỄN MINH AN
+        NGUYỄN MINH AN(Back-end)
       </p>
       <p>
-        NGUYỄN NGỌC ANH
+        NGUYỄN NGỌC ANH(Back-end)
       </p>
       <p>
-        VÕ NGỌC HIẾU
+        VÕ NGỌC HIẾU(Back-end)
       </p>
     </div>
   );
