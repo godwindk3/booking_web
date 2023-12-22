@@ -7,6 +7,8 @@ import accommodation_services
 import room_services
 import booking_services
 import review_services
+import acco_ammenity_services
+import room_ammenity_services
 
 
 router = APIRouter(prefix="/admin")
@@ -165,3 +167,55 @@ async def update_review(review_id, review: validation_models.Review):
 @router.delete("/reviews/{review_id}", response_model=validation_models.Review, status_code=status.HTTP_200_OK)
 async def delete_review(review_id):
     return review_services.delete_review(review_id)
+
+
+# Accommodation Ammenities
+@router.get("/ammenities/accommodations", response_model=List[validation_models.AccommodationAmenity], status_code=status.HTTP_200_OK)
+async def fetch_all_acco_ammenities():
+    return acco_ammenity_services.get_all_acco_ammenities()
+
+
+@router.get("/ammenities/accommodations/{ammenity_id}", response_model=validation_models.AccommodationAmenity, status_code=status.HTTP_200_OK)
+async def fetch_acco_ammenity_by_id(ammenity_id: int):
+    return acco_ammenity_services.get_acco_ammenity_by_id(ammenity_id)
+
+
+@router.post("/ammenities/accommodations", response_model=validation_models.AccommodationAmenity, status_code=status.HTTP_201_CREATED)
+async def create_acco_ammenity(ammenity: validation_models.AccommodationAmenity):
+    return acco_ammenity_services.create_acco_ammenity(ammenity)
+
+
+@router.put("/ammenities/accommodations/{ammenity_id}", response_model=validation_models.AccommodationAmenity, status_code=status.HTTP_200_OK)
+async def update_acco_ammenity(ammenity_id: int, ammenity: validation_models.AccommodationAmenity):
+    return acco_ammenity_services.update_acco_ammenity(ammenity_id, ammenity)
+
+
+@router.delete("/ammenities/accommodations/{ammenity_id}", response_model=validation_models.AccommodationAmenity, status_code=status.HTTP_200_OK)
+async def delete_acco_ammenity(ammenity_id: int):
+    return acco_ammenity_services.delete_acco_ammenity(ammenity_id)
+
+
+# Room Ammenities
+@router.get("/ammenities/rooms", response_model=List[validation_models.RoomAmenity], status_code=status.HTTP_200_OK)
+async def fetch_all_room_ammenities():
+    return room_ammenity_services.get_all_room_ammenities()
+
+
+@router.get("/ammenities/rooms/{ammenity_id}", response_model=validation_models.RoomAmenity, status_code=status.HTTP_200_OK)
+async def fetch_room_ammenity_by_id(ammenity_id: int):
+    return room_ammenity_services.get_room_ammenity_by_id(ammenity_id)
+
+
+@router.post("/ammenities/rooms", response_model=validation_models.RoomAmenity, status_code=status.HTTP_201_CREATED)
+async def create_room_ammenity(ammenity: validation_models.RoomAmenity):
+    return room_ammenity_services.create_room_ammenity(ammenity)
+
+
+@router.put("/ammenities/rooms/{ammenity_id}", response_model=validation_models.RoomAmenity, status_code=status.HTTP_200_OK)
+async def update_room_ammenity(ammenity_id: int, ammenity: validation_models.RoomAmenity):
+    return room_ammenity_services.update_room_ammenity(ammenity_id, ammenity)
+
+
+@router.delete("/ammenities/rooms/{ammenity_id}", response_model=validation_models.RoomAmenity, status_code=status.HTTP_200_OK)
+async def delete_room_ammenity(ammenity_id: int):
+    return room_ammenity_services.delete_room_ammenity(ammenity_id)
