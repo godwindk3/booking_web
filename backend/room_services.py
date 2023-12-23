@@ -2,6 +2,7 @@ from database import SessionLocal
 import data_models
 import validation_models
 from fastapi import HTTPException, status
+from accommodation_services import get_accommodation_by_id
 
 db = SessionLocal()
 
@@ -21,10 +22,15 @@ def get_room_by_id(room_id):
 
 
 def get_rooms_by_accommodation_id(accommodation_id: int):
+    get_accommodation_by_id(accommodation_id)
     return db.query(data_models.Room).filter(data_models.Room.accommodationID == accommodation_id).all()
 
 
 def get_specific_room_by_acco_and_room_number(accommodation_id: int, room_number: int):
+    get_accommodation_by_id(accommodation_id)
+    temp = db.query(data_models.Room).filter(data_models.Room.room_number == room_number).first()
+    if (temp is None):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Accommodation ID {accommodation_id} does not have room number {room_number}.")
     return db.query(data_models.Room).filter(data_models.Room.accommodationID == accommodation_id, data_models.Room.room_number == room_number).first()
 
 
