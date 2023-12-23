@@ -1,4 +1,4 @@
-from database import SessionLocal
+# from database import SessionLocal
 # import data_models
 # import validation_models
 # from .models import data_models, validation_models
@@ -12,7 +12,7 @@ from fastapi import HTTPException, status
 from datetime import date, datetime
 from sqlalchemy import or_, and_
 
-db = SessionLocal()
+# db = SessionLocal()
 
 
 def get_all_bookings():
