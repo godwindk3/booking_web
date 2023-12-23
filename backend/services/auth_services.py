@@ -12,10 +12,10 @@ def login(user_credentials: validation_models.UserCredentials):
     user = db.query(data_models.User).filter(data_models.User.email == user_credentials.email).first()
 
     if (user is None):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Wrong email or password.")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Wrong email or password.")
     
     if (utils.verify(user_credentials.password, user.password) == False):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Wrong email or password.")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Wrong email or password.")
     
     data_to_encode = {
         "userID":user.id,

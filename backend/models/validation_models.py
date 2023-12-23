@@ -113,3 +113,12 @@ class BookingOut(BaseModel):
     checkin_date: date
     checkout_date: date
     total_price: float
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    id: int = None
+    role: int
