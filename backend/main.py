@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import admin_api
+import routers.admin_api as admin_api
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()

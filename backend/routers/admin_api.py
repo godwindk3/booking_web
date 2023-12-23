@@ -1,14 +1,27 @@
 from fastapi import APIRouter, status
-from database import SessionLocal
 from typing import List
-import validation_models
-import user_services
-import accommodation_services
-import room_services
-import booking_services
-import review_services
-import acco_ammenity_services
-import room_ammenity_services
+import ultraimport
+validation_models = ultraimport("__dir__/../models/validation_models.py")
+# print(validation_models.UserOut)
+# import validation_models
+# from ..models import validation_models
+
+user_services = ultraimport("__dir__/../services/user_services.py")
+accommodation_services = ultraimport("__dir__/../services/accommodation_services.py")
+room_services = ultraimport("__dir__/../services/room_services.py")
+booking_services = ultraimport("__dir__/../services/booking_services.py")
+review_services = ultraimport("__dir__/../services/review_services.py")
+acco_ammenity_services = ultraimport("__dir__/../services/acco_ammenity_services.py")
+room_ammenity_services = ultraimport("__dir__/../services/room_ammenity_services.py")
+# print(user_services.get_all_users())
+
+# import user_services
+# import accommodation_services
+# import room_services
+# import booking_services
+# import review_services
+# import acco_ammenity_services
+# import room_ammenity_services
 
 
 router = APIRouter(prefix="/admin")
