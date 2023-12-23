@@ -57,7 +57,8 @@ const RegisterPage = () => {
     // Check if password meets the requirements
     const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(formData.password)) {
-      setErrorMessage('Password must be at least 8 characters and contain at least one UPPERCASE letter.');
+      // setErrorMessage('Password must be at least 8 characters and contain at least one UPPERCASE letter.');
+      setErrorMessage('Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất một chữ cái VIẾT HOA');
       return;
     }
 
@@ -101,50 +102,56 @@ const RegisterPage = () => {
 
   return (
     <div className='Register-Page'>
-      <h2>Register</h2>
+      <h2>Đăng ký tài khoản</h2>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
+      <form onSubmit={handleSubmit} className="register-form">
+        {/* <label htmlFor="name">Name:</label> */}
         <input
           type="text"
           id="name"
+          placeholder="Nhập tên tài khoản"
           name="name"
           value={formData.name}
           onChange={handleChange}
         />
 
-        <label htmlFor="email">Email:</label>
+        {/* <label htmlFor="email">Email:</label> */}
         <input
           type="email"
           id="email"
+          placeholder="Nhập email"
           name="email"
           value={formData.email}
           onChange={handleChange}
         />
 
-        <label htmlFor="password">Password:</label>
+        {/* <label htmlFor="password">Password:</label> */}
         <input
           type={showPassword ? 'text' : 'password'}
           id="password"
+          placeholder="Nhập mật khẩu"
           name="password"
           value={formData.password}
           onChange={handleChange}
         />
 
-        <label htmlFor="confirmPassword">Confirm Password:</label>
+        {/* <label htmlFor="confirmPassword">Confirm Password:</label> */}
         <input
           type={showPassword ? 'text' : 'password'}
           id="confirmPassword"
+          placeholder="Xác nhận mật khẩu"
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleChange}
         />
 
-        <button type="button" onClick={togglePasswordVisibility}>
-          {showPassword ? 'Hide Password' : 'Show Password'}
-        </button>
+        <div className="register-button-container">
+          <button className="register-button" type="button" onClick={togglePasswordVisibility}>
+            {showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
+          </button>
 
-        <button type="submit">Register</button>
+          <button className="register-button" type="submit">Đăng ký</button>
+        </div>
       </form>
 
       {/* Success Modal */}

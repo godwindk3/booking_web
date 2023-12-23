@@ -30,33 +30,33 @@ const LoginPage = () => {
 
   return (
     <div className="login-page-container">
-      <h2>Login to Your Account</h2>
+      <h2>Đăng nhập tài khoản của bạn</h2>
       <form className="login-form">
-        <label htmlFor="email">Email:</label>
+        {/* <label htmlFor="email">Email:</label> */}
         <input
           type="email"
           id="email"
-          placeholder="Enter your email"
+          placeholder="Nhập email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label htmlFor="password">Password:</label>
+        {/* <label htmlFor="password">Mật khẩu:</label> */}
         <input
           type="password"
           id="password"
-          placeholder="Enter your password"
+          placeholder="Nhập mật khẩu"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="button" onClick={handleLogin}>
-          Login
+        <button className="login-button" type="button" onClick={handleLogin}>
+          Đăng nhập
         </button>
       </form>
 
       <p>
-        Don't have an account? <Link to="/register">Register here</Link>
+        Chưa có tài khoản? <Link to="/register">Đăng ký tại dây</Link>
       </p>
     </div>
   );
