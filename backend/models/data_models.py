@@ -1,4 +1,8 @@
-from database import Base, engine
+import ultraimport
+# from database import Base, engine
+database = ultraimport("__dir__/../database.py")
+Base = database.Base
+engine = database.engine
 from sqlalchemy import String, Boolean, Integer, Column, Text, ForeignKey, Float, Date
 
 class User(Base):
