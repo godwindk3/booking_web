@@ -1,4 +1,4 @@
-from database import SessionLocal
+# from database import SessionLocal
 # import data_models
 # import validation_models
 # from .models import data_models, validation_models
@@ -13,7 +13,7 @@ from booking_services import get_booking_by_id
 from user_services import get_user_by_id
 from accommodation_services import get_accommodation_by_id
 
-db = SessionLocal()
+# db = SessionLocal()
 
 def get_all_reviews():
     return db.query(data_models.Review).all()
