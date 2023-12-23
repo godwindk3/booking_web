@@ -22,7 +22,6 @@
   margin-bottom: 10px;
 }
 
-/* Additional styling for individual paragraphs if needed */
 .About-Page p:nth-child(odd) {
   background-color: #e9ecef;
   padding         : 10px;

@@ -1,5 +1,5 @@
 /* styles/NavigationBar.css */
-
+/* 
 body {
   margin     : 0;
   padding    : 0;
@@ -48,7 +48,6 @@ body {
 .country-icon,
 .logout-button,
 .user-info {
-  /* Include the search-button class here */
   margin-right: 15px;
 }
 
@@ -58,7 +57,6 @@ body {
 .country-icon,
 .logout-button button,
 .user-info {
-  /* Include the search-button class here */
   color          : #fff;
   text-decoration: none;
   padding        : 8px 15px;
@@ -70,7 +68,6 @@ body {
 .login-button a:hover,
 .register-button a:hover,
 .logout-button button:hover {
-  /* Include the search-button class here */
   background-color: #fff;
   color           : #333;
 }
@@ -81,13 +78,9 @@ body {
   color           : #333;
 }
 
-/* Additional styles for user information or profile picture */
 .user-info {
-  /* Add styles for user information or profile picture */
 }
 
-/* Add more styles as needed for Currency and Country Icon buttons */
 .currency-button,
 .country-icon {
-  /* Add styles for Currency and Country Icon buttons */
-}
+} */

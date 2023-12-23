@@ -1,62 +1,107 @@
 /* components/pages/LoginPage.css */
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
 
 .login-page-container {
-  max-width    : 400px;
-  margin       : 0 auto;
+  /* max-width    : 400px;
+  margin       : 25vh auto;
   padding      : 20px;
   border       : 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow   : 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow   : 0 0 10px rgba(0, 0, 0, 0.1);   */
+
+  padding: 40px 24px 24px;
+  width: 500px;
+  margin: 20vh auto;
+  border-radius: 32px;
+  border: 1px solid var(--gray-200,#eaecf0);
+  background: var(--base-white,#fff);
+  box-shadow: var(--shadow-sm);
 }
 
 h2 {
+  /* text-align: center;
+  color     : #333; */
+
+  margin: 0;
+  font-weight: 700;
+  color: var(--gray-900,#101828);
+  font-size: 36px;
+  line-height: 44px;
   text-align: center;
-  color     : #333;
 }
 
 .login-form {
   display       : flex;
   flex-direction: column;
-  gap           : 10px;
+  gap           : 20px;
+  margin-top    : 30px;
 }
 
 label {
-  font-size: 14px;
-  color    : #333;
+  /* font-size: 14px;
+  color    : #333; */
+
+  font-size: 18px;
+  line-height: 28px;
+  color: #0000009a;
+  font-weight: 400;
 }
 
 input {
-  padding      : 8px;
-  font-size    : 14px;
-  border       : 1px solid #ccc;
-  border-radius: 5px;
+  height: 40px;
+  padding: 16px 20px;
+  border: 1px solid #EAEAEA;
+  border-radius: 100px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+input:focus {
+  border-color: #FC6C85;
 }
 
-button {
+.login-button {
   padding         : 10px;
-  background-color: #007bff;
+  /* background-color: #007bff; */
   color           : #fff;
   border          : none;
-  border-radius   : 5px;
+  border-radius   : 100px;
   cursor          : pointer;
   transition      : background-color 0.3s ease;
-}
 
-button:hover {
-  background-color: #0056b3;
+  font-family: Arial;
+  font-size: 17px;
+  height: 73.6px;
+
+  background-color: #FC6C85;
+  border: #FC6C85;
+  
+  padding: 16px 20px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-button:hover {
+  background-color: #fd3355;
 }
 
 p {
+  margin-top: 30px;
   text-align: center;
-  margin-top: 10px;
   font-size : 14px;
+  font-family: Arial;
 }
 
-a {
+/* a {
   color          : #007bff;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-}
+} */
+
