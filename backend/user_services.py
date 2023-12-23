@@ -2,6 +2,7 @@ from database import SessionLocal
 import data_models
 import validation_models
 from fastapi import HTTPException, status
+from utils import hash
 
 db = SessionLocal()
 
@@ -26,10 +27,11 @@ def get_user_by_id(user_id: int):
 
 
 def create_user(user: validation_models.User):
+    hashed_pwd = hash(user.password)
     new_user = data_models.User(
         name=user.name,
         email=user.email,
-        password=user.password,
+        password=hashed_pwd,
         role=user.role
     )
 
@@ -48,10 +50,10 @@ def create_user(user: validation_models.User):
 
 def update_user(user_id: int, user: validation_models):
     user_to_update = get_user_by_id(user_id)
-
+    hashed_pwd = hash(user.password)
     user_to_update.name = user.name
     user_to_update.email = user.email
-    user_to_update.password = user.password
+    user_to_update.password = hashed_pwd
     user_to_update.role = user.role
 
     db.commit()
