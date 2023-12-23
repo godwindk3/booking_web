@@ -50,6 +50,10 @@ class UserOut(BaseModel):
     email: str
     role: int = 0
 
+class UserCredentials(BaseModel):
+    email: str
+    password: str
+
 
 class RoomImage(BaseModelConfig):
     roomID: int

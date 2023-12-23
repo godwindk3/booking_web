@@ -1,4 +1,4 @@
-from database import SessionLocal
+# from database import SessionLocal
 # import data_models
 # import validation_models
 # from .models import data_models, validation_models
@@ -10,7 +10,7 @@ database = ultraimport("__dir__/../database.py")
 db = database.SessionLocal()
 from fastapi import HTTPException, status
 
-db = SessionLocal()
+# db = SessionLocal()
 
 def get_all_accommodations():
     return db.query(data_models.Accommodation).all()
