@@ -57,6 +57,11 @@ def create_user(user: validation_models.User):
 
 def update_user(user_id: int, user: validation_models):
     user_to_update = get_user_by_id(user_id)
+
+    temp = db.query(data_models.User).filter(data_models.User.email == user.email, data_models.User.id != user_id).first()
+    if (temp is not None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Detail with email {user.email} already exists.")
+    
     hashed_pwd = hash(user.password)
     user_to_update.name = user.name
     user_to_update.email = user.email
