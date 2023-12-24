@@ -3,8 +3,9 @@ import axios from './axiosConfig';
 import Modal from 'react-modal';
 import validator from 'validator'; // Import the validator library
 import './RegisterPage.css';
-
+import { useNavigate } from 'react-router-dom';
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -89,6 +90,9 @@ const RegisterPage = () => {
         console.log('Registration successful');
         openModal(); // Open the success modal
         // Additional logic after successful registration
+        setTimeout(() => {
+          navigate('/login'); // Navigate to the login page after 3 seconds
+        }, 3000);
       } else {
         // Registration failed
         console.error('Registration failed');
@@ -166,8 +170,8 @@ const RegisterPage = () => {
         onRequestClose={closeModal}
         contentLabel="Registration Successful"
       >
-        <h2>Registration Successful!</h2>
-        <p>Your account has been successfully registered.</p>
+        <h2>Đăng ký thành công</h2>
+        <p>Tự động chuyển sang trang đăng nhập sau 3 giây</p>
         <button onClick={closeModal}>Close</button>
       </Modal>
     </div>
