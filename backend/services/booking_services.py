@@ -29,6 +29,13 @@ def get_booking_by_id(booking_id):
 
     return temp
 
+def get_bookings_of_user(user_id):
+    temp = db.query(data_models.User).filter(data_models.User.id == user_id).first()
+
+    if (temp is None):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with ID {user_id} does not exist.")
+
+    return db.query(data_models.Booking).filter(data_models.Booking.userID == user_id).all()
 
 def create_booking(booking: validation_models.Booking):
     new_booking = data_models.Booking(

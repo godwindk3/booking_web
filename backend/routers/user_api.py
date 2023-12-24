@@ -25,3 +25,5 @@ async def update_current_user_info(user: validation_models.User, current_user_da
 @router.delete("/", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
 async def delete_current_user(current_user_data: validation_models.TokenData = Depends(oauth2.get_current_user)):
     return user_services.delete_user(current_user_data.id)
+
+
