@@ -5,7 +5,7 @@ auth_services = ultraimport("__dir__/../services/auth_services.py")
 
 router = APIRouter()
 
-@router.post("/login")
+@router.post("/login", response_model=validation_models.Token)
 async def login(user_credentials: validation_models.UserCredentials):
     return auth_services.login(user_credentials)
     
