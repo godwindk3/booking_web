@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from './axiosConfig';
 import Modal from 'react-modal';
 import validator from 'validator'; // Import the validator library
 import './RegisterPage.css';
@@ -48,6 +48,12 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if any required field is empty
+    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+      setErrorMessage('Please fill in all the required fields.');
+      return;
+    }
+
     // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match');
@@ -64,7 +70,7 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8000/admin/users',
+        '/admin/users',
         {
           name: formData.name,
           email: formData.email,
