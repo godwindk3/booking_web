@@ -84,3 +84,125 @@ body {
 .currency-button,
 .country-icon {
 } */
+
+
+
+/* ---------------------------------------------------------------------- */ 
+
+
+
+/* Header */
+.Header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 20;
+}
+
+/* css dùng chung */
+.align-center {
+  align-items: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+}
+
+/* Header containers chính */
+.Header_container_main {
+  height: 96px;
+  width: 100%;
+}
+
+/* Header chứa các nút bên trái */
+.h-full {
+  height: 100%;
+}
+.gap-40 {
+  gap: 40px;
+}
+
+/* Logo */
+.home-button {
+  background-color: #fff;
+  border: #fff;
+  margin-bottom: 5px;
+}
+.home-button:hover {
+  cursor: pointer;
+}
+booking {
+  color: #FC6C85;
+  font-size: 32px;
+  font-family: Montserrat;
+  font-weight: 700;
+  word-wrap: break-word
+}
+vn {
+  color: #333;
+  font-size: 32px;
+  font-family: Montserrat;
+  font-weight: 700;
+  word-wrap: break-word
+}
+
+/* Navigator cho các nút */
+.Header_nav_container {
+  color: var(--gray-900);
+}
+.h-full {
+  height: 100%;
+}
+.gap-24 {
+  gap: 24px;
+}
+.nav-button {
+  background-color: #fff;
+  border: #fff;
+  font-family: Arial;
+  font-size: 17px;
+}
+.nav-button:hover {
+  cursor: pointer;
+  color: #FC6C85;
+  text-decoration: underline;
+}
+
+/* Nút "trở thành đối tác của chúng tôi" */
+.doitac-button {
+  margin-left: 400px;
+}
+
+/* Nút đăng nhập */
+.login-button {
+  color: #333;
+  font-family: Arial;
+  font-size: 17px;
+  text-decoration: none;
+
+  background-color: #FC6C85;
+  border: #FC6C85;
+  border-radius: 100px;
+  
+  padding: 10px 16px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-button:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #fd3355;
+  border: #fd3355;
+}

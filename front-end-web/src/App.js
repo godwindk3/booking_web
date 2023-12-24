@@ -4,14 +4,15 @@ import HomePage from './pages/Home/HomePage.js';
 import LoginPage from './pages/Home/LoginPage.js';
 import AboutPage from './pages/About/AboutPage.js';
 import RegisterPage from './pages/Home/RegisterPage.js';
-// import NavigationBar from './components/Common/NavigationBar.js';
+import NavigationBar from './components/Common/NavigationBar.js';
+import Footer from './components/Common/Footer.js';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import GetUserPage from './pages/Home/GetUserPage.js';
 const App = () => {
 
   return (
     <Router>
-      {/* <NavigationBar/> */}
+      <NavigationBar/>
       
       <Routes>
         <Route path="/" element={<HomePage />} /> 
@@ -22,6 +23,8 @@ const App = () => {
         <Route path="/" element={<HomePage />} /> 
         <Route path="/getuser" element={<GetUserPage/>} />  */}
       </Routes>
+
+      <Footer/>
     </Router>
   );
 };
