@@ -1,0 +1,46 @@
+/* Footer */
+.gap-32 {
+    gap: 32px;
+}
+.gap-16 {
+    gap: 16px;
+}
+.main-footer {
+    background-color: #f0f0f0;
+    color: #5d5d5d;
+    font-family: Arial;
+}
+.footer-container {
+    padding: 64px 0 48px;
+    display: flex;
+    gap: 200px;
+    width: min(1216px,100%);
+    align-items: center;
+    max-width: 1280px;
+    margin: auto;
+}
+.footer1-list {
+    cursor: inherit;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+}
+.footer2 {
+    flex-grow: 1;
+}
+.footer2-head {
+    color: var(--gray-500);
+    cursor: default;
+    font-weight: 600;
+}
+.footer2-list {
+    cursor: inherit;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: inherit;
+}
+.footer2-list:hover {
+    cursor: pointer;
+    color: #FC6C85;
+}

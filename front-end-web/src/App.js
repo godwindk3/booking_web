@@ -6,15 +6,15 @@ import AboutPage from './pages/About/AboutPage.js';
 import RegisterPage from './pages/Home/RegisterPage.js';
 import PrivateRoute from './pages/Home/PrivateRoute.js';
 import MembershipClassPage from './pages/Membership/MembershipClassPage.js'
-// import NavigationBar from './components/Common/NavigationBar.js';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import NavigationBar from './components/Common/NavigationBar.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import GetUserPage from './pages/Home/GetUserPage.js';
 const App = () => {
 
   return (
     <>
       <Router>
-        {/* <NavigationBar/> */}
+        <NavigationBar/>
 
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -36,7 +36,7 @@ const App = () => {
         <Route path="/getuser" element={<GetUserPage/>} />  */}
           {/* <PrivateRoute path="/home" element={<HomePage />} /> */}
         </Routes>
-
+        <Footer/>
       </Router>
       {/* <PrivateRoute path="/membership" element={<MembershipClassPage />} /> */}
     </>
