@@ -7,7 +7,7 @@ import RegisterPage from './pages/Home/RegisterPage.js';
 import PrivateRoute from './pages/Home/PrivateRoute.js';
 import MembershipClassPage from './pages/Membership/MembershipClassPage.js'
 import NavigationBar from './components/Common/NavigationBar.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from './components/Common/Footer.js';
 // import GetUserPage from './pages/Home/GetUserPage.js';
 const App = () => {
 
