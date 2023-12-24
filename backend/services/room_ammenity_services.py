@@ -27,9 +27,22 @@ def get_room_ammenity_by_id(ammenity_id: int):
 
     return temp
 
+def get_ammenities_of_room(room_id: int):
+    temp = db.query(data_models.Room).filter(data_models.Room.id == room_id).first()
+
+    if (temp is None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Room with ID {room_id} does not exist.")
+    
+    return db.query(data_models.RoomAmenityName).filter(data_models.RoomAmenities.roomID == room_id, data_models.RoomAmenityName.id == data_models.RoomAmenities.room_amenityID).all()
+
 
 def create_room_ammenity(ammenity: validation_models.RoomAmenity):
-    __check_existed_ammenity_name(ammenity.name)
+    temp = db.query(data_models.RoomAmenityName).filter(
+        data_models.RoomAmenityName.name == ammenity.name.lower()).first()
+
+    if (temp is not None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail=f"Ammenity with name {ammenity.name} already exists.")
 
     room_ammenity = data_models.RoomAmenityName(
         name=ammenity.name.lower()
@@ -42,7 +55,15 @@ def create_room_ammenity(ammenity: validation_models.RoomAmenity):
 
 
 def update_room_ammenity(ammenity_id: int, ammenity: validation_models.RoomAmenity):
-    __check_existed_ammenity_name(ammenity.name)
+    
+    temp = db.query(data_models.RoomAmenityName).filter(
+        data_models.RoomAmenityName.name == ammenity.name.lower(),
+        data_models.RoomAmenityName.id != ammenity_id
+    ).first()
+
+    if (temp is not None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail=f"Ammenity with name {ammenity.name} already exists.")
 
     temp = get_room_ammenity_by_id(ammenity_id)
 
@@ -61,11 +82,37 @@ def delete_room_ammenity(ammenity_id: int):
 
     return temp
 
+    
 
-def __check_existed_ammenity_name(name: str):
-    temp = db.query(data_models.RoomAmenityName).filter(
-        data_models.RoomAmenityName.name == name.lower()).first()
+def add_ammenity_to_room(amenity_ref: validation_models.RoomAmenityRef):
+    get_room_ammenity_by_id(amenity_ref.room_amenityID)
 
-    if (temp is not None):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail=f"Ammenity with name {name} already exists.")
+    temp = db.query(data_models.Room).filter(data_models.Room.id == amenity_ref.roomID).first()
+
+    if (temp is None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Room with ID {amenity_ref.roomID} does not exist.")
+    
+    data = data_models.RoomAmenities(
+        roomID = amenity_ref.roomID,
+        room_amenityID = amenity_ref.room_amenityID
+    )
+
+    db.add(data)
+    db.commit()
+
+    return data
+
+
+def delete_ammenity_from_room(ammenity_id: int, room_id:int):
+    get_room_ammenity_by_id(ammenity_id)
+
+    temp = db.query(data_models.Room).filter(data_models.Room.id == room_id).first()
+
+    if (temp is None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Room with ID {room_id} does not exist.")
+    data_models.RoomAmenities.delete().where(data_models.RoomAmenities.roomID == room_id, data_models.RoomAmenities.room_amenityID == ammenity_id).execute()
+
+    return {
+        "message":"removed"
+    }
+

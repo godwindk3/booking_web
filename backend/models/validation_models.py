@@ -50,6 +50,7 @@ class UserOut(BaseModelConfig):
     email: str
     role: int = 0
 
+
 class UserCredentials(BaseModelConfig):
     email: str
     password: str
@@ -79,8 +80,18 @@ class RoomAmenity(BaseModelConfig):
     name: str
 
 
+class RoomAmenityRef(BaseModelConfig):
+    roomID: int
+    room_amenityID: int
+
+
 class AccommodationAmenity(BaseModelConfig):
     name: str
+
+
+class AccommodationAmenityRef(BaseModelConfig):
+    accommodationID: int
+    amenityID: int
 
 
 class Review(BaseModelConfig):
@@ -118,6 +129,7 @@ class BookingOut(BaseModelConfig):
 class Token(BaseModelConfig):
     access_token: str
     token_type: str
+
 
 class TokenData(BaseModelConfig):
     id: int = None
