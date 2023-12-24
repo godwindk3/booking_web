@@ -45,13 +45,17 @@
   background-color: #0056b3;
 } */
 
+
+/* ---------------------------------------------------------------------- */ 
+
+
 /* Header */
-.Header {
+/* .Header {
   position: sticky;
   top: 0;
   background-color: #fff;
   z-index: 20;
-}
+} */
 
 /* css dùng chung */
 .align-center {
@@ -72,11 +76,12 @@
   margin: auto;
 }
 
+
 /* Header containers chính */
-.Header_container_main {
+/* .Header_container_main {
   height: 96px;
   width: 100%;
-}
+} */
 
 /* Header chứa các nút bên trái */
 .h-full {
@@ -87,14 +92,14 @@
 }
 
 /* Logo */
-.home-button {
+/* .home-button {
   background-color: #fff;
   border: #fff;
   margin-bottom: 5px;
 }
 .home-button:hover {
   cursor: pointer;
-}
+} */
 booking {
   color: #FC6C85;
   font-size: 32px;
@@ -111,16 +116,16 @@ vn {
 }
 
 /* Navigator cho các nút */
-.Header_nav_container {
+/* .Header_nav_container {
   color: var(--gray-900);
-}
+} */
 .h-full {
   height: 100%;
 }
 .gap-24 {
   gap: 24px;
 }
-.nav-button {
+/* .nav-button {
   background-color: #fff;
   border: #fff;
   font-family: Arial;
@@ -130,15 +135,15 @@ vn {
   cursor: pointer;
   color: #FC6C85;
   text-decoration: underline;
-}
+} */
 
 /* Nút "trở thành đối tác của chúng tôi" */
-.doitac-button {
+/* .doitac-button {
   margin-left: 400px;
-}
+} */
 
 /* Nút đăng nhập */
-.login-button {
+/* .login-button {
   color: #333;
   font-family: Arial;
   font-size: 17px;
@@ -159,7 +164,7 @@ vn {
   color: #ffffff;
   background-color: #fd3355;
   border: #fd3355;
-}
+} */
 
 /* ---------------------------------------------------------------------- */ 
 /* Banner */
@@ -293,6 +298,7 @@ vn {
 
 /* ---------------------------------------------------------------------- */ 
 /* Footer */
+/*
 .gap-32 {
   gap: 32px;
 }
@@ -337,4 +343,4 @@ vn {
 .footer2-list:hover {
   cursor: pointer;
   color: #FC6C85;
-}
+} */

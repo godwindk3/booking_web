@@ -40,7 +40,7 @@ const HomePage = () => {
         </div>
       </section> */}
 
-<section className="Header">
+      {/* <section className="Header">
         <div className="container flex justify-between align-center Header_container_main">
           <div className="flex align-center gap-40 h-full">
 
@@ -79,7 +79,7 @@ const HomePage = () => {
 
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="Banner">
         <div className="img-banner-container">
@@ -132,10 +132,10 @@ const HomePage = () => {
 
       </section>
 
-      <section className="Footer">
+      {/* <section className="Footer">
         <div className="flex justify-center main-footer">
           <div className="footer-container">
-            {/* column1 */}
+
             <div className="flex flex-col gap-20">
               <div>
                 <booking>Booking</booking>
@@ -150,7 +150,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            {/* column2 */}
+
             <div className="flex justify-between gap-16 footer2">
               <div className="flex flex-col gap-16">
                 <div className="footer2-head">Giới thiệu</div>
@@ -179,7 +179,7 @@ const HomePage = () => {
             <p> &copy; 2023 Booking.vn | All rights reserved </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );

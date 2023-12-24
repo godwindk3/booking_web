@@ -58,7 +58,7 @@ const RegisterPage = () => {
     const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(formData.password)) {
       // setErrorMessage('Password must be at least 8 characters and contain at least one UPPERCASE letter.');
-      setErrorMessage('Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất một chữ cái VIẾT HOA');
+      setErrorMessage('Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất một chữ cái IN HOA');
       return;
     }
 
