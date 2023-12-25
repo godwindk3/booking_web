@@ -134,12 +134,9 @@ class Token(BaseModelConfig):
 class TokenData(BaseModelConfig):
     id: int = None
     role: int
-<<<<<<< HEAD
     
 class Payment(BaseModelConfig):
     bookingID: int
     amount: float
     payment_date: date
     payment_method: str
-=======
->>>>>>> 2fe13f99d7ce5d27ff62a43f47ccfd2a211d9f71
