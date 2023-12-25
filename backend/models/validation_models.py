@@ -24,17 +24,18 @@ class Room(BaseModelConfig):
     room_number: int
     capacity: int = 1
     price: float
-    status: bool = False
+    status: bool = True
     tier: str = "B"
 
 
 class RoomOut(BaseModelConfig):
     id: int
     room_number: int
-    capacity: int = 1
+    accommodationID: int
+    capacity: int
     price: float
-    status: bool = False
-    tier: str = "B"
+    status: bool
+    tier: str
 
 
 class User(BaseModelConfig):
@@ -49,6 +50,17 @@ class UserOut(BaseModelConfig):
     name: str
     email: str
     role: int = 0
+
+
+class Manager(BaseModelConfig):
+    userID: int
+    accommodationID: int
+
+
+class ManagerOut(BaseModelConfig):
+    id: int
+    userID: int
+    accommodationID: int
 
 
 class UserCredentials(BaseModelConfig):
@@ -112,6 +124,7 @@ class ReviewOut(BaseModelConfig):
 class Booking(BaseModelConfig):
     userID: int
     accommodationID: int
+    roomID: int
     checkin_date: date
     checkout_date: date
     total_price: float
@@ -121,6 +134,7 @@ class BookingOut(BaseModelConfig):
     id: int
     userID: int
     accommodationID: int
+    roomID: int
     checkin_date: date
     checkout_date: date
     total_price: float
@@ -134,8 +148,17 @@ class Token(BaseModelConfig):
 class TokenData(BaseModelConfig):
     id: int = None
     role: int
-    
+
+
 class Payment(BaseModelConfig):
+    bookingID: int
+    amount: float
+    payment_date: date
+    payment_method: str
+
+
+class PaymentOut(BaseModelConfig):
+    id: int
     bookingID: int
     amount: float
     payment_date: date

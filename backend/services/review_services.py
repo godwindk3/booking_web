@@ -6,7 +6,6 @@ import ultraimport
 validation_models = ultraimport("__dir__/../models/validation_models.py")
 data_models = ultraimport("__dir__/../models/data_models.py")
 database = ultraimport("__dir__/../database.py")
-# utils = ultraimport("__dir__/../utils.py")
 db = database.SessionLocal()
 from fastapi import HTTPException, status
 from booking_services import get_booking_by_id

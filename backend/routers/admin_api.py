@@ -27,7 +27,7 @@ room_ammenity_services = ultraimport(
 # import room_ammenity_services
 
 
-router = APIRouter(prefix="/admin")
+router = APIRouter(prefix="/admin", tags=["ADMIN"])
 
 
 @router.get("/")

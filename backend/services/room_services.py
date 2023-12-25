@@ -90,10 +90,9 @@ def delete_room(room_id):
     return room_to_del
 
 
-def __check_room_status(room_id: int):
-    temp = db.query(data_models.UserRoom).filter(data_models.UserRoom.roomID == room_id).first()
+def update_room_status(room_id: int, status):
+    room = get_room_by_id(room_id)
+    room.status = status
 
-    if (temp is not None):
-        return False
-    
-    return True
+    db.commit()
+
