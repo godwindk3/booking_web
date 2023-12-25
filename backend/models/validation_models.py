@@ -31,6 +31,7 @@ class Room(BaseModelConfig):
 class RoomOut(BaseModelConfig):
     id: int
     room_number: int
+    accommodationID: int
     capacity: int = 1
     price: float
     status: bool = False
@@ -134,3 +135,10 @@ class Token(BaseModelConfig):
 class TokenData(BaseModelConfig):
     id: int = None
     role: int
+
+
+class Payment(BaseModelConfig):
+    bookingID: int
+    amount: float
+    payment_date: date
+    payment_method: str
