@@ -56,7 +56,7 @@ import PrivateRoute from './pages/Home/PrivateRoute.js';
 import MembershipPage from './pages/Membership/MembershipClassPage.js';
 import NavigationBar from './components/Common/NavigationBar.js';
 import Footer from './components/Common/Footer.js';
-
+import GetHotel from './pages/Home/GetHotel.js';
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token') !== null);
 
@@ -74,10 +74,11 @@ const App = () => {
       <Router>
         <NavigationBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage/>} />
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/gethotel" element={<GetHotel />} />
           <Route
             path="/membership"
             element={
