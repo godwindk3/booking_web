@@ -88,3 +88,12 @@ def delete_room(room_id):
     db.commit()
 
     return room_to_del
+
+
+def __check_room_status(room_id: int):
+    temp = db.query(data_models.UserRoom).filter(data_models.UserRoom.roomID == room_id).first()
+
+    if (temp is not None):
+        return False
+    
+    return True

@@ -13,7 +13,7 @@ class Accomodation(BaseModelConfig):
     location: str
 
 
-class AccommodationOut(BaseModel):
+class AccommodationOut(BaseModelConfig):
     id: int
     name: str
     location: str
@@ -28,7 +28,7 @@ class Room(BaseModelConfig):
     tier: str = "B"
 
 
-class RoomOut(BaseModel):
+class RoomOut(BaseModelConfig):
     id: int
     room_number: int
     capacity: int = 1
@@ -44,13 +44,14 @@ class User(BaseModelConfig):
     role: int = 0
 
 
-class UserOut(BaseModel):
+class UserOut(BaseModelConfig):
     id: int
     name: str
     email: str
     role: int = 0
 
-class UserCredentials(BaseModel):
+
+class UserCredentials(BaseModelConfig):
     email: str
     password: str
 
@@ -60,7 +61,7 @@ class RoomImage(BaseModelConfig):
     url: str
 
 
-class RoomImageOut(BaseModel):
+class RoomImageOut(BaseModelConfig):
     id: int
     roomID: int
 
@@ -70,7 +71,7 @@ class AccomodationImage(BaseModelConfig):
     url: str
 
 
-class AccomodationImageOut(BaseModel):
+class AccomodationImageOut(BaseModelConfig):
     id: int
     accommodationID: int
 
@@ -79,8 +80,18 @@ class RoomAmenity(BaseModelConfig):
     name: str
 
 
+class RoomAmenityRef(BaseModelConfig):
+    roomID: int
+    room_amenityID: int
+
+
 class AccommodationAmenity(BaseModelConfig):
     name: str
+
+
+class AccommodationAmenityRef(BaseModelConfig):
+    accommodationID: int
+    amenityID: int
 
 
 class Review(BaseModelConfig):
@@ -90,7 +101,7 @@ class Review(BaseModelConfig):
     comment: str | None = None
 
 
-class ReviewOut(BaseModel):
+class ReviewOut(BaseModelConfig):
     id: int
     userID: int
     bookingID: int
@@ -106,7 +117,7 @@ class Booking(BaseModelConfig):
     total_price: float
 
 
-class BookingOut(BaseModel):
+class BookingOut(BaseModelConfig):
     id: int
     userID: int
     accommodationID: int
@@ -115,16 +126,20 @@ class BookingOut(BaseModel):
     total_price: float
 
 
-class Token(BaseModel):
+class Token(BaseModelConfig):
     access_token: str
     token_type: str
 
-class TokenData(BaseModel):
+
+class TokenData(BaseModelConfig):
     id: int = None
     role: int
+<<<<<<< HEAD
     
 class Payment(BaseModelConfig):
     bookingID: int
     amount: float
     payment_date: date
     payment_method: str
+=======
+>>>>>>> 2fe13f99d7ce5d27ff62a43f47ccfd2a211d9f71

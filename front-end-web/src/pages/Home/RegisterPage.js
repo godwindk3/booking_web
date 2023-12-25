@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from './axiosConfig';
 import Modal from 'react-modal';
 import validator from 'validator'; // Import the validator library
 import './RegisterPage.css';
-
+import { useNavigate } from 'react-router-dom';
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -48,6 +49,12 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if any required field is empty
+    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+      setErrorMessage('Please fill in all the required fields.');
+      return;
+    }
+
     // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match');
@@ -58,13 +65,13 @@ const RegisterPage = () => {
     const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(formData.password)) {
       // setErrorMessage('Password must be at least 8 characters and contain at least one UPPERCASE letter.');
-      setErrorMessage('Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất một chữ cái VIẾT HOA');
+      setErrorMessage('Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất một chữ cái IN HOA');
       return;
     }
 
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8000/admin/users',
+        '/admin/users',
         {
           name: formData.name,
           email: formData.email,
@@ -83,6 +90,9 @@ const RegisterPage = () => {
         console.log('Registration successful');
         openModal(); // Open the success modal
         // Additional logic after successful registration
+        setTimeout(() => {
+          navigate('/login'); // Navigate to the login page after 3 seconds
+        }, 3000);
       } else {
         // Registration failed
         console.error('Registration failed');
@@ -160,8 +170,8 @@ const RegisterPage = () => {
         onRequestClose={closeModal}
         contentLabel="Registration Successful"
       >
-        <h2>Registration Successful!</h2>
-        <p>Your account has been successfully registered.</p>
+        <h2>Đăng ký thành công</h2>
+        <p>Tự động chuyển sang trang đăng nhập sau 3 giây</p>
         <button onClick={closeModal}>Close</button>
       </Modal>
     </div>

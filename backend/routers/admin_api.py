@@ -7,12 +7,15 @@ validation_models = ultraimport("__dir__/../models/validation_models.py")
 # from ..models import validation_models
 
 user_services = ultraimport("__dir__/../services/user_services.py")
-accommodation_services = ultraimport("__dir__/../services/accommodation_services.py")
+accommodation_services = ultraimport(
+    "__dir__/../services/accommodation_services.py")
 room_services = ultraimport("__dir__/../services/room_services.py")
 booking_services = ultraimport("__dir__/../services/booking_services.py")
 review_services = ultraimport("__dir__/../services/review_services.py")
-acco_ammenity_services = ultraimport("__dir__/../services/acco_ammenity_services.py")
-room_ammenity_services = ultraimport("__dir__/../services/room_ammenity_services.py")
+acco_ammenity_services = ultraimport(
+    "__dir__/../services/acco_ammenity_services.py")
+room_ammenity_services = ultraimport(
+    "__dir__/../services/room_ammenity_services.py")
 # print(user_services.get_all_users())
 
 # import user_services
@@ -108,6 +111,11 @@ async def fetch_all_rooms():
 @router.get("/rooms/{room_id}", response_model=validation_models.RoomOut, status_code=status.HTTP_200_OK)
 async def fetch_room_by_id(room_id):
     return room_services.get_room_by_id(room_id)
+
+
+@router.get("/rooms/{room_id}/ammenities", response_model=List[validation_models.RoomAmenity], status_code=status.HTTP_200_OK)
+async def fetch_ammenities_of_room(room_id: int):
+    return room_ammenity_services.get_ammenities_of_room(room_id)
 
 
 @router.post("/rooms", response_model=validation_models.RoomOut, status_code=status.HTTP_201_CREATED)
@@ -222,6 +230,11 @@ async def fetch_room_ammenity_by_id(ammenity_id: int):
 @router.post("/ammenities/rooms", response_model=validation_models.RoomAmenity, status_code=status.HTTP_201_CREATED)
 async def create_room_ammenity(ammenity: validation_models.RoomAmenity):
     return room_ammenity_services.create_room_ammenity(ammenity)
+
+
+@router.post("/ammenities/rooms/attach", response_model=validation_models.RoomAmenityRef, status_code=status.HTTP_201_CREATED)
+async def add_amenity_to_room(amenity_ref: validation_models.RoomAmenityRef):
+    return room_ammenity_services.add_ammenity_to_room(amenity_ref)
 
 
 @router.put("/ammenities/rooms/{ammenity_id}", response_model=validation_models.RoomAmenity, status_code=status.HTTP_200_OK)
