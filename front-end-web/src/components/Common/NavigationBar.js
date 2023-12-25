@@ -1,14 +1,24 @@
 // components/Common/NavigationBar.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './NavigationBar.css';
 
 const NavigationBar = ({ isLoggedIn, onLogout }) => {
+  const [showAdditionalButton, setShowAdditionalButton] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Update the showAdditionalButton state based on the user's login status
+    setShowAdditionalButton(isLoggedIn);
+  }, [isLoggedIn]);
 
   const handleLogout = () => {
     onLogout(); // Notify the higher-level component about the logout
     navigate('/login');
+  };
+
+  const handleAdditionalButtonClick = () => {
+    // Add logic for what happens when the additional button is clicked
   };
 
   return (
@@ -26,10 +36,11 @@ const NavigationBar = ({ isLoggedIn, onLogout }) => {
             </div>
 
             <div className="flex gap-24 h-full align-center cursor-pointer Header_nav_container">
-              <button className="h-full flex align-center nav-button">
-                Tìm khách sạn
-              </button>
-
+              <NavLink exact to="/gethotel" style={{ textDecoration: 'none' }}>
+                <button className="h-full flex align-center nav-button">
+                  Tìm khách sạn
+                </button>
+              </NavLink>
               <NavLink exact to="/about" style={{ textDecoration: 'none' }}>
                 <button className="h-full flex align-center nav-button">
                   Về chúng tôi
@@ -41,9 +52,18 @@ const NavigationBar = ({ isLoggedIn, onLogout }) => {
               </button>
 
               {isLoggedIn ? (
-                <button className="flex align-center gap-24 login-button" onClick={handleLogout}>
-                  Đăng xuất
-                </button>
+                <>
+                  <button className="flex align-center gap-24 login-button" onClick={handleLogout}>
+                    Đăng xuất
+                  </button>
+                  {showAdditionalButton && (
+                    <NavLink exact to="/membership" style={{ textDecoration: 'none' }}>
+                      <button className="flex align-center gap-24 login-button">
+                        Membership
+                      </button>
+                    </NavLink>
+                  )}
+                </>
               ) : (
                 <NavLink exact to="/login" style={{ textDecoration: 'none' }}>
                   <button className="flex align-center gap-24 login-button">
@@ -60,6 +80,7 @@ const NavigationBar = ({ isLoggedIn, onLogout }) => {
 };
 
 export default NavigationBar;
+
 
 
 

@@ -71,7 +71,7 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(
-        '/admin/users',
+        '/register',
         {
           name: formData.name,
           email: formData.email,
