@@ -10,7 +10,7 @@ room_services = ultraimport("__dir__/../services/room_services.py")
 booking_services = ultraimport("__dir__/../services/booking_services.py")
 review_services = ultraimport("__dir__/../services/review_services.py")
 
-router = APIRouter(prefix="/user")
+router = APIRouter(prefix="/user", tags=["USER"])
 
 @router.get("/", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
 async def fetch_current_user_info(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):

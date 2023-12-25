@@ -67,6 +67,7 @@ class Booking(Base):
         "users.id", ondelete="CASCADE", onupdate="CASCADE"))
     accommodationID = Column(Integer, ForeignKey(
         "accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
+    roomID = Column(Integer, ForeignKey("rooms.id", ondelete="CASCADE", onupdate="CASCADE"))
     checkin_date = Column(Date)
     checkout_date = Column(Date)
     total_price = Column(Float)
