@@ -52,6 +52,17 @@ class UserOut(BaseModelConfig):
     role: int = 0
 
 
+class Manager(BaseModelConfig):
+    userID: int
+    accommodationID: int
+
+
+class ManagerOut(BaseModelConfig):
+    id: int
+    userID: int
+    accommodationID: int
+
+
 class UserCredentials(BaseModelConfig):
     email: str
     password: str
@@ -138,6 +149,14 @@ class TokenData(BaseModelConfig):
 
 
 class Payment(BaseModelConfig):
+    bookingID: int
+    amount: float
+    payment_date: date
+    payment_method: str
+
+
+class PaymentOut(BaseModelConfig):
+    id: int
     bookingID: int
     amount: float
     payment_date: date

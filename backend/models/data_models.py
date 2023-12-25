@@ -1,9 +1,10 @@
+from sqlalchemy import String, Boolean, Integer, Column, Text, ForeignKey, Float, Date
 import ultraimport
 # from database import Base, engine
 database = ultraimport("__dir__/../database.py")
 Base = database.Base
 engine = database.engine
-from sqlalchemy import String, Boolean, Integer, Column, Text, ForeignKey, Float, Date
+
 
 class User(Base):
     __tablename__ = "users"
@@ -15,6 +16,13 @@ class User(Base):
 
     def __repr__(self):
         return f"<User id={self.id} name={self.name} email={self.email}>"
+    
+
+class Manager(Base):
+    __tablename__ = "managers"
+    id = Column(Integer, primary_key=True)
+    userID = Column(Integer, ForeignKey("users.id", ondelete="CASCADE", onupdate="CASCADE"))
+    accommodationID = Column(Integer, ForeignKey("accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
 
 
 class Accommodation(Base):
@@ -30,7 +38,8 @@ class Accommodation(Base):
 class Room(Base):
     __tablename__ = "rooms"
     id = Column(Integer, primary_key=True)
-    accommodationID = Column(Integer, ForeignKey("accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
+    accommodationID = Column(Integer, ForeignKey(
+        "accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
     room_number = Column(Integer, nullable=False)
     capacity = Column(Integer)
     price = Column(Float)
@@ -43,16 +52,21 @@ class Room(Base):
 
 class UserRoom(Base):
     __tablename__ = "userRooms"
-    dummy_key = Column(Integer, primary_key=True) # SQLAlchemy can't map table without primary key, so I create a dummy column to represent a pri key
-    roomID = Column(Integer, ForeignKey("rooms.id", ondelete="CASCADE", onupdate="CASCADE"))
-    userID = Column(Integer, ForeignKey("users.id", ondelete="CASCADE", onupdate="CASCADE"))
+    # SQLAlchemy can't map table without primary key, so I create a dummy column to represent a pri key
+    dummy_key = Column(Integer, primary_key=True)
+    roomID = Column(Integer, ForeignKey(
+        "rooms.id", ondelete="CASCADE", onupdate="CASCADE"))
+    userID = Column(Integer, ForeignKey(
+        "users.id", ondelete="CASCADE", onupdate="CASCADE"))
 
 
 class Booking(Base):
     __tablename__ = "bookings"
     id = Column(Integer, primary_key=True)
-    userID = Column(Integer, ForeignKey("users.id", ondelete="CASCADE", onupdate="CASCADE"))
-    accommodationID = Column(Integer, ForeignKey("accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
+    userID = Column(Integer, ForeignKey(
+        "users.id", ondelete="CASCADE", onupdate="CASCADE"))
+    accommodationID = Column(Integer, ForeignKey(
+        "accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
     checkin_date = Column(Date)
     checkout_date = Column(Date)
     total_price = Column(Float)
@@ -65,8 +79,10 @@ class Review(Base):
     __tablename__ = "reviews"
 
     id = Column(Integer, primary_key=True)
-    userID = Column(Integer, ForeignKey("users.id", ondelete="CASCADE", onupdate="CASCADE"))
-    bookingID = Column(Integer, ForeignKey("bookings.id", ondelete="CASCADE", onupdate="CASCADE"))
+    userID = Column(Integer, ForeignKey(
+        "users.id", ondelete="CASCADE", onupdate="CASCADE"))
+    bookingID = Column(Integer, ForeignKey(
+        "bookings.id", ondelete="CASCADE", onupdate="CASCADE"))
     rating = Column(Integer)
     comment = Column(Text)
 
@@ -79,15 +95,17 @@ class RoomAmenityName(Base):
 
 class RoomAmenities(Base):
     __tablename__ = "roomAmenities"
-    dummy_key = Column(Integer, primary_key=True) # Same with this
-    roomID = Column(Integer, ForeignKey("rooms.id", ondelete="CASCADE", onupdate="CASCADE"))
-    room_amenityID = Column(Integer, ForeignKey("roomAmenitiesNames.id", ondelete="CASCADE", onupdate="CASCADE"))
+    dummy_key = Column(Integer, primary_key=True)  # Same with this
+    roomID = Column(Integer, ForeignKey(
+        "rooms.id", ondelete="CASCADE", onupdate="CASCADE"))
+    room_amenityID = Column(Integer, ForeignKey(
+        "roomAmenitiesNames.id", ondelete="CASCADE", onupdate="CASCADE"))
 
 
 class RoomImage(Base):
     __tablename__ = "roomImages"
     id = Column(Integer, primary_key=True)
-    roomID = Column(Integer, ForeignKey("rooms.id"))
+    roomID = Column(Integer, ForeignKey("rooms.id", ondelete="CASCADE", onupdate="CASCADE"))
     url = Column(String)
 
 
@@ -97,26 +115,32 @@ class AccommodationAmenityName(Base):
     name = Column(String)
 
 
-
 class AccommodationAmenities(Base):
     __tablename__ = "accommodationAmenities"
     dummy_key = Column(Integer, primary_key=True)
-    accommodationID = Column(Integer, ForeignKey("accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
-    amenityID = Column(Integer, ForeignKey("accommodationAmenitiesNames.id", ondelete="CASCADE", onupdate="CASCADE"))
+    accommodationID = Column(Integer, ForeignKey(
+        "accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
+    amenityID = Column(Integer, ForeignKey(
+        "accommodationAmenitiesNames.id", ondelete="CASCADE", onupdate="CASCADE"))
+
 
 class AccommodationImage(Base):
     __tablename__ = "accommodationImages"
-    accommodationID = Column(Integer, ForeignKey("accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
+    accommodationID = Column(Integer, ForeignKey(
+        "accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
     id = Column(Integer, primary_key=True)
     url = Column(String)
-    
+
+
 class Payment(Base):
     __tablename__ = "payments"
-    id = Column(Integer, primary_key = True)
-    bookingID = Column(Integer, ForeignKey("bookings.id"))
+    id = Column(Integer, primary_key=True)
+    bookingID = Column(Integer, ForeignKey(
+        "bookings.id", ondelete="CASCADE", onupdate="CASCADE"))
     amount = Column(Float)
     payment_date = Column(Date)
     payment_method = Column(String)
-    
+
+
 def create_db():
     Base.metadata.create_all(engine)
