@@ -110,5 +110,13 @@ class AccommodationImage(Base):
     id = Column(Integer, primary_key=True)
     url = Column(String)
     
+class Payment(Base):
+    __tablename__ = "payments"
+    id = Column(Integer, primary_key = True)
+    bookingID = Column(Integer, ForeignKey("bookings.id"))
+    amount = Column(Float)
+    payment_date = Column(Date)
+    payment_method = Column(String)
+    
 def create_db():
     Base.metadata.create_all(engine)

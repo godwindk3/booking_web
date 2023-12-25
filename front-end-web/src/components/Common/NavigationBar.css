@@ -164,13 +164,14 @@ vn {
   height: 100%;
 }
 .gap-24 {
-  gap: 24px;
+  gap: 10px;
 }
 .nav-button {
   background-color: #fff;
   border: #fff;
   font-family: Arial;
   font-size: 17px;
+  width: max-content;
 }
 .nav-button:hover {
   cursor: pointer;
