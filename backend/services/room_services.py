@@ -90,6 +90,14 @@ def delete_room(room_id):
     return room_to_del
 
 
+def get_exist_dates(room_id: int):
+    # print("================")
+    dates = db.query(data_models.Booking).filter(data_models.Booking.roomID == room_id).all()
+
+    return dates
+
+
+
 def update_room_status(room_id: int, status):
     room = get_room_by_id(room_id)
     room.status = status

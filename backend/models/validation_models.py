@@ -139,6 +139,10 @@ class BookingOut(BaseModelConfig):
     checkout_date: date
     total_price: float
 
+class CheckInOutDates(BaseModelConfig):
+    checkin_date: date
+    checkout_date: date
+
 
 class Token(BaseModelConfig):
     access_token: str
