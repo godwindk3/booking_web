@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status, Depends
+from fastapi import APIRouter, status, Depends, HTTPException
 from typing import List
 import ultraimport
 validation_models = ultraimport("__dir__/../models/validation_models.py")
@@ -14,11 +14,15 @@ router = APIRouter(prefix="/user", tags=["USER"])
 
 @router.get("/", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
 async def fetch_current_user_info(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    if (current_user_data is None):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Unauthorized.")
     return user_services.get_user_by_id(current_user_data.id)
 
 
 @router.put("/", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
 async def update_current_user_info(user: validation_models.User, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    if (user.role == 2 and current_user_data.role < 2):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"No permission.")
     return user_services.update_user(current_user_data.id, user)
 
 

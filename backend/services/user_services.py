@@ -8,6 +8,7 @@ data_models = ultraimport("__dir__/../models/data_models.py")
 database = ultraimport("__dir__/../database.py")
 db = database.SessionLocal()
 from fastapi import HTTPException, status
+manager_services = ultraimport("__dir__/manager_services.py")
 utils = ultraimport("__dir__/utils.py")
 hash = utils.hash
 
@@ -34,6 +35,12 @@ def get_user_by_id(user_id: int):
 
 
 def create_user(user: validation_models.User):
+    temp = db.query(data_models.User).filter(
+    data_models.User.email == user.email).first()
+
+    if (temp is not None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail=f"User with email = {user.email} already exists.")
     hashed_pwd = hash(user.password)
     new_user = data_models.User(
         name=user.name,
@@ -41,13 +48,6 @@ def create_user(user: validation_models.User):
         password=hashed_pwd,
         role=user.role
     )
-
-    temp = db.query(data_models.User).filter(
-        data_models.User.email == new_user.email).first()
-
-    if (temp is not None):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail=f"User with email = {new_user.email} already exists.")
 
     db.add(new_user)
     db.commit()

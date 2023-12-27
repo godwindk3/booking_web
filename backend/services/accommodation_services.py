@@ -52,6 +52,9 @@ def update_accommodation(id: int, accommodation: validation_models.Accomodation)
 
 def delete_accommodation(id: int):
     temp = get_accommodation_by_id(id)
+
+    
+
     db.delete(temp)
     db.commit()
 

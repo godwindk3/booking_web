@@ -90,7 +90,11 @@ def add_ammenity_to_room(amenity_ref: validation_models.RoomAmenityRef):
     temp = db.query(data_models.Room).filter(data_models.Room.id == amenity_ref.roomID).first()
 
     if (temp is None):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Room with ID {amenity_ref.roomID} does not exist.")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Room with ID {amenity_ref.roomID} does not exist.")
+    
+    temp = db.query(data_models.RoomAmenities).filter(data_models.RoomAmenities.room_amenityID == amenity_ref.room_amenityID, data_models.RoomAmenities.roomID == amenity_ref.roomID).first()
+    if (temp is not None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Room with ID {amenity_ref.roomID} already contains amenity ID {amenity_ref.room_amenityID}.")
     
     data = data_models.RoomAmenities(
         roomID = amenity_ref.roomID,
@@ -110,9 +114,9 @@ def delete_ammenity_from_room(ammenity_id: int, room_id:int):
 
     if (temp is None):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Room with ID {room_id} does not exist.")
-    data_models.RoomAmenities.delete().where(data_models.RoomAmenities.roomID == room_id, data_models.RoomAmenities.room_amenityID == ammenity_id).execute()
+    amenity_to_remove = db.query(data_models.RoomAmenities).filter(data_models.RoomAmenities.roomID == room_id, data_models.RoomAmenities.room_amenityID == ammenity_id).first()
 
-    return {
-        "message":"removed"
-    }
+    db.delete(amenity_to_remove)
+    db.commit()
 
+    return amenity_to_remove

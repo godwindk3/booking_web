@@ -30,3 +30,6 @@ def login(user_credentials: validation_models.UserCredentials):
             "token_type":"bearer"
         }
 
+
+
+
