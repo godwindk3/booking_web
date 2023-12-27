@@ -91,6 +91,10 @@ class AccomodationImageOut(BaseModelConfig):
 class RoomAmenity(BaseModelConfig):
     name: str
 
+class RoomAmenityOut(BaseModelConfig):
+    id: int
+    name: str
+
 
 class RoomAmenityRef(BaseModelConfig):
     roomID: int
@@ -98,6 +102,10 @@ class RoomAmenityRef(BaseModelConfig):
 
 
 class AccommodationAmenity(BaseModelConfig):
+    name: str
+
+class AccommodationAmenityOut(BaseModelConfig):
+    id: int
     name: str
 
 

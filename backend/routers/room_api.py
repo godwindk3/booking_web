@@ -33,7 +33,7 @@ async def create_room(room: validation_models.Room, current_user_data: validatio
         manager = manager_services.get_manager_by_user_id(current_user_data.id)
         if (manager.accommodationID != room.accommodationID):
             raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")
+                status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     return room_services.create_room(room)
 
 

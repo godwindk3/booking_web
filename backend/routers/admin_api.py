@@ -232,9 +232,13 @@ async def create_room_ammenity(ammenity: validation_models.RoomAmenity):
     return room_ammenity_services.create_room_ammenity(ammenity)
 
 
-@router.post("/ammenities/rooms/attach", response_model=validation_models.RoomAmenityRef, status_code=status.HTTP_201_CREATED)
+@router.post("/ammenities/attach/rooms", response_model=validation_models.RoomAmenityRef, status_code=status.HTTP_201_CREATED)
 async def add_amenity_to_room(amenity_ref: validation_models.RoomAmenityRef):
     return room_ammenity_services.add_ammenity_to_room(amenity_ref)
+
+@router.delete("/ammenities/remove/rooms/{room_id}/{amenity_id}",response_model=validation_models.RoomAmenityRef, status_code=status.HTTP_200_OK)
+async def remove_amenity_from_room(room_id: int, amenity_id: int):
+    return room_ammenity_services.delete_ammenity_from_room(amenity_id, room_id)
 
 
 @router.put("/ammenities/rooms/{ammenity_id}", response_model=validation_models.RoomAmenity, status_code=status.HTTP_200_OK)
