@@ -22,6 +22,14 @@ def get_manager_by_id(manager_id: int):
     return temp
 
 
+def get_manager_by_user_id(user_id: int):
+    temp = db.query(data_models.Manager).filter(data_models.Manager.userID == user_id).first()
+    if (temp is None):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with ID {user_id} does not exist.")
+    
+    return temp
+
+
 def create_manager(manager: validation_models.Manager):
     temp = db.query(data_models.User).filter(data_models.User.id == manager.userID).first()
     if (temp is None):

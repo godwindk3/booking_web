@@ -12,7 +12,7 @@ oauth2 = ultraimport("__dir__/../services/oauth2.py")
 router = APIRouter(prefix="/accommodation", tags=["ACCOMMODATION"])
 
 
-@router.get("/", response_model=validation_models.AccommodationOut, status_code=status.HTTP_200_OK)
+@router.get("/", response_model=List[validation_models.AccommodationOut], status_code=status.HTTP_200_OK)
 async def fetch_all_accommodations():
     return accommodation_services.get_all_accommodations()
 
@@ -55,6 +55,12 @@ async def create_accommodation(accommodation: validation_models.Accomodation, cu
 async def update_accommodation(id: int, accommodation: validation_models.Accomodation, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     if (current_user_data.role == 0):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
+    
+    if (current_user_data.role == 1): 
+        manager = manager_services.get_manager_by_user_id(current_user_data.id)
+        if (manager.accommodationID != id):
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
+        
     return accommodation_services.update_accommodation(id, accommodation)
 
 
@@ -62,4 +68,8 @@ async def update_accommodation(id: int, accommodation: validation_models.Accomod
 async def delete_accommodation(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     if (current_user_data.role < 1):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
+    if (current_user_data.role == 1): 
+        manager = manager_services.get_manager_by_user_id(current_user_data.id)
+        if (manager.accommodationID != id):
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     return accommodation_services.delete_accommodation(id)
