@@ -83,18 +83,19 @@ async def attach_new_amenity_to_accommodation(amenity_ref: validation_models.Acc
 
 
 @router.delete("/room/detach/{room_id}/{amenity_id}", response_model=validation_models.RoomAmenityRef, status_code=status.HTTP_200_OK)
-async def detach_amenity_from_room(room_id: int, amenity_id:int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+async def detach_amenity_from_room(room_id: int, amenity_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     if (current_user_data.role == 0):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     elif (current_user_data.role == 1):
-        acco_id = manager_services.get_manager_by_user_id(current_user_data.id).accommodationID
+        acco_id = manager_services.get_manager_by_user_id(
+            current_user_data.id).accommodationID
         room = room_services.get_room_by_id(room_id)
 
         if (room.accommodationID != acco_id):
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
-        
+
     return room_ammenity_services.delete_ammenity_from_room(amenity_id, room_id)
 
 
@@ -104,11 +105,12 @@ async def detach_amenity_from_accommodation(accommodation_id: int, amenity_id: i
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     elif (current_user_data.role == 1):
-        acco_id = manager_services.get_manager_by_user_id(current_user_data.id).accommodationID
+        acco_id = manager_services.get_manager_by_user_id(
+            current_user_data.id).accommodationID
         if (accommodation_id != acco_id):
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
-        
+
     return acco_ammenity_services.delete_amenity_from_accommodation(amenity_id, accommodation_id)
 
 
@@ -133,7 +135,7 @@ async def delete_room_amenity(amenity_id: int, current_user_data: validation_mod
     if (current_user_data.role < 2):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
-    
+
     return room_ammenity_services.delete_room_ammenity(amenity_id)
 
 
@@ -143,7 +145,3 @@ async def delete_accommodation_amenity(amenity_id: int, current_user_data: valid
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     return acco_ammenity_services.delete_acco_ammenity(amenity_id)
-
-
-
-
