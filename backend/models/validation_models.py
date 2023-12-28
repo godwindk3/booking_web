@@ -1,6 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, FilePath
 from datetime import date
 from uuid import uuid4
+
 
 
 class BaseModelConfig(BaseModel):
@@ -175,3 +176,22 @@ class PaymentOut(BaseModelConfig):
     amount: float
     payment_date: date
     payment_method: str
+
+
+class RoomImage(BaseModelConfig):
+    roomID: int
+    url: str
+
+class RoomImageOut(BaseModelConfig):
+    id: int
+    roomID: int
+    url: str
+
+class AccommodationImage(BaseModelConfig):
+    accommodationID: int
+    url: str
+
+class AccommodationImageOut(BaseModelConfig):
+    id: int
+    accommodationID: int
+    url: str
