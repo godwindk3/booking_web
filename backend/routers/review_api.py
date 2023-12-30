@@ -5,7 +5,7 @@ oauth2 = ultraimport("__dir__/../services/oauth2.py")
 validation_models = ultraimport("__dir__/../models/validation_models.py")
 review_services = ultraimport("__dir__/../services/review_services.py")
 
-router = APIRouter(prefix="REVIEW", tags=["REVIEW"])
+router = APIRouter(prefix="/review", tags=["REVIEW"])
 
 
 @router.get("/get_all", response_model=List[validation_models.ReviewOut], status_code=status.HTTP_200_OK)
