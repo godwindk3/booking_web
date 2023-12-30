@@ -7,6 +7,7 @@ import routers.accommodation_api as accommodation_api
 import routers.room_api as room_api
 import routers.amenity_api as amenity_api
 import routers.image_api as image_api
+import routers.review_api as review_api
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -28,6 +29,7 @@ app.include_router(accommodation_api.router)
 app.include_router(room_api.router)
 app.include_router(amenity_api.router)
 app.include_router(image_api.router)
+app.include_router(review_api.router)
 
 @app.get("/")
 async def hello_world():
