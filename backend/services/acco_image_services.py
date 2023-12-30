@@ -17,6 +17,13 @@ def get_image_url_by_id(image_id: int):
     
     return temp
 
+def get_images_of_accommodation(accommodation_id: int):
+    temp = db.query(data_models.Accommodation).filter(data_models.Accommodation.id == accommodation_id).first()
+    if (temp is None):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Accommodation with ID {accommodation_id} does not exist.")
+    
+    return db.query(data_models.AccommodationImage).filter(data_models.AccommodationImage.accommodationID == accommodation_id).all()
+
 
 def create_accommodation_image(accommodation_image: validation_models.AccommodationImage):
     temp = db.query(data_models.Accommodation).filter(data_models.Accommodation.id == accommodation_image.accommodationID).first()

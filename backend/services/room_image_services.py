@@ -17,6 +17,13 @@ def get_image_url_by_id(image_id: int):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Image with ID {image_id} does not exist.")
     return temp
 
+def get_images_of_room(room_id: int):
+    temp = db.query(data_models.Room).filter(data_models.Room.id == room_id).first()
+    if (temp is None):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Room with ID {room_id} does not exist.")
+    
+    return db.query(data_models.RoomImage).filter(data_models.RoomImage.roomID == room_id).all()
+
 
 def create_room_image_url(room_image: validation_models.RoomImage):
     temp = db.query(data_models.Room).filter(data_models.Room.id == room_image.roomID).first()

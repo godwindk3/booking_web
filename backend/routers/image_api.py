@@ -95,18 +95,52 @@ async def upload_accommodation_image(accommodation_id: int, file: UploadFile = F
 async def fetch_all_room_images():
     return room_image_services.get_all_images_url()
 
+
 @router.get("/accommodations", response_model=List[validation_models.AccommodationOut], status_code=status.HTTP_200_OK)
 async def fetch_all_accommodation_images():
     return acco_image_services.get_all_acco_images_url()
 
 
 @router.delete("/room/{id}", response_model=validation_models.RoomImageOut, status_code=status.HTTP_200_OK)
-async def delete_room_image(id: int):
+async def delete_room_image(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    if (current_user_data.role < 1):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
+    elif (current_user_data.role == 1):
+        room_id = room_image_services.get_image_url_by_id(id).roomID
+        acco_id = room_services.get_room_by_id(room_id).accommodationID
+        manager = manager_services.get_manager_by_user_id(current_user_data.id)
+        if (acco_id != manager.accommodationID):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
+
     return room_image_services.delete_room_image_url(id)
 
+
 @router.delete("/accommodation/{id}", response_model=validation_models.AccommodationImage, status_code=status.HTTP_200_OK)
-async def delete_accommodation_image(id: int):
+async def delete_accommodation_image(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    if (current_user_data.role < 1):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
+    elif (current_user_data.role == 1):
+        acco_id = acco_image_services.get_image_url_by_id(id).accommodationID
+        manager_acco_id = manager_services.get_manager_by_user_id(
+            current_user_data.id).accommodationID
+        if (acco_id != manager_acco_id):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
+
     return acco_image_services.delete_accommodation_image(id)
+
+
+@router.get("/room/get_room_images/{room_id}", response_model=List[validation_models.RoomImageOut], status_code=status.HTTP_200_OK)
+async def fetch_images_of_room(room_id: int):
+    return room_image_services.get_images_of_room(room_id)
+
+
+@router.get("/room/get_accommodation_images/{accommodation_id}", response_model=List[validation_models.AccommodationImageOut], status_code=status.HTTP_200_OK)
+async def fetch_images_of_accommodation(accommodation_id: int):
+    return acco_image_services.get_images_of_accommodation(accommodation_id)
 
 
 @router.get("/room/get_image/{id}", status_code=status.HTTP_200_OK)
@@ -114,7 +148,8 @@ async def get_room_image(id: int):
     url = room_image_services.get_image_url_by_id(id).url
     return FileResponse(url)
 
+
 @router.get("/accommodation/get_image/{id}", status_code=status.HTTP_200_OK)
-async def get_accommodation_image(id:int):
+async def get_accommodation_image(id: int):
     url = acco_image_services.get_image_url_by_id(id).url
     return FileResponse(url)

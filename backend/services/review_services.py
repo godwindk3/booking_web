@@ -48,6 +48,16 @@ def get_reviews_of_user(user_id: int):
 
     return reviews
 
+def get_reviews_of_accommodation(accommodation_id: int):
+    __check_exist_accommodation(accommodation_id)
+
+    res = db.query(data_models.Review).filter(
+        data_models.Review.bookingID == data_models.Booking.id,
+        data_models.Booking.accommodationID == accommodation_id
+    ).all()
+
+    return res
+
 
 def create_review(review: validation_models.Review):
     new_rv = data_models.Review(
