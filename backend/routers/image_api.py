@@ -138,7 +138,7 @@ async def fetch_images_of_room(room_id: int):
     return room_image_services.get_images_of_room(room_id)
 
 
-@router.get("/room/get_accommodation_images/{accommodation_id}", response_model=List[validation_models.AccommodationImageOut], status_code=status.HTTP_200_OK)
+@router.get("/accommodation/get_accommodation_images/{accommodation_id}", response_model=List[validation_models.AccommodationImageOut], status_code=status.HTTP_200_OK)
 async def fetch_images_of_accommodation(accommodation_id: int):
     return acco_image_services.get_images_of_accommodation(accommodation_id)
 
