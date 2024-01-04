@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 
 const GetHotel = () => {
     const [hotels, setHotels] = useState([]);
@@ -13,7 +13,7 @@ const GetHotel = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('/admin/accommodations');
+                const response = await axios.get('/accommodation');
                 setHotels(response.data);
             } catch (error) {
                 console.error('Error fetching hotel data:', error);
@@ -26,7 +26,7 @@ const GetHotel = () => {
 
     const fetchRoomsForHotel = async (hotelId) => {
         try {
-            const response = await axios.get(`/admin/accommodations/${hotelId}/rooms`);
+            const response = await axios.get(`/accommodation/${hotelId}/rooms`);
             setRooms(response.data);
             setIsModalOpen(true); // Open the modal after fetching rooms
         } catch (error) {
@@ -40,9 +40,7 @@ const GetHotel = () => {
         fetchRoomsForHotel(hotelId);
     };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+   
 
     return (
         <div>
@@ -56,30 +54,7 @@ const GetHotel = () => {
                 ))}
             </ul>
 
-            <Modal
-                isOpen={isModalOpen}
-                onRequestClose={closeModal}
-                contentLabel="Room Information"
-            >
-                <h2>Thông Tin Phòng Khách Sạn</h2>
-                {selectedHotelId && (
-                    <>
-                        <p>Thông tin phòng cho khách sạn (ID: {selectedHotelId}):</p>
-                        <ul>
-                            {rooms.map((room) => (
-                                <li key={room.id}>
-                                    <strong>Số Phòng:</strong> {room.room_number},{' '}
-                                    <strong>Thể Tích:</strong> {room.capacity},{' '}
-                                    <strong>Giá:</strong> {room.price},{' '}
-                                    <strong>Trạng Thái:</strong> {room.status ? 'Sẵn Sàng' : 'Đã có người đặt'},{' '}
-                                    <strong>Loại phòng:</strong> {room.tier}
-                                </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
-                <button onClick={closeModal}>Đóng</button>
-            </Modal>
+          
         </div>
     );
 };
