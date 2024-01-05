@@ -46,11 +46,11 @@ const NavigationBar = ({ isLoggedIn, onLogout }) => {
                   Về chúng tôi
                 </button>
               </NavLink>
-
+              <NavLink exact to="/ownerregister" style={{ textDecoration: 'none' }}>
               <button className="h-full flex align-center doitac-button gap-24 nav-button">
                 Trở thành đối tác của chúng tôi
               </button>
-
+              </NavLink>
               {isLoggedIn ? (
                 <>
                   <button className="flex align-center gap-24 login-button" onClick={handleLogout}>
