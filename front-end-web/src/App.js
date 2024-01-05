@@ -57,6 +57,7 @@ import MembershipPage from './pages/Membership/MembershipClassPage.js';
 import NavigationBar from './components/Common/NavigationBar.js';
 import Footer from './components/Common/Footer.js';
 import GetHotel from './pages/Home/GetHotel.js';
+import GetAccommodation from './pages/Home/GetAccommodation.js';
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token') !== null);
 
@@ -78,7 +79,7 @@ const App = () => {
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/gethotel" element={<GetHotel />} />
+          <Route path="/gethotel" element={<GetAccommodation />} />
           <Route
             path="/membership"
             element={
