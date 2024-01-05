@@ -23,6 +23,12 @@ def get_accommodation_by_id(id):
     
     return temp
 
+def get_manager(accommodation_id: int):
+    get_accommodation_by_id(accommodation_id)
+    return db.query(data_models.User).filter(data_models.Manager.accommodationID == accommodation_id).first()
+
+
+
 def create_accommodation(accommodation: validation_models.Accomodation):
     new_accommodation = data_models.Accommodation(
         name = accommodation.name,
