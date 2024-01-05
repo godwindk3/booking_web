@@ -111,10 +111,15 @@ const LoginPage = ({ onLogin }) => {
         // Store the token in local storage
         localStorage.setItem('token', token);
 
-        if (decodedPayload.role === 0) {
+        if (decodedPayload.role === 0 ) {
           onLogin(); // Notify the higher-level component about the login
           navigate('/');
-        } else {
+        }
+        else if(decodedPayload.role === 1) {
+          onLogin();
+          navigate('/');
+        }
+         else {
           setErrorMessage('Invalid user role. Please contact support.');
         }
       } else {

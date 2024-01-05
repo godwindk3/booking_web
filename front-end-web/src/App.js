@@ -58,6 +58,8 @@ import NavigationBar from './components/Common/NavigationBar.js';
 import Footer from './components/Common/Footer.js';
 import GetHotel from './pages/Home/GetHotel.js';
 import GetAccommodation from './pages/Home/GetAccommodation.js';
+import OwnerRegister from './pages/Home/OwnerRegister.js';
+import OwnerDashboard from './pages/Home/OwnerDashboard.js';
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token') !== null);
 
@@ -79,7 +81,9 @@ const App = () => {
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/ownerregister" element={<OwnerRegister />} />
           <Route path="/gethotel" element={<GetAccommodation />} />
+          <Route path="/ownerdashboard" element={<OwnerDashboard />} />
           <Route
             path="/membership"
             element={
