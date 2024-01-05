@@ -31,7 +31,6 @@ def get_manager(accommodation_id: int):
     ).first()
 
 
-
 def create_accommodation(accommodation: validation_models.Accomodation):
     new_accommodation = data_models.Accommodation(
         name = accommodation.name,
