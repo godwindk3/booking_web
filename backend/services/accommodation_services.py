@@ -27,7 +27,7 @@ def get_manager(accommodation_id: int):
     get_accommodation_by_id(accommodation_id)
     return db.query(data_models.User).filter(
         data_models.Manager.accommodationID == accommodation_id, 
-        data_models.User.id == data_models.Manager.UserID
+        data_models.User.id == data_models.Manager.userID
     ).first()
 
 
