@@ -36,6 +36,16 @@ async def get_room_by_room_number(id: int, room_number: int):
 async def fetch_reviews_by_accommodation_id(id: int):
     return review_services.get_reviews_in_accommodation(id)
 
+@router.get("/{id}/get_manager", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
+async def fetch_accommodations_by_id(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    manager = accommodation_services.get_manager(id)
+    if (current_user_data.role < 1):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail=f"No permission.")
+
+    return manager
+
+
 
 @router.post("/", response_model=validation_models.AccommodationOut, status_code=status.HTTP_201_CREATED)
 async def create_accommodation(accommodation: validation_models.Accomodation, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
