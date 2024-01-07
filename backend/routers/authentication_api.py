@@ -13,4 +13,10 @@ async def login(user_credentials: validation_models.UserCredentials):
 
 @router.post("/register", response_model=validation_models.UserOut, status_code = status.HTTP_201_CREATED)
 async def register(user: validation_models.User):
+    if (user.role < 2):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     return user_services.create_user(user)
+
+@router.post("/register_admin", response_model=validation_models.UserOut, status_code=status.HTTP_201_CREATED)
+async def register_admin(admin: validation_models.User):
+    return auth_services.register_admin(admin)

@@ -31,5 +31,31 @@ def login(user_credentials: validation_models.UserCredentials):
         }
 
 
+def register_admin(admin: validation_models.User):
+    temp = db.query(data_models.User).filter(
+    data_models.User.email == admin.email).first()
+
+    if (temp is not None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail=f"User with email = {admin.email} already exists.")
+    
+    temp = db.query(data_models.User).filter(data_models.User.role == 2).first()
+    if (temp is not None):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Admin already exist.")
+    
+    hashed_pwd = hash(admin.password)
+    new_user = data_models.User(
+        name=admin.name,
+        email=admin.email,
+        password=hashed_pwd,
+        role=2
+    )
+
+    db.add(new_user)
+    db.commit()
+
+    return new_user
+
+
 
 
