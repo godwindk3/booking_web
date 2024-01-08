@@ -1,7 +1,3 @@
-# from database import SessionLocal
-# import data_models
-# import validation_models
-# from .models import data_models, validation_models
 import ultraimport
 validation_models = ultraimport("__dir__/../models/validation_models.py")
 data_models = ultraimport("__dir__/../models/data_models.py")
@@ -12,7 +8,6 @@ manager_services = ultraimport("__dir__/manager_services.py")
 utils = ultraimport("__dir__/utils.py")
 hash = utils.hash
 
-# db = SessionLocal()
 
 
 def test():

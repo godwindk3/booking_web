@@ -64,7 +64,7 @@ def create_booking(booking: validation_models.Booking):
 
     if (booking.checkin_date < datetime.now().date()):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail=f"Can't create Booking with checkin_date = {new_booking.checkin_date}. Who are you? A time traveller?")
+                            detail=f"Can't create Booking with checkin_date {booking.checkin_date}. Who are you? A time traveller?")
 
     __check_overlapping_bookings(booking)
 
@@ -74,7 +74,8 @@ def create_booking(booking: validation_models.Booking):
         roomID=booking.roomID,
         checkin_date=booking.checkin_date,
         checkout_date=booking.checkout_date,
-        total_price=booking.total_price
+        total_price=booking.total_price,
+        payment_method=booking.payment_method
     )
 
     db.add(new_booking)
@@ -84,7 +85,7 @@ def create_booking(booking: validation_models.Booking):
         userID=booking.userID
     )
 
-    room_services.update_room_status(booking.roomID, False)
+    room_services.check_and_update_room_status(booking.roomID)
 
     db.add(user_room_ref)
     db.commit()
@@ -140,6 +141,7 @@ def update_booking(booking_id: int, booking: validation_models.Booking):
     booking_to_update.checkin_date = booking.checkin_date
     booking_to_update.checkout_date = booking.checkout_date
     booking_to_update.total_price = booking.total_price
+    booking_to_update.payment_method = booking.payment_method
 
     db.commit()
 
@@ -153,8 +155,8 @@ def delete_booking(booking_id: int):
                                                  booking_to_del.roomID, data_models.UserRoom.userID == booking_to_del.userID).first()
 
     if (temp):
-        print("==============================================================================================", temp)
         db.delete(temp)
+
     db.delete(booking_to_del)
     db.commit()
 

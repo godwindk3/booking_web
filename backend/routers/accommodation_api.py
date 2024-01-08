@@ -8,6 +8,7 @@ room_services = ultraimport("__dir__/../services/room_services.py")
 review_services = ultraimport("__dir__/../services/review_services.py")
 manager_services = ultraimport("__dir__/../services/manager_services.py")
 oauth2 = ultraimport("__dir__/../services/oauth2.py")
+payment_services = ultraimport("__dir__/../services/payment_services.py")
 
 router = APIRouter(prefix="/accommodation", tags=["ACCOMMODATION"])
 
@@ -30,6 +31,10 @@ async def get_rooms_by_acco_id(id: int):
 @router.get("/{id}/rooms/{room_number}", response_model=validation_models.RoomOut, status_code=status.HTTP_200_OK)
 async def get_room_by_room_number(id: int, room_number: int):
     return room_services.get_specific_room_by_acco_and_room_number(id, room_number)
+
+@router.get("/{id}/get_payment_methods", response_model=List[validation_models.PaymentOut], status_code=status.HTTP_200_OK)
+async def fetch_payment_methods_by_acco_id(id: int):
+    return payment_services.get_payment_methods_from_acco_id(id)
 
 
 @router.get("/{id}/reviews", response_model=List[validation_models.ReviewOut], status_code=status.HTTP_200_OK)
@@ -60,6 +65,17 @@ async def create_accommodation(accommodation: validation_models.Accomodation, cu
         manager_services.create_manager(manager)
     return acco
 
+@router.post("/{id}/add_payment_method/{payment_id}", response_model=validation_models.AccommodationPaymentOut, status_code=status.HTTP_201_CREATED)
+async def add_payment_method(id: int, payment_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+
+    if (current_user_data.role < 1):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")
+    elif (current_user_data.role == 1):
+        manager = manager_services.get_manager_by_user_id(current_user_data.id)
+        if (manager.accommodationID != id):
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
+    return payment_services.add_payment_method_to_accommodation(payment_id, id)
+
 
 @router.put("/{id}", response_model=validation_models.AccommodationOut, status_code=status.HTTP_200_OK)
 async def update_accommodation(id: int, accommodation: validation_models.Accomodation, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
@@ -83,3 +99,8 @@ async def delete_accommodation(id: int, current_user_data: validation_models.Use
         if (manager.accommodationID != id):
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     return accommodation_services.delete_accommodation(id)
+
+
+@router.delete("/{id}/remove_payment/{payment_id}", response_model=validation_models.AccommodationPaymentOut, status_code=status.HTTP_200_OK)
+async def remove_payment_method(id: int, payment_id: int):
+    return payment_services.remove_payment_method_from_accommodation(id, payment_id)

@@ -1,6 +1,6 @@
 from sqlalchemy import String, Boolean, Integer, Column, Text, ForeignKey, Float, Date
 import ultraimport
-# from database import Base, engine
+
 database = ultraimport("__dir__/../database.py")
 Base = database.Base
 engine = database.engine
@@ -13,9 +13,6 @@ class User(Base):
     email = Column(String(255), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
     role = Column(Integer)
-
-    def __repr__(self):
-        return f"<User id={self.id} name={self.name} email={self.email}>"
     
 
 class Manager(Base):
@@ -30,9 +27,7 @@ class Accommodation(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False, unique=True)
     location = Column(String(255), nullable=False)
-
-    def __repr__(self):
-        return f"<Accommodation id={self.id} name={self.name} location={self.location}>"
+    info = Column(String)
 
 
 class Room(Base):
@@ -40,19 +35,17 @@ class Room(Base):
     id = Column(Integer, primary_key=True)
     accommodationID = Column(Integer, ForeignKey(
         "accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
-    room_number = Column(Integer, nullable=False)
+    room_name = Column(String, nullable=False)
     capacity = Column(Integer)
     price = Column(Float)
     status = Column(Boolean)
     tier = Column(String(30))
+    info = Column(String)
 
-    def __repr__(self):
-        return f"<Room id={self.id} name={self.room_number} price={self.price} tier={self.tier}>"
 
 
 class UserRoom(Base):
     __tablename__ = "userRooms"
-    # SQLAlchemy can't map table without primary key, so I create a dummy column to represent a pri key
     dummy_key = Column(Integer, primary_key=True)
     roomID = Column(Integer, ForeignKey(
         "rooms.id", ondelete="CASCADE", onupdate="CASCADE"))
@@ -71,9 +64,14 @@ class Booking(Base):
     checkin_date = Column(Date)
     checkout_date = Column(Date)
     total_price = Column(Float)
+    payment_method = Column(Integer, ForeignKey("payments.id", ondelete="CASCADE", onupdate="CASCADE"))
 
-    def __repr__(self):
-        return f"<Booking id={self.id} UserID={self.userId} AccommodationID={self.accommodationId}>"
+    
+class AccommodationPayment(Base):
+    __tablename__ = "accommodationPayments"
+    id = Column(Integer, primary_key=True)
+    paymentID = Column(Integer, ForeignKey("payments.id", ondelete="CASCADE", onupdate="CASCADE"))
+    accommodationID = Column(Integer, ForeignKey("accommodations.id", ondelete="CASCADE", onupdate="CASCADE"))
 
 
 class Review(Base):
@@ -96,7 +94,7 @@ class RoomAmenityName(Base):
 
 class RoomAmenities(Base):
     __tablename__ = "roomAmenities"
-    dummy_key = Column(Integer, primary_key=True)  # Same with this
+    dummy_key = Column(Integer, primary_key=True)
     roomID = Column(Integer, ForeignKey(
         "rooms.id", ondelete="CASCADE", onupdate="CASCADE"))
     room_amenityID = Column(Integer, ForeignKey(
@@ -136,10 +134,6 @@ class AccommodationImage(Base):
 class Payment(Base):
     __tablename__ = "payments"
     id = Column(Integer, primary_key=True)
-    bookingID = Column(Integer, ForeignKey(
-        "bookings.id", ondelete="CASCADE", onupdate="CASCADE"))
-    amount = Column(Float)
-    payment_date = Column(Date)
     payment_method = Column(String)
 
 

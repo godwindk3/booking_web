@@ -1,16 +1,12 @@
-# from database import SessionLocal
-# import data_models
-# import validation_models
-# from .models import data_models, validation_models
 import ultraimport
 validation_models = ultraimport("__dir__/../models/validation_models.py")
 data_models = ultraimport("__dir__/../models/data_models.py")
 database = ultraimport("__dir__/../database.py")
-# utils = ultraimport("__dir__/../utils.py")
+payment_services = ultraimport("__dir__/../services/payment_services.py")
+
 db = database.SessionLocal()
 from fastapi import HTTPException, status
 
-# db = SessionLocal()
 
 def get_all_accommodations():
     return db.query(data_models.Accommodation).all()
@@ -30,11 +26,15 @@ def get_manager(accommodation_id: int):
         data_models.User.id == data_models.Manager.userID
     ).first()
 
+def get_payment_methods(accommodation_id: int):
+    get_accommodation_by_id(accommodation_id)
+    return 
 
 def create_accommodation(accommodation: validation_models.Accomodation):
     new_accommodation = data_models.Accommodation(
         name = accommodation.name,
-        location = accommodation.location
+        location = accommodation.location,
+        info = accommodation.info
     )
 
     temp = db.query(data_models.Accommodation.name).filter(data_models.Accommodation.name == new_accommodation.name).first()
@@ -53,6 +53,7 @@ def update_accommodation(id: int, accommodation: validation_models.Accomodation)
 
     temp.name = accommodation.name
     temp.location = accommodation.location
+    temp.info = accommodation.info
 
     db.commit()
 
