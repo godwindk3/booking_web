@@ -1,0 +1,14 @@
+.accommodation-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .accommodation-info {
+    flex-grow: 1;
+  }
+  
+  .button-container {
+    margin-left: 10px; /* Adjust as needed */
+  }
+  
