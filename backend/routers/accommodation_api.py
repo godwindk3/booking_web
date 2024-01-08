@@ -38,7 +38,7 @@ async def fetch_reviews_by_accommodation_id(id: int):
     return review_services.get_reviews_in_accommodation(id)
 
 @router.get("/{id}/get_manager", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
-async def fetch_accommodations_by_id(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+async def fetch_manager_by_acco_id(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     manager = accommodation_services.get_manager(id)
     if (current_user_data.role < 1):
         raise HTTPException(
