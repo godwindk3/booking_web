@@ -10,6 +10,7 @@ const OwnerDashboard = () => {
   const [formData, setFormData] = useState({
     name: '',
     location: '',
+    info: '',
   });
   const [error, setError] = useState(null);
   const [accommodationData, setAccommodationData] = useState([]);
@@ -81,7 +82,7 @@ const OwnerDashboard = () => {
 
         // Clear the form data and selected accommodation after successful update
 
-        setFormData({ name: '', location: '' });
+        setFormData({ name: '', location: '', info: '' });
         setSelectedAccommodation(null);
       } else {
         console.error('Accommodation update failed');
@@ -115,7 +116,7 @@ const OwnerDashboard = () => {
         fetchData();
 
         // Clear the form data and selected accommodation after successful delete
-        setFormData({ name: '', location: '' });
+        setFormData({ name: '', location: '' , info: ''});
         setSelectedAccommodation(null);
       } else {
         console.error('Accommodation delete failed');
@@ -133,6 +134,7 @@ const OwnerDashboard = () => {
     setFormData({
       name: accommodation.name,
       location: accommodation.location,
+      info: accommodation.info,
     });
   };
 
@@ -195,6 +197,14 @@ const OwnerDashboard = () => {
               value={formData.location}
               onChange={handleChange}
             />
+            <label htmlFor="info">Info:</label>
+            <input
+              type="text"
+              id="info"
+              name="info"
+              value={formData.info}
+              onChange={handleChange}
+            />
             <button type="submit">Đăng ký khách sạn</button>
           </form>
         </div>
@@ -207,7 +217,7 @@ const OwnerDashboard = () => {
                 <p>Name: {accommodation.name}</p>
                 <p>Location: {accommodation.location}</p>
                   {console.log(accommodation.id)}
-                <RoomList accommodationId={accommodation.id} />
+                {/* <RoomList accommodationId={accommodation.id} /> */}
               </div>
               <div className="button-container">
                 <button onClick={() => handleSelectAccommodation(accommodation)}>Update</button>
@@ -235,6 +245,14 @@ const OwnerDashboard = () => {
                   id="updateLocation"
                   name="location"
                   value={formData.location}
+                  onChange={handleChange}
+                />
+                <label htmlFor="updateInfo">New Info:</label>
+                <input
+                  type="text"
+                  id="updateInfo"
+                  name="info"
+                  value={formData.info}
                   onChange={handleChange}
                 />
 
