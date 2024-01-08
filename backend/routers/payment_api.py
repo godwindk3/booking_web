@@ -22,9 +22,6 @@ async def create_payment(payment: validation_models.Payment, current_user_data: 
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     return payment_services.create_payment(payment)
 
-@router.get("/get_payments_by_acco/{id}/get_payment_methods", response_model=validation_models.PaymentOut, status_code=status.HTTP_200_OK)
-async def fetch_payment_methods_by_acco_id(id: int):
-    return payment_services.get_payment_methods_from_acco_id(id)
 
 @router.put("/update_payments/{payment_id}", response_model=validation_models.PaymentOut, status_code=status.HTTP_200_OK)
 async def update_payment(payment_id: int, payment: validation_models.Payment, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
