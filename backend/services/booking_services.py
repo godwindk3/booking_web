@@ -85,9 +85,10 @@ def create_booking(booking: validation_models.Booking):
         userID=booking.userID
     )
 
+    db.add(user_room_ref)
+    db.commit()
     room_services.check_and_update_room_status(booking.roomID)
 
-    db.add(user_room_ref)
     db.commit()
 
     return new_booking
@@ -142,6 +143,9 @@ def update_booking(booking_id: int, booking: validation_models.Booking):
     booking_to_update.checkout_date = booking.checkout_date
     booking_to_update.total_price = booking.total_price
     booking_to_update.payment_method = booking.payment_method
+
+    db.commit()
+    room_services.check_and_update_room_status(booking.roomID)
 
     db.commit()
 
