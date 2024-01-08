@@ -4,7 +4,8 @@ data_models = ultraimport("__dir__/../models/data_models.py")
 database = ultraimport("__dir__/../database.py")
 utils = ultraimport("__dir__/utils.py")
 oauth2 = ultraimport("__dir__/oauth2.py")
-# booking_services = ultraimport("__dir__/booking_services.py")
+hash = utils.hash
+
 
 db = database.SessionLocal()
 from fastapi import HTTPException, status

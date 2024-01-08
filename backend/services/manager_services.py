@@ -26,9 +26,10 @@ def get_manager_by_id(manager_id: int):
 def get_manager_by_user_id(user_id: int):
     temp = db.query(data_models.Manager).filter(
         data_models.Manager.userID == user_id).first()
+
     if (temp is None):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"User with ID {user_id} does not exist.")
+                            detail=f"Manager with user ID {user_id} does not exist.")
 
     return temp
 

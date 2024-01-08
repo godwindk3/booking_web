@@ -1,7 +1,3 @@
-# from database import SessionLocal
-# import data_models
-# import validation_models
-# from .models import data_models, validation_models
 import ultraimport
 validation_models = ultraimport("__dir__/../models/validation_models.py")
 data_models = ultraimport("__dir__/../models/data_models.py")
@@ -12,7 +8,6 @@ from booking_services import get_booking_by_id
 from user_services import get_user_by_id
 from accommodation_services import get_accommodation_by_id
 
-# db = SessionLocal()
 
 def get_all_reviews():
     return db.query(data_models.Review).all()

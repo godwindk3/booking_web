@@ -12,31 +12,35 @@ class BaseModelConfig(BaseModel):
 class Accomodation(BaseModelConfig):
     name: str
     location: str
+    info: str=""
 
 
 class AccommodationOut(BaseModelConfig):
     id: int
     name: str
     location: str
+    info:str
 
 
 class Room(BaseModelConfig):
     accommodationID: int
-    room_number: int
+    room_name: str
     capacity: int = 1
     price: float
     status: bool = True
     tier: str = "B"
+    info:str = ""
 
 
 class RoomOut(BaseModelConfig):
     id: int
-    room_number: int
+    room_name: str
     accommodationID: int
     capacity: int
     price: float
     status: bool
     tier: str
+    info:str
 
 
 class User(BaseModelConfig):
@@ -137,6 +141,7 @@ class Booking(BaseModelConfig):
     checkin_date: date
     checkout_date: date
     total_price: float
+    payment_method: int
 
 
 class BookingOut(BaseModelConfig):
@@ -147,6 +152,7 @@ class BookingOut(BaseModelConfig):
     checkin_date: date
     checkout_date: date
     total_price: float
+    payment_method: int
 
 class CheckInOutDates(BaseModelConfig):
     checkin_date: date
@@ -164,18 +170,22 @@ class TokenData(BaseModelConfig):
 
 
 class Payment(BaseModelConfig):
-    bookingID: int
-    amount: float
-    payment_date: date
     payment_method: str
 
 
 class PaymentOut(BaseModelConfig):
     id: int
-    bookingID: int
-    amount: float
-    payment_date: date
     payment_method: str
+
+class AccommodationPayment(BaseModelConfig):
+    paymentID: int
+    accommodationID: int
+
+
+class AccommodationPaymentOut(BaseModelConfig):
+    id: int
+    paymentID: int
+    accommodationID: int
 
 
 class RoomImage(BaseModelConfig):
