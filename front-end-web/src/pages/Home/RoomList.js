@@ -200,18 +200,20 @@ const RoomList = ({ accommodationId }) => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [updateFormData, setUpdateFormData] = useState({
-    room_number: '',
+    room_name: '',
     capacity: '',
     price: '',
     status: true,
     tier: '',
+    info: '',
   });
   const [createFormData, setCreateFormData] = useState({
-    room_number: '',
+    room_name: '',
     capacity: '',
     price: '',
     status: true,
     tier: '',
+    info: '',
   });
   const [selectedRoomId, setSelectedRoomId] = useState(null);
 
@@ -251,11 +253,12 @@ const RoomList = ({ accommodationId }) => {
       );
       fetchRooms();
       setUpdateFormData({
-        room_number: '',
+        room_name: '',
         capacity: '',
         price: '',
         status: true,
         tier: '',
+        info: '',
       });
       setSelectedRoomId(null);
     } catch (error) {
@@ -281,11 +284,12 @@ const RoomList = ({ accommodationId }) => {
       );
       fetchRooms();
       setCreateFormData({
-        room_number: '',
+        room_name: '',
         capacity: '',
         price: '',
         status: true,
         tier: '',
+        info: '',
       });
     } catch (error) {
       console.error('Error creating room:', error.message);
@@ -309,28 +313,29 @@ const RoomList = ({ accommodationId }) => {
   const handleRoomSelect = (roomId) => {
     setSelectedRoomId(roomId);
     setUpdateFormData({
-      room_number: '',
+      room_name: '',
       capacity: '',
       price: '',
       status: true,
       tier: '',
+      info: '',
     });
   };
 
   return (
     <div>
-      <h2>Rooms for Accommodation ID: {accommodationId}</h2>
+      <h2>Quản lý phòng trong khách sạn của bạn </h2>
 
       {/* Input fields for creating a new room */}
-      <label htmlFor="createRoomNumber">Room Number:</label>
+      <label htmlFor="createRoomName">Tên Phòng:</label>
       <input
         type="text"
-        id="createRoomNumber"
-        value={createFormData.room_number}
-        onChange={(e) => setCreateFormData({ ...createFormData, room_number: e.target.value })}
+        id="createRoomName"
+        value={createFormData.room_name}
+        onChange={(e) => setCreateFormData({ ...createFormData, room_name: e.target.value })}
       />
 
-      <label htmlFor="createCapacity">Capacity:</label>
+      <label htmlFor="createCapacity">Sức chứa:</label>
       <input
         type="text"
         id="createCapacity"
@@ -338,7 +343,7 @@ const RoomList = ({ accommodationId }) => {
         onChange={(e) => setCreateFormData({ ...createFormData, capacity: e.target.value })}
       />
 
-      <label htmlFor="createPrice">Price:</label>
+      <label htmlFor="createPrice">Giá:</label>
       <input
         type="text"
         id="createPrice"
@@ -346,7 +351,7 @@ const RoomList = ({ accommodationId }) => {
         onChange={(e) => setCreateFormData({ ...createFormData, price: e.target.value })}
       />
 
-      <label htmlFor="createStatus">Status:</label>
+      <label htmlFor="createStatus">Trạng thái:</label>
       <input
         type="checkbox"
         id="createStatus"
@@ -354,16 +359,23 @@ const RoomList = ({ accommodationId }) => {
         onChange={(e) => setCreateFormData({ ...createFormData, status: e.target.checked })}
       />
 
-      <label htmlFor="createTier">Tier:</label>
+      <label htmlFor="createTier">Xếp hạng:</label>
       <input
         type="text"
         id="createTier"
         value={createFormData.tier}
         onChange={(e) => setCreateFormData({ ...createFormData, tier: e.target.value })}
       />
+      <label htmlFor="createInfo">Thông tin thêm:</label>
+      <input
+        type="text"
+        id="createInfo"
+        value={createFormData.info}
+        onChange={(e) => setCreateFormData({ ...createFormData, info: e.target.value })}
+      />
 
       {/* Create button for sending the create request */}
-      <button onClick={handleCreateRoom}>Create</button>
+      <button onClick={handleCreateRoom}>Tạo phòng</button>
 
       {loading && <p>Loading rooms...</p>}
 
@@ -373,32 +385,34 @@ const RoomList = ({ accommodationId }) => {
         <ul>
           {rooms.map((room) => (
             <li key={room.id}>
-              <strong>Room Number:</strong> {room.room_number}
+              <strong>Tên phòng:</strong> {room.room_name}
               <br />
-              <strong>Capacity:</strong> {room.capacity}
+              <strong>Sức chứa:</strong> {room.capacity}
               <br />
-              <strong>Price:</strong> {room.price}
+              <strong>Giá:</strong> {room.price}
               <br />
-              <strong>Tier:</strong> {room.tier}
+              <strong>Xếp hạng:</strong> {room.tier}
               <br />
-              <strong>Status:</strong> {room.status.toString()}
+              <strong>Trạng thái:</strong> {room.status ? "Có sẵn" : "Có người đặt"}
               <br />
-              <button onClick={() => handleRoomSelect(room.id)}>Update</button>
-              <button onClick={() => handleDeleteRoom(room.id)}>Delete</button>
+              <strong>Thông tin thêm:</strong> {room.info}
+              <br />
+              <button onClick={() => handleRoomSelect(room.id)}>Cập nhật phòng</button>
+              <button onClick={() => handleDeleteRoom(room.id)}>Xóa phòng</button>
               {selectedRoomId === room.id && (
                 <div>
                   {/* Input fields for updating room details */}
-                  <label htmlFor="updateRoomNumber">Room Number:</label>
+                  <label htmlFor="updateRoomNumber">Tên phòng:</label>
                   <input
                     type="text"
                     id="updateRoomNumber"
-                    value={updateFormData.room_number}
+                    value={updateFormData.room_name}
                     onChange={(e) =>
-                      setUpdateFormData({ ...updateFormData, room_number: e.target.value })
+                      setUpdateFormData({ ...updateFormData, room_name: e.target.value })
                     }
                   />
 
-                  <label htmlFor="updateCapacity">Capacity:</label>
+                  <label htmlFor="updateCapacity">Sức chứa:</label>
                   <input
                     type="text"
                     id="updateCapacity"
@@ -408,7 +422,7 @@ const RoomList = ({ accommodationId }) => {
                     }
                   />
 
-                  <label htmlFor="updatePrice">Price:</label>
+                  <label htmlFor="updatePrice">Giá:</label>
                   <input
                     type="text"
                     id="updatePrice"
@@ -418,7 +432,7 @@ const RoomList = ({ accommodationId }) => {
                     }
                   />
 
-                  <label htmlFor="updateStatus">Status:</label>
+                  <label htmlFor="updateStatus">Trạng thái:</label>
                   <input
                     type="checkbox"
                     id="updateStatus"
@@ -428,7 +442,7 @@ const RoomList = ({ accommodationId }) => {
                     }
                   />
 
-                  <label htmlFor="updateTier">Tier:</label>
+                  <label htmlFor="updateTier">Xếp hạng:</label>
                   <input
                     type="text"
                     id="updateTier"
@@ -437,9 +451,18 @@ const RoomList = ({ accommodationId }) => {
                       setUpdateFormData({ ...updateFormData, tier: e.target.value })
                     }
                   />
+                  <label htmlFor="updateInfo">Thông tin thêm:</label>
+                  <input
+                    type="text"
+                    id="updateInfo"
+                    value={updateFormData.info}
+                    onChange={(e) =>
+                      setUpdateFormData({ ...updateFormData, info: e.target.value })
+                    }
+                  />
 
                   {/* Update button for sending the update request */}
-                  <button onClick={handleUpdateRoom}>Confirm Update</button>
+                  <button onClick={handleUpdateRoom}>Xác nhận cập nhật</button>
                 </div>
               )}
             </li>

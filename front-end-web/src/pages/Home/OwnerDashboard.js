@@ -10,6 +10,7 @@ const OwnerDashboard = () => {
   const [formData, setFormData] = useState({
     name: '',
     location: '',
+    info: '',
   });
   const [error, setError] = useState(null);
   const [accommodationData, setAccommodationData] = useState([]);
@@ -81,7 +82,7 @@ const OwnerDashboard = () => {
 
         // Clear the form data and selected accommodation after successful update
 
-        setFormData({ name: '', location: '' });
+        setFormData({ name: '', location: '', info: '' });
         setSelectedAccommodation(null);
       } else {
         console.error('Accommodation update failed');
@@ -115,7 +116,7 @@ const OwnerDashboard = () => {
         fetchData();
 
         // Clear the form data and selected accommodation after successful delete
-        setFormData({ name: '', location: '' });
+        setFormData({ name: '', location: '' , info: ''});
         setSelectedAccommodation(null);
       } else {
         console.error('Accommodation delete failed');
@@ -133,6 +134,7 @@ const OwnerDashboard = () => {
     setFormData({
       name: accommodation.name,
       location: accommodation.location,
+      info: accommodation.info,
     });
   };
 
@@ -179,7 +181,7 @@ const OwnerDashboard = () => {
           <h2>Hãy đăng ký khách sạn của bạn</h2>
           {error && <p>{error}</p>}
           <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="name">Tên khách sạn:</label>
             <input
               type="text"
               id="name"
@@ -187,12 +189,20 @@ const OwnerDashboard = () => {
               value={formData.name}
               onChange={handleChange}
             />
-            <label htmlFor="location">Location:</label>
+            <label htmlFor="location">Địa điểm:</label>
             <input
               type="text"
               id="location"
               name="location"
               value={formData.location}
+              onChange={handleChange}
+            />
+            <label htmlFor="info">Thông tin thêm:</label>
+            <input
+              type="text"
+              id="info"
+              name="info"
+              value={formData.info}
               onChange={handleChange}
             />
             <button type="submit">Đăng ký khách sạn</button>
@@ -204,23 +214,24 @@ const OwnerDashboard = () => {
           {accommodationData.map((accommodation) => (
             <div key={accommodation.id} className="accommodation-container">
               <div className="accommodation-info">
-                <p>Name: {accommodation.name}</p>
-                <p>Location: {accommodation.location}</p>
+                <p>Tên: {accommodation.name}</p>
+                <p>Địa điểm: {accommodation.location}</p>
+                <p>Thông tin thêm: {accommodation.info}</p>
                   {console.log(accommodation.id)}
                 <RoomList accommodationId={accommodation.id} />
               </div>
               <div className="button-container">
-                <button onClick={() => handleSelectAccommodation(accommodation)}>Update</button>
-                <button onClick={() => {  handleDelete(accommodation) }}>Delete</button>
+                <button onClick={() => handleSelectAccommodation(accommodation)}>Cập nhật khách sạn</button>
+                <button onClick={() => {  handleDelete(accommodation) }}>Xóa khách sạn</button>
               </div>
             </div>
           ))}
 
           {selectedAccommodation && (
             <div>
-              <h3>Update Accommodation</h3>
+              <h3>Cập nhật khách sạn</h3>
               <form onSubmit={handleUpdate}>
-                <label htmlFor="updateName">New Name:</label>
+                <label htmlFor="updateName">Tên khách sạn mới:</label>
                 <input
                   type="text"
                   id="updateName"
@@ -229,7 +240,7 @@ const OwnerDashboard = () => {
                   onChange={handleChange}
                 />
 
-                <label htmlFor="updateLocation">New Location:</label>
+                <label htmlFor="updateLocation">Địa điểm khách sạn mới:</label>
                 <input
                   type="text"
                   id="updateLocation"
@@ -237,8 +248,16 @@ const OwnerDashboard = () => {
                   value={formData.location}
                   onChange={handleChange}
                 />
+                <label htmlFor="updateInfo">Thông tin thêm:</label>
+                <input
+                  type="text"
+                  id="updateInfo"
+                  name="info"
+                  value={formData.info}
+                  onChange={handleChange}
+                />
 
-                <button type="submit">Update Accommodation</button>
+                <button type="submit">Cập nhật khách sạn</button>
               </form>
             </div>
           )}
