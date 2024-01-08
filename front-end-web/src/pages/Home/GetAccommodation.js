@@ -54,7 +54,7 @@ const GetAccommodation = () => {
 
   return (
     <div>
-      <h2>Accommodation Data with Images</h2>
+      <h2>Danh sách khách sạn</h2>
       {error && <p>{error}</p>}
       <ul>
         {accommodations.map((accommodation) => (

@@ -12,10 +12,10 @@ const AboutPage = () => {
         NGUYỄN MINH AN(Back-end)
       </p>
       <p>
-        NGUYỄN NGỌC ANH(Back-end)
+        NGUYỄN NGỌC ANH(Database)
       </p>
       <p>
-        VÕ NGỌC HIẾU(Back-end)
+        VÕ NGỌC HIẾU(Use-Case)
       </p>
     </div>
   );
