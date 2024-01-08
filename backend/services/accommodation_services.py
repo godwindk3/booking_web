@@ -26,9 +26,6 @@ def get_manager(accommodation_id: int):
         data_models.User.id == data_models.Manager.userID
     ).first()
 
-def get_payment_methods(accommodation_id: int):
-    get_accommodation_by_id(accommodation_id)
-    return 
 
 def create_accommodation(accommodation: validation_models.Accomodation):
     new_accommodation = data_models.Accommodation(

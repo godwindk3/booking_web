@@ -28,10 +28,6 @@ async def get_rooms_by_acco_id(id: int):
     return room_services.get_rooms_by_accommodation_id(id)
 
 
-@router.get("/{id}/rooms/{room_number}", response_model=validation_models.RoomOut, status_code=status.HTTP_200_OK)
-async def get_room_by_room_number(id: int, room_number: int):
-    return room_services.get_specific_room_by_acco_and_room_number(id, room_number)
-
 @router.get("/{id}/get_payment_methods", response_model=List[validation_models.PaymentOut], status_code=status.HTTP_200_OK)
 async def fetch_payment_methods_by_acco_id(id: int):
     return payment_services.get_payment_methods_from_acco_id(id)

@@ -19,6 +19,8 @@ def get_room_by_id(room_id):
     if (temp is None):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Room with ID = {room_id} does not exists.")
+    
+    check_and_update_room_status(room_id)
 
     return temp
 
@@ -27,13 +29,6 @@ def get_rooms_by_accommodation_id(accommodation_id: int):
     get_accommodation_by_id(accommodation_id)
     return db.query(data_models.Room).filter(data_models.Room.accommodationID == accommodation_id).all()
 
-
-def get_specific_room_by_acco_and_room_number(accommodation_id: int, room_name: str):
-    get_accommodation_by_id(accommodation_id)
-    temp = db.query(data_models.Room).filter(data_models.Room.room_name == room_name).first()
-    if (temp is None):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Accommodation ID {accommodation_id} does not have room number {room_name}.")
-    return db.query(data_models.Room).filter(data_models.Room.accommodationID == accommodation_id, data_models.Room.room_name == room_name).first()
 
 
 def create_room(room: validation_models.Room):
@@ -103,22 +98,25 @@ def update_room_status(room_id: int, status):
 
 
 def check_and_update_room_status(room_id: int):
-    room = get_room_by_id(room_id)
+    room = db.query(data_models.Room).filter(data_models.Room.id == room_id).first()
+    if (room is None):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Room with ID {room_id} does not exist.")
+    
     temp_date = datetime.now().date()
 
     exist_dates = get_exist_dates(room_id)
 
+
+    room.status = True
     for date in exist_dates:
         checkin = date.checkin_date
         checkout = date.checkout_date
 
+        print(f"checkin: {checkin}\ncheckout:{checkout}")
+
         if (temp_date <= checkout and temp_date >= checkin):
+            print("=================================================================")
             room.status = False
-            db.commit()
-            print("HERE =====================================================================")
-            return
-        
-    room.status = True
 
     db.commit()
 
