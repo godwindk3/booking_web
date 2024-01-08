@@ -60,36 +60,47 @@ import GetHotel from './pages/Home/GetHotel.js';
 import GetAccommodation from './pages/Home/GetAccommodation.js';
 import OwnerRegister from './pages/Home/OwnerRegister.js';
 import OwnerDashboard from './pages/Home/OwnerDashboard.js';
+import PrivateOwnerRoute from './pages/Home/PrivateOwnerRoute.js';
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token') !== null);
-
+  const [key, setKey] = useState(0);
   const handleLogin = () => {
     setIsLoggedIn(true);
+    setKey((prevKey) => prevKey + 1);
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem('token');
+    setKey((prevKey) => prevKey + 1);
   };
 
   return (
     <>
       <Router>
-        <NavigationBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+        <NavigationBar key={key} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
         <Routes>
-          <Route path="/" element={<HomePage/>} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/ownerregister" element={<OwnerRegister />} />
           <Route path="/gethotel" element={<GetAccommodation />} />
-          <Route path="/ownerdashboard" element={<OwnerDashboard />} />
+          {/* <Route path="/ownerdashboard" element={<OwnerDashboard />} /> */}
           <Route
             path="/membership"
             element={
               <PrivateRoute>
                 <MembershipPage />
               </PrivateRoute>
+            }
+          />
+          <Route
+            path="/ownerdashboard"
+            element={
+              <PrivateOwnerRoute>
+                <OwnerDashboard />
+              </PrivateOwnerRoute>
             }
           />
         </Routes>
@@ -100,5 +111,6 @@ const App = () => {
 };
 
 export default App;
+
 
 
