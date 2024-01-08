@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 import './OwnerDashboard.css';
-
+import RoomList from './RoomList';
 const OwnerDashboard = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -206,6 +206,8 @@ const OwnerDashboard = () => {
               <div className="accommodation-info">
                 <p>Name: {accommodation.name}</p>
                 <p>Location: {accommodation.location}</p>
+                  {console.log(accommodation.id)}
+                <RoomList accommodationId={accommodation.id} />
               </div>
               <div className="button-container">
                 <button onClick={() => handleSelectAccommodation(accommodation)}>Update</button>
