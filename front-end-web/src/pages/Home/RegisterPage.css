@@ -194,7 +194,7 @@ a:hover {
   color: #101828;
   z-index: 10;
   border-radius: 16px;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.404);
+  
+  box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
   border-color: #FC6C85;
 }
-  
