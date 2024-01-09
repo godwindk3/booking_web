@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 
-const ImageAccommodation = ({ accommodationId }) => {
+const ImageRoom = ({ roomId }) => {
   const [imageData, setImageData] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -9,7 +9,7 @@ const ImageAccommodation = ({ accommodationId }) => {
     const fetchImageUrls = async () => {
       try {
         // Fetch image data based on accommodation ID
-        const response = await axios.get(`/image/accommodation/get_accommodation_images/${accommodationId}`);
+        const response = await axios.get(`/image/room/get_room_images/${roomId}`);
         const imagesData = response.data;
 
         // Set image data
@@ -19,7 +19,7 @@ const ImageAccommodation = ({ accommodationId }) => {
         const individualImages = await Promise.all(
           imagesData.map(async (image) => {
             try {
-              const individualImageResponse = await axios.get(`/image/accommodation/get_image/${image.id}`, {
+              const individualImageResponse = await axios.get(`/image/room/get_image/${image.id}`, {
                 responseType: 'arraybuffer',
               });
               const imageBlob = new Blob([individualImageResponse.data], { type: 'image/jpeg' });
@@ -39,7 +39,7 @@ const ImageAccommodation = ({ accommodationId }) => {
     };
 
     fetchImageUrls();
-  }, [accommodationId]);
+  }, [roomId]);
 
   const deleteImage = async (imageId) => {
     try {
@@ -47,7 +47,7 @@ const ImageAccommodation = ({ accommodationId }) => {
       const token = localStorage.getItem('token');
 
       // Make a DELETE request to delete the image
-      await axios.delete(`/image/accommodation/${imageId}`, {
+      await axios.delete(`/image/room/${imageId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -63,7 +63,7 @@ const ImageAccommodation = ({ accommodationId }) => {
 
   return (
     <div>
-      <h2>Accommodation Images</h2>
+
       {imageUrls.map((imageUrl, index) => (
         <div key={index}>
           <img
@@ -78,5 +78,5 @@ const ImageAccommodation = ({ accommodationId }) => {
   );
 };
 
-export default ImageAccommodation;
+export default ImageRoom;
 

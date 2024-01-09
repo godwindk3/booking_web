@@ -104,7 +104,7 @@ const OwnerDashboard = () => {
   const handleDelete = async (accommodation) => {
     try {
       const token = localStorage.getItem('token');
-      const  id  = accommodation.id;
+      const id = accommodation.id;
       const response = await axios.delete(`/accommodation/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -118,7 +118,7 @@ const OwnerDashboard = () => {
         fetchData();
 
         // Clear the form data and selected accommodation after successful delete
-        setFormData({ name: '', location: '' , info: ''});
+        setFormData({ name: '', location: '', info: '' });
         setSelectedAccommodation(null);
       } else {
         console.error('Accommodation delete failed');
@@ -148,7 +148,7 @@ const OwnerDashboard = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
       // Assuming the server returns an empty array for a 404 response
       if (response.status === 404) {
         // Handle the case where no managed accommodations are found
@@ -158,7 +158,7 @@ const OwnerDashboard = () => {
         // Handle the case where data is successfully fetched
         setAccommodationData(response.data);
       }
-  
+
     } catch (error) {
       if (error.response && error.response.status === 404) {
         // Handle the 404 error here
@@ -170,7 +170,7 @@ const OwnerDashboard = () => {
       }
     }
   };
-  
+
 
   useEffect(() => {
     fetchData();
@@ -213,23 +213,6 @@ const OwnerDashboard = () => {
       ) : (
         <div>
           <p>Khách sạn của bạn</p>
-          {accommodationData.map((accommodation) => (
-            <div key={accommodation.id} className="accommodation-container">
-              <div className="accommodation-info">
-                <p>Tên: {accommodation.name}</p>
-                <p>Địa điểm: {accommodation.location}</p>
-                <p>Thông tin thêm: {accommodation.info}</p>
-                <ImageAccommodation accommodationId={accommodation.id}/>
-                <RoomList accommodationId={accommodation.id} />
-                <ImageUploadButton accommodationId={accommodation.id}/>
-              </div>
-              <div className="button-container">
-                <button onClick={() => handleSelectAccommodation(accommodation)}>Cập nhật khách sạn </button>
-                <button onClick={() => {  handleDelete(accommodation) }}>Xóa khách sạn</button>
-              </div>
-            </div>
-          ))}
-
           {selectedAccommodation && (
             <div>
               <h3>Cập nhật khách sạn</h3>
@@ -264,6 +247,23 @@ const OwnerDashboard = () => {
               </form>
             </div>
           )}
+          {accommodationData.map((accommodation) => (
+            <div key={accommodation.id} className="accommodation-container">
+              <ImageUploadButton accommodationId={accommodation.id} />
+              <div className="accommodation-info">
+                <p>Tên: {accommodation.name}</p>
+                <p>Địa điểm: {accommodation.location}</p>
+                <p>Thông tin thêm: {accommodation.info}</p>
+                <ImageAccommodation accommodationId={accommodation.id} />
+                <RoomList accommodationId={accommodation.id} />
+              </div>
+              <div className="button-container">
+                <button onClick={() => handleSelectAccommodation(accommodation)}>Cập nhật khách sạn </button>
+                <button onClick={() => { handleDelete(accommodation) }}>Xóa khách sạn</button>
+              </div>
+            </div>
+          ))}
+
         </div>
 
       )}
