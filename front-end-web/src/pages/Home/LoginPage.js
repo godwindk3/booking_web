@@ -199,7 +199,7 @@ const LoginPage = ({ onLogin }) => {
         // Store the token in local storage
         localStorage.setItem('token', token);
 
-        if (decodedPayload.role === 0 || decodedPayload.role === 1) {
+        if (decodedPayload.role === 0 || decodedPayload.role === 1 || decodedPayload.role === 2) {
           onLogin(); // Notify the higher-level component about the login
           navigate('/');
         } else {
