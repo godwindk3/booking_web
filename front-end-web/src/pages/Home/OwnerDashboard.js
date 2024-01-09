@@ -6,6 +6,8 @@ import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 import './OwnerDashboard.css';
 import RoomList from './RoomList';
+import ImageAccommodation from './ImageAccommodation';
+import ImageUploadButton from './ImageUploadButton';
 const OwnerDashboard = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -217,11 +219,12 @@ const OwnerDashboard = () => {
                 <p>Tên: {accommodation.name}</p>
                 <p>Địa điểm: {accommodation.location}</p>
                 <p>Thông tin thêm: {accommodation.info}</p>
-                  {console.log(accommodation.id)}
+                <ImageAccommodation accommodationId={accommodation.id}/>
                 <RoomList accommodationId={accommodation.id} />
+                <ImageUploadButton accommodationId={accommodation.id}/>
               </div>
               <div className="button-container">
-                <button onClick={() => handleSelectAccommodation(accommodation)}>Cập nhật khách sạn</button>
+                <button onClick={() => handleSelectAccommodation(accommodation)}>Cập nhật khách sạn </button>
                 <button onClick={() => {  handleDelete(accommodation) }}>Xóa khách sạn</button>
               </div>
             </div>
