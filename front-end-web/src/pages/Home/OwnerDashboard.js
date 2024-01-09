@@ -8,6 +8,7 @@ import './OwnerDashboard.css';
 import RoomList from './RoomList';
 import ImageAccommodation from './ImageAccommodation';
 import ImageUploadButton from './ImageUploadButton';
+
 const OwnerDashboard = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -179,87 +180,125 @@ const OwnerDashboard = () => {
   return (
     <div>
       {accommodationData.length === 0 ? (
-        <div>
-          <h2>Hãy đăng ký khách sạn của bạn</h2>
+        <div className="center-card create-hotel-card">
+          <h2 className='h2-header'>Hãy đăng ký khách sạn của bạn</h2>
           {error && <p>{error}</p>}
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Tên khách sạn:</label>
+
+          <form className='create-hotel-input-container' onSubmit={handleSubmit}>
+            <label htmlFor="name"></label>
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
+              placeholder="Tên khách sạn"
             />
-            <label htmlFor="location">Địa điểm:</label>
+            <label htmlFor="location"></label>
             <input
               type="text"
               id="location"
               name="location"
               value={formData.location}
               onChange={handleChange}
+              placeholder="Địa điểm"
             />
-            <label htmlFor="info">Thông tin thêm:</label>
+            <label htmlFor="info"></label>
             <input
               type="text"
               id="info"
               name="info"
               value={formData.info}
               onChange={handleChange}
+              placeholder='Thông tin thêm'
             />
-            <button type="submit">Đăng ký khách sạn</button>
+            <button className='create-hotel-button' type="submit">Đăng ký khách sạn</button>
           </form>
+
         </div>
-      ) : (
+      ) 
+      : 
+      (
         <div>
-          <p>Khách sạn của bạn</p>
+          {/* <h2 className='h2-header'>Khách sạn của bạn</h2> */}
+
           {selectedAccommodation && (
-            <div>
-              <h3>Cập nhật khách sạn</h3>
-              <form onSubmit={handleUpdate}>
-                <label htmlFor="updateName">Tên khách sạn mới:</label>
+            <div className="center-card create-hotel-card">
+              <h2 className='h2-header'>Cập nhật khách sạn</h2>
+              <form className='create-hotel-input-container' onSubmit={handleUpdate}>
+                <label className='update-hotel-p' htmlFor="updateName">Tên khách sạn mới</label>
                 <input
                   type="text"
                   id="updateName"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  placeholder='Tên khách sạn mới'
                 />
 
-                <label htmlFor="updateLocation">Địa điểm khách sạn mới:</label>
+                <label className='update-hotel-p' htmlFor="updateLocation">Địa điểm khách sạn mới</label>
                 <input
                   type="text"
                   id="updateLocation"
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
+                  placeholder='Địa điểm khách sạn mới'
                 />
-                <label htmlFor="updateInfo">Thông tin thêm:</label>
+                <label className='update-hotel-p' htmlFor="updateInfo">Thông tin thêm</label>
                 <input
                   type="text"
                   id="updateInfo"
                   name="info"
                   value={formData.info}
                   onChange={handleChange}
+                  placeholder='Thông tin thêm'
                 />
 
-                <button type="submit">Cập nhật khách sạn</button>
+                <button className='create-hotel-button' type="submit">Cập nhật khách sạn</button>
               </form>
             </div>
           )}
+
           {accommodationData.map((accommodation) => (
-            <div key={accommodation.id} className="accommodation-container">
-              <ImageUploadButton accommodationId={accommodation.id} />
-              <div className="accommodation-info">
-                <p>Tên: {accommodation.name}</p>
-                <p>Địa điểm: {accommodation.location}</p>
-                <p>Thông tin thêm: {accommodation.info}</p>
-                <ImageAccommodation accommodationId={accommodation.id} />
-                <RoomList accommodationId={accommodation.id} />
+            <div key={accommodation.id}>
+              <h2 className='h2-view-hotel-header'>Khách sạn của bạn</h2>
+              <hr className='view-hotel-hr'/>
+              {/* <ImageUploadButton accommodationId={accommodation.id} /> */}
+              <div className="your-hotel-container">
+
+                <div className='hotel-header-section'>
+                  <div className='hotel-header-title-section'>
+                    <h4 className='hotel-header-title-section-h4'>
+                      <div className='flex gap-32'>
+                        <div className='flex flex-col gap-16 flex-grow'>
+                          <h4 className='hotel-header-title-section-h4'>{accommodation.name}</h4>
+                          <div className='hotel-location-p'>Địa điểm: {accommodation.location}</div>
+                        </div>
+                      </div>
+                    </h4>
+                  </div>
+                </div>
+
+                <div className='hotel-location-p'>{accommodation.info}</div>
+                {/* <ImageAccommodation accommodationId={accommodation.id} />
+                <RoomList accommodationId={accommodation.id} /> */}
               </div>
-              <div className="button-container">
-                <button onClick={() => handleSelectAccommodation(accommodation)}>Cập nhật khách sạn </button>
-                <button onClick={() => { handleDelete(accommodation) }}>Xóa khách sạn</button>
+
+              <div className="update-button-container">
+                <button className='update-hotel-button' onClick={() => handleSelectAccommodation(accommodation)}>Cập nhật khách sạn </button>
+                <button className='update-hotel-button' onClick={() => { handleDelete(accommodation) }}>Xóa khách sạn</button>
+              </div>
+
+              <hr className='view-hotel-hr'/>
+              <div>
+                <ImageAccommodation accommodationId={accommodation.id} />
+                <ImageUploadButton accommodationId={accommodation.id} />
+              </div>
+
+              <hr className='view-hotel-hr'/>
+              <div>
+                <RoomList accommodationId={accommodation.id} />
               </div>
             </div>
           ))}

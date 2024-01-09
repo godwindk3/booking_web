@@ -202,6 +202,9 @@ vn {
   border: 1px solid var(--gray-200,#eaecf0);
   background: var(--base-white,#fff);
   box-shadow: var(--shadow-sm);
+
+  border-color: #fc6c85;
+  box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
 }
 .gap-40 {
   gap: 40px;

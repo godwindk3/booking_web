@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 import ImageRoom from './ImageRoom';
 import ImageRoomUpload from './ImageRoomUpload';
+import './RoomList.css';
 
 const RoomList = ({ accommodationId }) => {
   const [rooms, setRooms] = useState([]);
@@ -137,58 +138,69 @@ const RoomList = ({ accommodationId }) => {
 
   return (
     <div>
-      <h2>Quản lý phòng trong khách sạn của bạn </h2>
+      <div className='create-room-list-card'>
+        <h2 className='view-roomlist-header-h2'>Quản lý phòng trong khách sạn của bạn </h2>
 
-      {/* Input fields for creating a new room */}
-      <label htmlFor="createRoomName">Tên Phòng:</label>
-      <input
-        type="text"
-        id="createRoomName"
-        value={createFormData.room_name}
-        onChange={(e) => setCreateFormData({ ...createFormData, room_name: e.target.value })}
-      />
+        <form className='create-room-list-container'>
+          {/* Input fields for creating a new room */}
+          <label htmlFor="createRoomName"></label>
+          <input
+            type="text"
+            id="createRoomName"
+            value={createFormData.room_name}
+            onChange={(e) => setCreateFormData({ ...createFormData, room_name: e.target.value })}
+            placeholder='Tên Phòng'
+          />
 
-      <label htmlFor="createCapacity">Sức chứa:</label>
-      <input
-        type="text"
-        id="createCapacity"
-        value={createFormData.capacity}
-        onChange={(e) => setCreateFormData({ ...createFormData, capacity: e.target.value })}
-      />
+          <label htmlFor="createCapacity"></label>
+          <input
+            type="text"
+            id="createCapacity"
+            value={createFormData.capacity}
+            onChange={(e) => setCreateFormData({ ...createFormData, capacity: e.target.value })}
+            placeholder='Sức chứa'
+          />
 
-      <label htmlFor="createPrice">Giá:</label>
-      <input
-        type="text"
-        id="createPrice"
-        value={createFormData.price}
-        onChange={(e) => setCreateFormData({ ...createFormData, price: e.target.value })}
-      />
+          <label htmlFor="createPrice"></label>
+          <input
+            type="text"
+            id="createPrice"
+            value={createFormData.price}
+            onChange={(e) => setCreateFormData({ ...createFormData, price: e.target.value })}
+            placeholder='Giá'
+          />
 
-      <label htmlFor="createStatus">Trạng thái:</label>
-      <input
-        type="checkbox"
-        id="createStatus"
-        checked={createFormData.status}
-        onChange={(e) => setCreateFormData({ ...createFormData, status: e.target.checked })}
-      />
+          <label htmlFor="createTier"></label>
+          <input
+            type="text"
+            id="createTier"
+            value={createFormData.tier}
+            onChange={(e) => setCreateFormData({ ...createFormData, tier: e.target.value })}
+            placeholder='Xếp hạng'
+          />
 
-      <label htmlFor="createTier">Xếp hạng:</label>
-      <input
-        type="text"
-        id="createTier"
-        value={createFormData.tier}
-        onChange={(e) => setCreateFormData({ ...createFormData, tier: e.target.value })}
-      />
-      <label htmlFor="createInfo">Thông tin thêm:</label>
-      <input
-        type="text"
-        id="createInfo"
-        value={createFormData.info}
-        onChange={(e) => setCreateFormData({ ...createFormData, info: e.target.value })}
-      />
+          <label htmlFor="createInfo"></label>
+          <input
+            type="text"
+            id="createInfo"
+            value={createFormData.info}
+            onChange={(e) => setCreateFormData({ ...createFormData, info: e.target.value })}
+            placeholder='Thông tin thêm'
+          />
 
-      {/* Create button for sending the create request */}
-      <button onClick={handleCreateRoom}>Tạo phòng</button>
+          <label htmlFor="createStatus"></label>
+          <input
+            type="checkbox"
+            id="createStatus"
+            checked={createFormData.status}
+            onChange={(e) => setCreateFormData({ ...createFormData, status: e.target.checked })}
+            placeholder='Trạng thái'
+          />
+
+        </form>
+        {/* Create button for sending the create request */}
+        <button className='create-room-button' onClick={handleCreateRoom}>Tạo phòng</button>
+      </div>
 
       {loading && <p>Loading rooms...</p>}
 
