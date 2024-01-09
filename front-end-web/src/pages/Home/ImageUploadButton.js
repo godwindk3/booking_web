@@ -37,6 +37,7 @@ const ImageUploadButton = ({ accommodationId }) => {
       );
 
       console.log('Image upload successful. Response:', response.data);
+      alert('Image upload successful')
 
       // Reset the selected image
       setSelectedImage(null);
@@ -48,7 +49,7 @@ const ImageUploadButton = ({ accommodationId }) => {
   return (
     <div>
       <input type="file" onChange={handleImageChange} />
-      <button onClick={handleImageUpload}>Upload Image</button>
+      <button onClick={handleImageUpload}>Upload AccommodationImage</button>
     </div>
   );
 };
