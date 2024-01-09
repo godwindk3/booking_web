@@ -15,24 +15,34 @@ room_ammenity_services = ultraimport(
 router = APIRouter(prefix="/amenity", tags=["AMENITY"])
 
 
-@router.get("/get_room_amenities", response_model=List[validation_models.RoomAmenityOut], status_code=status.HTTP_200_OK)
+@router.get("/get_all_room_amenities", response_model=List[validation_models.RoomAmenityOut], status_code=status.HTTP_200_OK)
 async def fetch_all_room_amenities():
     return room_ammenity_services.get_all_room_ammenities()
 
 
-@router.get("/get_accommodation_amenities", response_model=List[validation_models.AccommodationAmenityOut], status_code=status.HTTP_200_OK)
+@router.get("/get_all_accommodation_amenities", response_model=List[validation_models.AccommodationAmenityOut], status_code=status.HTTP_200_OK)
 async def fetch_all_accommodation_amenities():
     return acco_ammenity_services.get_all_acco_ammenities()
 
 
-@router.get("/get_room_amenities/{amenity_id}", response_model=validation_models.RoomAmenityOut, status_code=status.HTTP_200_OK)
+@router.get("/room/{amenity_id}", response_model=validation_models.RoomAmenityOut, status_code=status.HTTP_200_OK)
 async def fetch_room_amenity_by_id(amenity_id: int):
     return room_ammenity_services.get_room_ammenity_by_id(amenity_id)
 
 
-@router.get("/get_accommodation_amenities/{amenity_id}", response_model=validation_models.AccommodationAmenityOut, status_code=status.HTTP_200_OK)
+@router.get("/accommodation/{amenity_id}", response_model=validation_models.AccommodationAmenityOut, status_code=status.HTTP_200_OK)
 async def fetch_accommodation_amenity_by_id(amenity_id: int):
     return acco_ammenity_services.get_acco_ammenity_by_id(amenity_id)
+
+
+@router.get("/get_room_amenities/{room_id}", response_model=List[validation_models.RoomAmenityOut], status_code=status.HTTP_200_OK)
+async def fetch_amenities_of_room(room_id: int):
+    return room_ammenity_services.get_ammenities_of_room(room_id)
+
+
+@router.get("/get_accommodation_amenities/{accommodation_id}", response_model=List[validation_models.AccommodationAmenityOut], status_code=status.HTTP_200_OK)
+async def fetch_amenities_of_accommodation(accommodation_id: int):
+    return acco_ammenity_services.get_all_amenities_of_accommodation(accommodation_id)
 
 
 @router.post("/room", response_model=validation_models.RoomAmenityOut, status_code=status.HTTP_201_CREATED)

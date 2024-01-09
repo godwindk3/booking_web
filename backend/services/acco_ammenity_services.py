@@ -27,6 +27,19 @@ def get_acco_ammenity_by_id(ammenity_id: int):
     return temp
 
 
+def get_all_amenities_of_accommodation(accommodation_id: int):
+    temp = db.query(data_models.Accommodation).filter(
+        data_models.Accommodation.id == accommodation_id).first()
+    if (temp is None):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Accommodation with ID {accommodation_id} does not exist.")
+
+    return db.query(data_models.AccommodationAmenityName).filter(
+        data_models.AccommodationAmenities.accommodationID == accommodation_id,
+        data_models.AccommodationAmenityName.id == data_models.AccommodationAmenities.amenityID
+    )
+
+
 def create_acco_ammenity(ammenity: validation_models.AccommodationAmenity):
 
     __check_existed_acco_ammenity_name(ammenity.name)
@@ -96,7 +109,7 @@ def delete_amenity_from_accommodation(amenity_id: int, accommodation_id: int):
 
     amenity_to_remove = db.query(data_models.AccommodationAmenities).filter(
         data_models.AccommodationAmenities.accommodationID == accommodation_id, data_models.AccommodationAmenities.amenityID == amenity_id).first()
-    
+
     db.delete(amenity_to_remove)
     db.commit()
 

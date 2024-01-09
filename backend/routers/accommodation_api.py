@@ -37,6 +37,7 @@ async def fetch_payment_methods_by_acco_id(id: int):
 async def fetch_reviews_by_accommodation_id(id: int):
     return review_services.get_reviews_in_accommodation(id)
 
+
 @router.get("/{id}/get_manager", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
 async def fetch_manager_by_acco_id(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     manager = accommodation_services.get_manager(id)
@@ -45,7 +46,6 @@ async def fetch_manager_by_acco_id(id: int, current_user_data: validation_models
             status_code=status.HTTP_403_FORBIDDEN, detail=f"No permission.")
 
     return manager
-
 
 
 @router.post("/", response_model=validation_models.AccommodationOut, status_code=status.HTTP_201_CREATED)
@@ -61,15 +61,18 @@ async def create_accommodation(accommodation: validation_models.Accomodation, cu
         manager_services.create_manager(manager)
     return acco
 
+
 @router.post("/{id}/add_payment_method/{payment_id}", response_model=validation_models.AccommodationPaymentOut, status_code=status.HTTP_201_CREATED)
 async def add_payment_method(id: int, payment_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
 
     if (current_user_data.role < 1):
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")
     elif (current_user_data.role == 1):
         manager = manager_services.get_manager_by_user_id(current_user_data.id)
         if (manager.accommodationID != id):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     return payment_services.add_payment_method_to_accommodation(payment_id, id)
 
 
@@ -77,12 +80,13 @@ async def add_payment_method(id: int, payment_id: int, current_user_data: valida
 async def update_accommodation(id: int, accommodation: validation_models.Accomodation, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     if (current_user_data.role == 0):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-    
-    if (current_user_data.role == 1): 
+
+    if (current_user_data.role == 1):
         manager = manager_services.get_manager_by_user_id(current_user_data.id)
         if (manager.accommodationID != id):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
-        
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
+
     return accommodation_services.update_accommodation(id, accommodation)
 
 
@@ -90,10 +94,11 @@ async def update_accommodation(id: int, accommodation: validation_models.Accomod
 async def delete_accommodation(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     if (current_user_data.role < 1):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-    if (current_user_data.role == 1): 
+    if (current_user_data.role == 1):
         manager = manager_services.get_manager_by_user_id(current_user_data.id)
         if (manager.accommodationID != id):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     return accommodation_services.delete_accommodation(id)
 
 
