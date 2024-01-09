@@ -165,14 +165,14 @@ const RegisterPage = () => {
       </form>
 
       {/* Success Modal */}
-      <Modal
+      <Modal className='centered modal'
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Registration Successful"
       >
-        <h2>Đăng ký thành công</h2>
-        <p>Tự động chuyển sang trang đăng nhập sau 3 giây</p>
-        <button onClick={closeModal}>Close</button>
+        <h2 className='popup-heading'>Đăng ký thành công</h2>
+        <p className='popup-p'>Tự động chuyển sang trang đăng nhập sau 3 giây</p>
+        <button className='centered popup-close-button' onClick={closeModal}>Close</button>
       </Modal>
     </div>
   );
