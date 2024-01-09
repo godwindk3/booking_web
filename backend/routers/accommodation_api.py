@@ -15,31 +15,61 @@ router = APIRouter(prefix="/accommodation", tags=["ACCOMMODATION"])
 
 @router.get("/", response_model=List[validation_models.AccommodationOut], status_code=status.HTTP_200_OK)
 async def fetch_all_accommodations():
+    """
+- API lấy ra tất cả khách sạn.
+- Trả về 200 là lấy thông tin thành công.
+
+    """
     return accommodation_services.get_all_accommodations()
 
 
 @router.get("/{id}", response_model=validation_models.AccommodationOut, status_code=status.HTTP_200_OK)
 async def fetch_accommodations_by_id(id: int):
+    """
+- Hàm nhận id (ID của khách sạn) để lấy ra thông tin khách sạn có ID đó.
+- Trả về 200 là lấy thông tin thành công, 422 là lấy thông tin không thành công hoặc lỗi.
+    """
     return accommodation_services.get_accommodation_by_id(id)
 
 
 @router.get("/{id}/rooms", response_model=List[validation_models.RoomOut], status_code=status.HTTP_200_OK)
 async def get_rooms_by_acco_id(id: int):
+    """
+- Hàm nhận id (ID của khách sạn) để lấy thông tin về tất cả các phòng của khách sạn có ID 
+đó.
+- Trả về 200 là lấy thông tin thành công, 422 là lấy thông tin không thành công hoặc lỗi.
+    """
     return room_services.get_rooms_by_accommodation_id(id)
 
 
 @router.get("/{id}/get_payment_methods", response_model=List[validation_models.PaymentOut], status_code=status.HTTP_200_OK)
 async def fetch_payment_methods_by_acco_id(id: int):
+    """
+- Hàm nhận id (ID của khách sạn) để lấy thông tin về tất cả các phương thức thanh toán 
+của khách sạn có ID đó.
+- Trả về 200 là lấy thông tin thành công, 422 là lấy thông tin không thành công hoặc lỗi.
+    """
     return payment_services.get_payment_methods_from_acco_id(id)
 
 
 @router.get("/{id}/reviews", response_model=List[validation_models.ReviewOut], status_code=status.HTTP_200_OK)
 async def fetch_reviews_by_accommodation_id(id: int):
+    """
+- Hàm nhận id (ID của khách sạn) để lấy thông tin về tất cả các review về khách sạn có ID 
+đó.
+- Trả về 200 là lấy thông tin thành công, 422 là lấy thông tin không thành công hoặc lỗi.
+
+    """
     return review_services.get_reviews_in_accommodation(id)
 
 
 @router.get("/{id}/get_manager", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
 async def fetch_manager_by_acco_id(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận id (ID của khách sạn) để lấy ra thông tin của người quản lý khách sạn có ID đó
+- Trả về 200 là lấy thông tin thành công, 422 là lấy thông tin không thành công hoặc lỗi
+- Cần role là manager hoặc admin để có thể gọi API này.
+    """
     manager = accommodation_services.get_manager(id)
     if (current_user_data.role < 1):
         raise HTTPException(
@@ -50,6 +80,13 @@ async def fetch_manager_by_acco_id(id: int, current_user_data: validation_models
 
 @router.post("/", response_model=validation_models.AccommodationOut, status_code=status.HTTP_201_CREATED)
 async def create_accommodation(accommodation: validation_models.Accomodation, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận name (tên khách sạn), location (địa chỉ khách sạn) và info (thông tin khách 
+sạn) để tạo một khách sạn.
+- Trả về 201 là tạo thành công, 422 là tạo không thành công hoặc lỗi.
+- Cần role là manager hoặc admin để có thể gọi API này.
+    """
+    
     if (current_user_data.role < 1):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail=f"No permission.")
@@ -64,7 +101,12 @@ async def create_accommodation(accommodation: validation_models.Accomodation, cu
 
 @router.post("/{id}/add_payment_method/{payment_id}", response_model=validation_models.AccommodationPaymentOut, status_code=status.HTTP_201_CREATED)
 async def add_payment_method(id: int, payment_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
-
+    """
+- Hàm nhận id (ID của khách sạn) và payment_id (ID của phương thức thanh toán) để
+thêm một phương thức thanh toán cho khách sạn có ID đó
+- Trả về 201 là thêm thành công, 422 là thêm không thành công hoặc lỗi
+- Cần role là manager hoặc admin để có thể gọi API này.
+    """
     if (current_user_data.role < 1):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")
@@ -78,6 +120,12 @@ async def add_payment_method(id: int, payment_id: int, current_user_data: valida
 
 @router.put("/{id}", response_model=validation_models.AccommodationOut, status_code=status.HTTP_200_OK)
 async def update_accommodation(id: int, accommodation: validation_models.Accomodation, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận id (ID của khách sạn), name (tên khách sạn), location (địa chỉ khách sạn) và 
+info (thông tin khách sạn) để cập nhật thông tin của khách sạn có ID đó
+- Trả về 200 là cập nhật thành công, 422 là cập nhật không thành công hoặc lỗi
+- Cần role manager hoặc admin để có thể gọi API này.
+    """
     if (current_user_data.role == 0):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
 
@@ -92,6 +140,12 @@ async def update_accommodation(id: int, accommodation: validation_models.Accomod
 
 @router.delete("/{id}", response_model=validation_models.AccommodationOut, status_code=status.HTTP_200_OK)
 async def delete_accommodation(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận id (ID của khách sạn) để xoá đi khách sạn có ID đó.
+- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
+- Cần role là manager hoặc admin để có thể gọi API này.
+
+    """
     if (current_user_data.role < 1):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
     if (current_user_data.role == 1):
@@ -104,4 +158,9 @@ async def delete_accommodation(id: int, current_user_data: validation_models.Use
 
 @router.delete("/{id}/remove_payment/{payment_id}", response_model=validation_models.AccommodationPaymentOut, status_code=status.HTTP_200_OK)
 async def remove_payment_method(id: int, payment_id: int):
+    """
+- Hàm nhận id (ID của khách sạn) và payment_id (ID của phương thức thanh toán) để xoá 
+một phương thức thanh toán cho khách sạn có ID đó
+- Trả về 200 là xoá thành công, 422 là thêm xoá thành công hoặc lỗi
+    """
     return payment_services.remove_payment_method_from_accommodation(id, payment_id)

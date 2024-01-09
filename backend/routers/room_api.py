@@ -13,6 +13,11 @@ router = APIRouter(prefix="/room", tags=["ROOM"])
 
 @router.get("/", response_model=List[validation_models.RoomOut], status_code=status.HTTP_200_OK)
 async def fetch_all_rooms(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- API lấy ra thông tin tất cả các phòng.
+- Trả về 200 là lấy thông tin thành công.
+- Cần role admin để gọi API.
+    """
     if (current_user_data.role < 2):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
@@ -21,11 +26,26 @@ async def fetch_all_rooms(current_user_data: validation_models.User = Depends(oa
 
 @router.get("/{room_id}/unavailable_dates", response_model=List[validation_models.CheckInOutDates], status_code=status.HTTP_200_OK)
 async def fetch_unavailable_dates(room_id: int):
+    """
+- Hàm nhận room_id (ID của phòng) để lấy ra các ngày đã có khách đặt trước phòng có ID 
+đó.
+- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+
+    """
+
     return room_services.get_exist_dates(room_id)
 
 
 @router.post("/", response_model=validation_models.RoomOut, status_code=status.HTTP_201_CREATED)
 async def create_room(room: validation_models.Room, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận accommodationID (ID của khách sạn), room_name (tên phòng), capacity (sức 
+chứa), price (giá tiền / đêm), status (tình trạng của phòng), tier (hạng phòng) và info 
+(thông tin phòng) để tạo một phòng mới của khách sạn có ID đó.
+- Trả về 201 là tạo thành công, 422 là tạo không thành công hoặc lỗi.
+- Cần role admin hoặc manager quản lý khách sạn chứa phòng đó mới được gọi API.
+    """
+    
     if (current_user_data.role < 1):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")
@@ -39,6 +59,14 @@ async def create_room(room: validation_models.Room, current_user_data: validatio
 
 @router.put("/{room_id}", response_model=validation_models.Room, status_code=status.HTTP_200_OK)
 async def update_room(room_id: int, room: validation_models.Room, current_user_data: validation_models.Room = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận room_id (ID của phòng), accommodationID (ID của khách sạn), room_name 
+(tên phòng), capacity (sức chứa), price (giá tiền / đêm), status (tình trạng của phòng), 
+tier (hạng phòng) và info (thông tin phòng) để cập nhật thông tin một phòng có ID đó.
+- Trả về 200 là cập nhật thành công, 422 là cập nhật không thành công hoặc lỗi.
+- Cần role admin hoặc manager quản lý khách sạn chứa phòng đó mới được gọi API.
+    """
+    
     if (current_user_data.role < 1):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")
@@ -52,6 +80,12 @@ async def update_room(room_id: int, room: validation_models.Room, current_user_d
 
 @router.delete("/{room_id}", response_model=validation_models.RoomOut, status_code=status.HTTP_200_OK)
 async def delete_room(room_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận room_id (ID của phòng) để xoá phòng có ID đó.
+- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
+- Cần role admin hoặc manager quản lý khách sạn chứa phòng đó mới được gọi API.
+    """
+    
     if (current_user_data.role < 1):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")

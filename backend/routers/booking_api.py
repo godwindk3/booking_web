@@ -16,11 +16,23 @@ router = APIRouter(prefix="/booking", tags=["BOOKING"])
 
 @router.get("/", response_model=List[validation_models.BookingOut], status_code=status.HTTP_200_OK)
 async def fetch_bookings_of_current_user(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- API lấy ra thông tin đặt phòng của người dùng hiện tại gồm ID khách sạn, ID phòng, ngày 
+checkin/checkout và giá tiền.
+- Trả về 200 là lấy thông tin thành công.
+    """
     return booking_services.get_bookings_of_user(current_user_data.id)
 
 
 @router.post("/", response_model=validation_models.BookingOut, status_code=status.HTTP_201_CREATED)
 async def create_booking_by_current_user(booking: validation_models.Booking, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận userID (ID của người dùng), acommodationID (ID của khách sạn), roomID (ID 
+của phòng), checkin_date (ngày checkin), checkout_date (ngày checkout) và total_price 
+(tổng giá tiền) dùng cho việc đặt phòng của người dùng hiện tại.
+- Trả về 201 là đặt phòng thành công, 422 là đặt phòng không thành công hoặc lỗi.
+
+    """
     if (current_user_data.role == 0 and current_user_data.id != booking.userID):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail=f"No permission")
@@ -29,6 +41,14 @@ async def create_booking_by_current_user(booking: validation_models.Booking, cur
 
 @router.put("/{booking_id}", response_model=validation_models.BookingOut, status_code=status.HTTP_200_OK)
 async def update_booking_by_id(booking_id: int, booking: validation_models.Booking, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận booking_id (ID của đơn đặt phòng), userID (ID của người dùng), 
+acommodationID (ID của khách sạn), roomID (ID của phòng), checkin_date (ngày 
+checkin), checkout_date (ngày checkout) và total_price (tổng giá tiền) dùng cho việc cập 
+nhật thông tin đơn đặt phòng của người dùng hiện tại.
+- Trả về 200 là cập nhật thành công, 422 là cập nhật không thành công hoặc lỗi.
+
+    """
     if (current_user_data.role == 0 and current_user_data.id != booking.userID):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail=f"No permission")
@@ -37,4 +57,8 @@ async def update_booking_by_id(booking_id: int, booking: validation_models.Booki
 
 @router.delete("/{booking_id}", response_model=validation_models.BookingOut, status_code=status.HTTP_200_OK)
 async def delete_booking_by_id(booking_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận booking_id (ID của đơn đặt phòng) để xoá đơn đặt phòng.
+- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
+    """
     return booking_services.delete_booking(booking_id)

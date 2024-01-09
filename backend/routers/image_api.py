@@ -24,6 +24,11 @@ OUTER_PATH = Path().parent.absolute() / os.getenv("IMAGES_FOLDER_NAME")
 
 @router.post("/room/upload/{room_id}", response_model=validation_models.RoomImageOut, status_code=status.HTTP_201_CREATED)
 async def upload_room_image(room_id: int, file: UploadFile = File(...), current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận room_id (ID của phòng) và file ảnh (binary string) để thêm ảnh của phòng.
+- Trả về 201 là thêm thành công, 422 là thêm không thành công hoặc lỗi.
+- Cần role là manager hoặc admin để có thể gọi API.
+    """
     if (current_user_data.role == 0):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")
@@ -59,6 +64,13 @@ async def upload_room_image(room_id: int, file: UploadFile = File(...), current_
 
 @router.post("/accommodation/upload/{accommodation_id}", response_model=validation_models.AccommodationImageOut, status_code=status.HTTP_201_CREATED)
 async def upload_accommodation_image(accommodation_id: int, file: UploadFile = File(...), current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận accommodation_id (ID của khách sạn) và file (đường dẫn ảnh) để thêm ảnh 
+của khách sạn.
+- Trả về 201 là thêm thành công, 422 là thêm không thành công hoặc lỗi.
+- Cần role manager hoặc admin để gọi API.
+    """
+    
     if (current_user_data.role == 0):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permisison.")
@@ -93,16 +105,32 @@ async def upload_accommodation_image(accommodation_id: int, file: UploadFile = F
 
 @router.get("/room", response_model=List[validation_models.RoomImageOut], status_code=status.HTTP_200_OK)
 async def fetch_all_room_images():
+    """
+- API lấy ra tất cả các ID của ảnh của tất cả các phòng.
+- Trả về 200 là lấy thành công.
+
+    """
     return room_image_services.get_all_images_url()
 
 
 @router.get("/accommodations", response_model=List[validation_models.AccommodationOut], status_code=status.HTTP_200_OK)
 async def fetch_all_accommodation_images():
+    """
+- API lấy ra tất cả các ID của ảnh của tất cả các khách sạn.
+- Trả về 200 là lấy thành công.
+
+    """
     return acco_image_services.get_all_acco_images_url()
 
 
 @router.delete("/room/{id}", response_model=validation_models.RoomImageOut, status_code=status.HTTP_200_OK)
 async def delete_room_image(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận id (ID của ảnh phòng) để xoá đi ảnh phòng có ID đó.
+- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
+- Cần role manager hoặc admin để gọi API.
+    """
+    
     if (current_user_data.role < 1):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
@@ -119,6 +147,12 @@ async def delete_room_image(id: int, current_user_data: validation_models.User =
 
 @router.delete("/accommodation/{id}", response_model=validation_models.AccommodationImage, status_code=status.HTTP_200_OK)
 async def delete_accommodation_image(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- Hàm nhận id (ID của ảnh khách sạn) để xoá đi ảnh khách sạn có ID đó.
+- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
+- Cần role manager hoặc admin để gọi API.
+    """
+    
     if (current_user_data.role < 1):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
@@ -135,21 +169,39 @@ async def delete_accommodation_image(id: int, current_user_data: validation_mode
 
 @router.get("/room/get_room_images/{room_id}", response_model=List[validation_models.RoomImageOut], status_code=status.HTTP_200_OK)
 async def fetch_images_of_room(room_id: int):
+    """
+- Hàm nhận room_id (ID của phòng) để lấy ra tất cả ảnh của phòng đó.
+- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+    """
     return room_image_services.get_images_of_room(room_id)
 
 
 @router.get("/accommodation/get_accommodation_images/{accommodation_id}", response_model=List[validation_models.AccommodationImageOut], status_code=status.HTTP_200_OK)
 async def fetch_images_of_accommodation(accommodation_id: int):
+    """
+- Hàm nhận accommodation_id (ID của khách sạn) để lấy ra tất cả ảnh của khách sạn đó.
+- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+    """
     return acco_image_services.get_images_of_accommodation(accommodation_id)
 
 
 @router.get("/room/get_image/{id}", status_code=status.HTTP_200_OK)
 async def get_room_image(id: int):
+    """
+- Hàm nhận id (ID của ảnh phòng) để lấy ra ảnh phòng có ID đó.
+- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+
+    """
     url = room_image_services.get_image_url_by_id(id).url
     return FileResponse(url)
 
 
 @router.get("/accommodation/get_image/{id}", status_code=status.HTTP_200_OK)
 async def get_accommodation_image(id: int):
+    """
+- Hàm nhận id (ID của ảnh khách sạn) để lấy ra ảnh khách sạn có ID đó.
+- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+
+    """
     url = acco_image_services.get_image_url_by_id(id).url
     return FileResponse(url)
