@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from './axiosConfig';
 
+import './ImageUploadButton.css'
+
 const ImageUploadButton = ({ accommodationId }) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -47,9 +49,9 @@ const ImageUploadButton = ({ accommodationId }) => {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleImageChange} />
-      <button onClick={handleImageUpload}>Upload AccommodationImage</button>
+    <div className='upload-acco-image-button-container'>
+      <input className='upload-acco-image-button file-input' type="file" onChange={handleImageChange} />
+      <button className='upload-acco-image-button' onClick={handleImageUpload}>Upload Ảnh Khách Sạn</button>
     </div>
   );
 };

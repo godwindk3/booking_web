@@ -292,7 +292,6 @@ const OwnerDashboard = () => {
                 <button className='update-hotel-button' onClick={() => { handleDelete(accommodation) }}>Xóa khách sạn</button>
               </div>
 
-              <hr className='view-hotel-hr'/>
               <div>
                 <ImageAccommodation accommodationId={accommodation.id} />
                 <ImageUploadButton accommodationId={accommodation.id} />
