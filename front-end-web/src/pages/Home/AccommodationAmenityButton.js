@@ -58,11 +58,11 @@ const AccommodationAmenityButton = ({ accommodationId }) => {
 
   return (
     <div>
-      <button onClick={() => setShowPopup(true)}>Show Amenities</button>
+      <button onClick={() => setShowPopup(true)}>Toàn bộ các tiện ích</button>
 
       {showPopup && (
         <div>
-          <h3>Accommodation Amenities:</h3>
+          <h3>Các tiện ích được hỗ trợ</h3>
           {loading && <p>Loading amenities...</p>}
           {!loading && amenities.length === 0 && <p>No amenities available for this accommodation.</p>}
           {!loading && amenities.length > 0 && (
@@ -70,7 +70,7 @@ const AccommodationAmenityButton = ({ accommodationId }) => {
               {amenities.map((amenity) => (
                 <li key={amenity.id}>
                   {amenity.name}
-                  <button onClick={() => handleAttach(amenity.id)}>Attach</button>
+                  <button onClick={() => handleAttach(amenity.id)}>Thêm tiện ích</button>
                 </li>
               ))}
             </ul>

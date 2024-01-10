@@ -29,7 +29,7 @@ const AccommodationDetachButton = ({ accommodationId, amenityId }) => {
   };
 
   return (
-    <button onClick={handleDetach}>Detach</button>
+    <button onClick={handleDetach}>Loại bỏ tiện ích</button>
   );
 };
 
