@@ -69,7 +69,7 @@ const ImageAccommodation = ({ accommodationId }) => {
           <img
             src={imageUrl}
             alt={`Accommodation Image ${index + 1}`}
-            style={{ width: '600px', height: 'auto' }}
+            style={{ width: '500px', height: 'auto' }}
           />
           <button onClick={() => deleteImage(imageData[index].id)}>Delete</button>
         </div>
