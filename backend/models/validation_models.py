@@ -14,12 +14,12 @@ class Accomodation(BaseModelConfig):
     info: str = ""
 
     model_config = {
-        "json_schema_extra":{
+        "json_schema_extra": {
             "examples": [
                 {
-                    "name":"The Imperial Vung Tau Hotel & Resort",
-                    "location":"Vung Tau",
-                    "info": 
+                    "name": "The Imperial Vung Tau Hotel & Resort",
+                    "location": "Vung Tau",
+                    "info":
                     """Vung Tau's first world-class hotel gives every visitor and guest the rare opportunity to indulge in the hotel's very own hospitality experience,
 the pinnacle of luxury, refinement, and elegance, that only the Imperial Hotel can orchestrate and dispense with the skill of a maestro.
                     """.replace("\n", " ").strip()
@@ -36,13 +36,13 @@ class AccommodationOut(BaseModelConfig):
     info: str
 
     model_config = {
-        "json_schema_extra":{
+        "json_schema_extra": {
             "examples": [
                 {
                     "id": 1,
-                    "name":"The Imperial Vung Tau Hotel & Resort",
-                    "location":"Vung Tau",
-                    "info": 
+                    "name": "The Imperial Vung Tau Hotel & Resort",
+                    "location": "Vung Tau",
+                    "info":
                     """Vung Tau's first world-class hotel gives every visitor and guest the rare opportunity to indulge in the hotel's very own hospitality experience,
 the pinnacle of luxury, refinement, and elegance, that only the Imperial Hotel can orchestrate and dispense with the skill of a maestro.
                     """.replace("\n", " ").strip()
@@ -62,15 +62,15 @@ class Room(BaseModelConfig):
     info: str = ""
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "room_name":"Pro vjp room",
-                    "capacity":2,
-                    "price":100.0,
-                    "status":True,
-                    "tier":"S",
-                    "info":"Nice room with beautiful view."
+                    "room_name": "Pro vjp room",
+                    "capacity": 2,
+                    "price": 100.0,
+                    "status": True,
+                    "tier": "S",
+                    "info": "Nice room with beautiful view."
                 }
             ]
         }
@@ -88,16 +88,16 @@ class RoomOut(BaseModelConfig):
     info: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "id":1,
-                    "room_name":"Pro vjp room",
-                    "capacity":2,
-                    "price":100.0,
-                    "status":True,
-                    "tier":"S",
-                    "info":"Nice room with beautiful view."
+                    "id": 1,
+                    "room_name": "Pro vjp room",
+                    "capacity": 2,
+                    "price": 100.0,
+                    "status": True,
+                    "tier": "S",
+                    "info": "Nice room with beautiful view."
                 }
             ]
         }
@@ -111,13 +111,13 @@ class User(BaseModelConfig):
     role: int = 0
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "name":"Ouran Nakagawa",
-                    "email":"deademon@gmail.com",
-                    "password":"minhandz",
-                    "role":1
+                    "name": "Ouran Nakagawa",
+                    "email": "deademon@gmail.com",
+                    "password": "minhandz",
+                    "role": 1
                 }
             ]
         }
@@ -131,13 +131,13 @@ class UserOut(BaseModelConfig):
     role: int = 0
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "id":1,
-                    "name":"Ouran Nakagawa",
-                    "email":"deademon@gmail.com",
-                    "role":1
+                    "id": 1,
+                    "name": "Ouran Nakagawa",
+                    "email": "deademon@gmail.com",
+                    "role": 1
                 }
             ]
         }
@@ -164,10 +164,10 @@ class RoomAmenity(BaseModelConfig):
     name: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "name":"Beautiful view"
+                    "name": "Beautiful view"
                 }
             ]
         }
@@ -179,11 +179,11 @@ class RoomAmenityOut(BaseModelConfig):
     name: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "id":1,
-                    "name":"Beautiful view"
+                    "id": 1,
+                    "name": "Beautiful view"
                 }
             ]
         }
@@ -199,10 +199,10 @@ class AccommodationAmenity(BaseModelConfig):
     name: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "name":"Waifu cosplayer"
+                    "name": "Waifu cosplayer"
                 }
             ]
         }
@@ -214,11 +214,11 @@ class AccommodationAmenityOut(BaseModelConfig):
     name: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "id":1,
-                    "name":"Waifu cosplayer"
+                    "id": 1,
+                    "name": "Waifu cosplayer"
                 }
             ]
         }
@@ -237,13 +237,13 @@ class Review(BaseModelConfig):
     comment: str | None = None
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "userID":1,
-                    "bookingID":1,
-                    "rating":1,
-                    "comment":"Traps, no waifus"
+                    "userID": 1,
+                    "bookingID": 1,
+                    "rating": 1,
+                    "comment": "Traps, no waifus"
                 }
             ]
         }
@@ -258,14 +258,14 @@ class ReviewOut(BaseModelConfig):
     comment: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "id":1,
-                    "userID":1,
-                    "bookingID":1,
-                    "rating":1,
-                    "comment":"Traps, no waifus"
+                    "id": 1,
+                    "userID": 1,
+                    "bookingID": 1,
+                    "rating": 1,
+                    "comment": "Traps, no waifus"
                 }
             ]
         }
@@ -282,16 +282,16 @@ class Booking(BaseModelConfig):
     payment_method: int
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "userID":1,
-                    "accommodationID":1,
-                    "roomID":1,
-                    "checkin_date":"2024-12-24",
-                    "checkout_date":"2024-12-25",
-                    "total_price":100.0,
-                    "payment_method":"visa"
+                    "userID": 1,
+                    "accommodationID": 1,
+                    "roomID": 1,
+                    "checkin_date": "2024-12-24",
+                    "checkout_date": "2024-12-25",
+                    "total_price": 100.0,
+                    "payment_method": "visa"
                 }
             ]
         }
@@ -309,17 +309,17 @@ class BookingOut(BaseModelConfig):
     payment_method: int
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "id":1,
-                    "userID":1,
-                    "accommodationID":1,
-                    "roomID":1,
-                    "checkin_date":"2024-12-24",
-                    "checkout_date":"2024-12-25",
-                    "total_price":100.0,
-                    "payment_method":"visa"
+                    "id": 1,
+                    "userID": 1,
+                    "accommodationID": 1,
+                    "roomID": 1,
+                    "checkin_date": "2024-12-24",
+                    "checkout_date": "2024-12-25",
+                    "total_price": 100.0,
+                    "payment_method": "visa"
                 }
             ]
         }
@@ -345,10 +345,10 @@ class Payment(BaseModelConfig):
     payment_method: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "payment_method":"visa"
+                    "payment_method": "visa"
                 }
             ]
         }
@@ -360,11 +360,11 @@ class PaymentOut(BaseModelConfig):
     payment_method: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "id":1,
-                    "payment_method":"visa"
+                    "id": 1,
+                    "payment_method": "visa"
                 }
             ]
         }
@@ -387,11 +387,11 @@ class RoomImage(BaseModelConfig):
     url: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "roomID":1,
-                    "url":"path/to/your/image.jpg"
+                    "roomID": 1,
+                    "url": "path/to/your/image.jpg"
                 }
             ]
         }
@@ -404,12 +404,12 @@ class RoomImageOut(BaseModelConfig):
     url: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "id":1,
-                    "roomID":1,
-                    "url":"path/to/your/image.jpg"
+                    "id": 1,
+                    "roomID": 1,
+                    "url": "path/to/your/image.jpg"
                 }
             ]
         }
@@ -421,11 +421,11 @@ class AccommodationImage(BaseModelConfig):
     url: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "accommodationID":1,
-                    "url":"path/to/your/image.jpg"
+                    "accommodationID": 1,
+                    "url": "path/to/your/image.jpg"
                 }
             ]
         }
@@ -438,12 +438,12 @@ class AccommodationImageOut(BaseModelConfig):
     url: str
 
     model_config = {
-        "json_schema_extra":{
-            "examples":[
+        "json_schema_extra": {
+            "examples": [
                 {
-                    "id":1,
-                    "accommodationID":1,
-                    "url":"path/to/your/image.jpg"
+                    "id": 1,
+                    "accommodationID": 1,
+                    "url": "path/to/your/image.jpg"
                 }
             ]
         }
