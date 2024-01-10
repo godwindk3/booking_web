@@ -291,7 +291,7 @@ class Booking(BaseModelConfig):
                     "checkin_date": "2024-12-24",
                     "checkout_date": "2024-12-25",
                     "total_price": 100.0,
-                    "payment_method": "visa"
+                    "payment_method": "1"
                 }
             ]
         }
@@ -319,7 +319,7 @@ class BookingOut(BaseModelConfig):
                     "checkin_date": "2024-12-24",
                     "checkout_date": "2024-12-25",
                     "total_price": 100.0,
-                    "payment_method": "visa"
+                    "payment_method": "1"
                 }
             ]
         }
