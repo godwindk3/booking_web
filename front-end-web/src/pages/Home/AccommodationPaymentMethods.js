@@ -3,6 +3,7 @@ import axios from './axiosConfig';
 import PaymentButton from './PaymentButton';
 import PaymentDetachButton from './PaymentDetachButton';
 import './AccommodationPaymentMethods.css'
+
 const AccommodationPaymentMethods = ({ accommodationId }) => {
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,20 +28,31 @@ const AccommodationPaymentMethods = ({ accommodationId }) => {
 
   return (
     <div>
-      <h2 className='h2-view-payment-methods-header'>Các phương thức thanh toán hiện tại của khách sạn</h2>
-      {loading && <p>Loading payment methods...</p>}
-      {!loading && paymentMethods.length === 0 && <p>Khách sạn của bạn chưa có phương thức thanh toán nào</p>}
-      {!loading && paymentMethods.length > 0 && (
-        <ul>
-          {paymentMethods.map((paymentMethod) => (
-            <li key={paymentMethod.id}>{paymentMethod.payment_method}
-            <PaymentDetachButton accommodationId={accommodationId} paymentId={paymentMethod.id} />
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className='your-hotel-payment-method-card'>
+        <h2 className='h2-view-payment-methods-header'>Các phương thức thanh toán hiện tại của khách sạn</h2>
+        <p>Nhấn vào nút x để xoá phương thức thanh toán tương ứng</p>
+
+        {loading && <p>Loading payment methods...</p>}
+        {!loading && paymentMethods.length === 0 && <p>Khách sạn của bạn chưa có phương thức thanh toán nào</p>}
+
+        <div className='your-hotel-payment-methods-list'>
+          {!loading && paymentMethods.length > 0 && (
+            <ul className='your-hotel-payment-methods-list-ul'>
+              {paymentMethods.map((paymentMethod) => (
+                <li className='your-hotel-payment-methods-list-li' key={paymentMethod.id}>{paymentMethod.payment_method}
+
+                <div className="your-hotel-payment-methods-item">
+                  <PaymentDetachButton accommodationId={accommodationId} paymentId={paymentMethod.id} />
+                </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+
       <>
-            <PaymentButton accommodationId={accommodationId}/>
+        <PaymentButton accommodationId={accommodationId}/>
       </>
     </div>
   );
