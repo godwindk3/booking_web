@@ -7,7 +7,7 @@ import axios from './axiosConfig';
 import './OwnerDashboard.css';
 import RoomList from './RoomList';
 import ImageAccommodation from './ImageAccommodation';
-import ImageUploadButton from './ImageUploadButton';
+// import ImageUploadButton from './ImageUploadButton';
 import AccommodationAmenity from './AcommodationAmenity';
 import AccommodationPaymentMethods from './AccommodationPaymentMethods';
 
@@ -182,7 +182,7 @@ const OwnerDashboard = () => {
   return (
     <div>
       {accommodationData.length === 0 ? (
-        <div className="center-card create-hotel-card">
+        <div className="create-hotel-card">
           <h2 className='h2-header'>Hãy đăng ký khách sạn của bạn</h2>
           {error && <p>{error}</p>}
 
@@ -225,7 +225,7 @@ const OwnerDashboard = () => {
           {/* <h2 className='h2-header'>Khách sạn của bạn</h2> */}
 
           {selectedAccommodation && (
-            <div className="center-card create-hotel-card">
+            <div className="create-hotel-card">
               <h2 className='h2-header'>Cập nhật khách sạn</h2>
               <form className='create-hotel-input-container' onSubmit={handleUpdate}>
                 <label className='update-hotel-p' htmlFor="updateName">Tên khách sạn mới</label>
@@ -265,7 +265,7 @@ const OwnerDashboard = () => {
           {accommodationData.map((accommodation) => (
             <div key={accommodation.id}>
               <h2 className='h2-view-hotel-header'>Khách sạn của bạn</h2>
-              <hr className='view-hotel-hr'/>
+              
               {/* <ImageUploadButton accommodationId={accommodation.id} /> */}
               <div className="your-hotel-container">
 
@@ -292,16 +292,21 @@ const OwnerDashboard = () => {
                 <button className='update-hotel-button' onClick={() => { handleDelete(accommodation) }}>Xóa khách sạn</button>
               </div>
 
+              <hr className='view-hotel-hr'/>
               <div>
                 <ImageAccommodation accommodationId={accommodation.id} />
-                <ImageUploadButton accommodationId={accommodation.id} />
+                {/* <ImageUploadButton accommodationId={accommodation.id} /> */}
               </div>
-              <>
+
+              <hr className='view-hotel-hr'/>
+              <div>
                 <AccommodationAmenity accommodationId={accommodation.id} />
-              </>
-              <>
+              </div>
+
+              <hr className='view-hotel-hr'/>
+              <div>
               <AccommodationPaymentMethods accommodationId={accommodation.id}/>
-              </>
+              </div>
 
               <hr className='view-hotel-hr'/>
               <div>

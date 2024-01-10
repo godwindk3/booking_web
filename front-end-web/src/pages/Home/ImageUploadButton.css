@@ -3,7 +3,7 @@
     flex-grow: 1;
     justify-content: space-between;
     gap: 2px;
-    padding: 0px 175px;
+    padding: 0px 500px;
 
     margin-top: 80px;
 }
@@ -17,8 +17,8 @@
 
     font-family: Arial;
     font-size: 17px;
-    height: auto + 10px;
-    width: 500px;
+    height: auto + 20px;
+    width: 200px;
 
     background-color: #FC6C85;
     border: #FC6C85;
@@ -33,3 +33,57 @@
     background-color: #fd3355;
 }
 
+.acco-image-file-input {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+.acco-image-file-input::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #FC6C85;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+.acco-image-file-input::file-selector-button::file-selector-button:hover {
+    background: #fd3355;
+}
+.drop-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+  
+.drop-container:hover {
+    background: #eee;
+    border-color: #111;
+}
+  
+.drop-container:hover .drop-title {
+    color: #222;
+}
+  
+.drop-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
