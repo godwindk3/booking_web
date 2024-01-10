@@ -11,7 +11,7 @@ manager_services = ultraimport("__dir__/../services/manager_services.py")
 router = APIRouter(prefix="/room", tags=["ROOM"])
 
 
-@router.get("/", response_model=List[validation_models.RoomOut], status_code=status.HTTP_200_OK)
+@router.get("/get_all_room", response_model=List[validation_models.RoomOut], status_code=status.HTTP_200_OK)
 async def fetch_all_rooms(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - API lấy ra thông tin tất cả các phòng.
@@ -24,7 +24,7 @@ async def fetch_all_rooms(current_user_data: validation_models.User = Depends(oa
     return room_services.get_all_rooms()
 
 
-@router.get("/{room_id}/unavailable_dates", response_model=List[validation_models.CheckInOutDates], status_code=status.HTTP_200_OK)
+@router.get("/get_room/{room_id}/unavailable_dates", response_model=List[validation_models.CheckInOutDates], status_code=status.HTTP_200_OK)
 async def fetch_unavailable_dates(room_id: int):
     """
 - Hàm nhận room_id (ID của phòng) để lấy ra các ngày đã có khách đặt trước phòng có ID 
@@ -38,8 +38,20 @@ async def fetch_unavailable_dates(room_id: int):
 
     return room_services.get_exist_dates(room_id)
 
+@router.get("/get_available_rooms/{accommodation_id}", response_model=List[validation_models.RoomOut], status_code=status.HTTP_200_OK)
+async def fetch_available_room_of_accommodation(accommodation_id: int, date_range: validation_models.CheckInOutDates):
+    """
+- API nhận vào request body là ngày checkin, checkout dự kiến và ID của khách sạn, trả về list các phòng còn trống trong khoảng ngày checkin đến checkout đó.
+- Status code:
+    - 200: Thành công.
+    - 422: Truyền dữ liệu sai.
+    - 404: Không tìm thấy khách sạn với ID đó.
+    - 400: Truyền dữ liệu sai logic.
+    """
+    return room_services.get_available_rooms(date_range, accommodation_id)
 
-@router.post("/", response_model=validation_models.RoomOut, status_code=status.HTTP_201_CREATED)
+
+@router.post("/create_room", response_model=validation_models.RoomOut, status_code=status.HTTP_201_CREATED)
 async def create_room(room: validation_models.Room, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận accommodationID (ID của khách sạn), room_name (tên phòng), capacity (sức 
@@ -65,7 +77,7 @@ chứa), price (giá tiền / đêm), status (tình trạng của phòng), tier 
     return room_services.create_room(room)
 
 
-@router.put("/{room_id}", response_model=validation_models.Room, status_code=status.HTTP_200_OK)
+@router.put("/update_room/{room_id}", response_model=validation_models.Room, status_code=status.HTTP_200_OK)
 async def update_room(room_id: int, room: validation_models.Room, current_user_data: validation_models.Room = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận room_id (ID của phòng), accommodationID (ID của khách sạn), room_name 
@@ -91,7 +103,7 @@ tier (hạng phòng) và info (thông tin phòng) để cập nhật thông tin 
     return room_services.update_room(room_id, room)
 
 
-@router.delete("/{room_id}", response_model=validation_models.RoomOut, status_code=status.HTTP_200_OK)
+@router.delete("/delete_room/{room_id}", response_model=validation_models.RoomOut, status_code=status.HTTP_200_OK)
 async def delete_room(room_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận room_id (ID của phòng) để xoá phòng có ID đó.
