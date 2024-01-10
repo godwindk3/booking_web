@@ -17,7 +17,8 @@ router = APIRouter(prefix="/accommodation", tags=["ACCOMMODATION"])
 async def fetch_all_accommodations():
     """
 - API lấy ra tất cả khách sạn.
-- Trả về 200 là lấy thông tin thành công.
+- Status code: 
+    - 200: Thành công.
 
     """
     return accommodation_services.get_all_accommodations()

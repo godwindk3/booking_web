@@ -26,8 +26,13 @@ OUTER_PATH = Path().parent.absolute() / os.getenv("IMAGES_FOLDER_NAME")
 async def upload_room_image(room_id: int, file: UploadFile = File(...), current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận room_id (ID của phòng) và file ảnh (binary string) để thêm ảnh của phòng.
-- Trả về 201 là thêm thành công, 422 là thêm không thành công hoặc lỗi.
 - Cần role là manager hoặc admin để có thể gọi API.
+- Status code:
+    - 201: Thành công.
+    - 401: Chưa đăng nhập.
+    - 403: Không có quyền.
+    - 404: Phòng với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     if (current_user_data.role == 0):
         raise HTTPException(
@@ -67,8 +72,13 @@ async def upload_accommodation_image(accommodation_id: int, file: UploadFile = F
     """
 - Hàm nhận accommodation_id (ID của khách sạn) và file (đường dẫn ảnh) để thêm ảnh 
 của khách sạn.
-- Trả về 201 là thêm thành công, 422 là thêm không thành công hoặc lỗi.
 - Cần role manager hoặc admin để gọi API.
+- Status code:
+    - 201: Thành công.
+    - 401: Chưa đăng nhập.
+    - 403: Không có quyền.
+    - 404: khách sạn với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     
     if (current_user_data.role == 0):
@@ -127,8 +137,13 @@ async def fetch_all_accommodation_images():
 async def delete_room_image(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận id (ID của ảnh phòng) để xoá đi ảnh phòng có ID đó.
-- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
 - Cần role manager hoặc admin để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 401: Chưa đăng nhập.
+    - 403: Không có quyền.
+    - 404: Ảnh với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     
     if (current_user_data.role < 1):
@@ -149,8 +164,13 @@ async def delete_room_image(id: int, current_user_data: validation_models.User =
 async def delete_accommodation_image(id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận id (ID của ảnh khách sạn) để xoá đi ảnh khách sạn có ID đó.
-- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
 - Cần role manager hoặc admin để gọi API.
+- Status code:
+    - 201: Thành công.
+    - 401: Chưa đăng nhập.
+    - 403: Không có quyền.
+    - 404: Ảnh với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     
     if (current_user_data.role < 1):
@@ -171,7 +191,10 @@ async def delete_accommodation_image(id: int, current_user_data: validation_mode
 async def fetch_images_of_room(room_id: int):
     """
 - Hàm nhận room_id (ID của phòng) để lấy ra tất cả ảnh của phòng đó.
-- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 404: Phòng với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     return room_image_services.get_images_of_room(room_id)
 
@@ -180,7 +203,10 @@ async def fetch_images_of_room(room_id: int):
 async def fetch_images_of_accommodation(accommodation_id: int):
     """
 - Hàm nhận accommodation_id (ID của khách sạn) để lấy ra tất cả ảnh của khách sạn đó.
-- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 404: Khách sạn với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     return acco_image_services.get_images_of_accommodation(accommodation_id)
 
@@ -189,7 +215,10 @@ async def fetch_images_of_accommodation(accommodation_id: int):
 async def get_room_image(id: int):
     """
 - Hàm nhận id (ID của ảnh phòng) để lấy ra ảnh phòng có ID đó.
-- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 404: Ảnh với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
 
     """
     url = room_image_services.get_image_url_by_id(id).url
@@ -200,8 +229,10 @@ async def get_room_image(id: int):
 async def get_accommodation_image(id: int):
     """
 - Hàm nhận id (ID của ảnh khách sạn) để lấy ra ảnh khách sạn có ID đó.
-- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
-
+- Status code:
+    - 200: Thành công.
+    - 404: Ảnh với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     url = acco_image_services.get_image_url_by_id(id).url
     return FileResponse(url)

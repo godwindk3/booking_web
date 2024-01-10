@@ -19,7 +19,9 @@ async def fetch_bookings_of_current_user(current_user_data: validation_models.Us
     """
 - API lấy ra thông tin đặt phòng của người dùng hiện tại gồm ID khách sạn, ID phòng, ngày 
 checkin/checkout và giá tiền.
-- Trả về 200 là lấy thông tin thành công.
+- Status code:
+    - 200: Thành công.
+    - 401: Chưa đăng nhập.
     """
     return booking_services.get_bookings_of_user(current_user_data.id)
 
@@ -30,7 +32,10 @@ async def create_booking_by_current_user(booking: validation_models.Booking, cur
 - Hàm nhận userID (ID của người dùng), acommodationID (ID của khách sạn), roomID (ID 
 của phòng), checkin_date (ngày checkin), checkout_date (ngày checkout) và total_price 
 (tổng giá tiền) dùng cho việc đặt phòng của người dùng hiện tại.
-- Trả về 201 là đặt phòng thành công, 422 là đặt phòng không thành công hoặc lỗi.
+- Status code:
+    - 201: Thành công.
+    - 403: Không có quyền.
+    - 401: Chưa đăng nhập.
 
     """
     if (current_user_data.role == 0 and current_user_data.id != booking.userID):
@@ -46,8 +51,12 @@ async def update_booking_by_id(booking_id: int, booking: validation_models.Booki
 acommodationID (ID của khách sạn), roomID (ID của phòng), checkin_date (ngày 
 checkin), checkout_date (ngày checkout) và total_price (tổng giá tiền) dùng cho việc cập 
 nhật thông tin đơn đặt phòng của người dùng hiện tại.
-- Trả về 200 là cập nhật thành công, 422 là cập nhật không thành công hoặc lỗi.
-
+- Status code:
+    - 200: Thành công.
+    - 403: Không có quyền.
+    - 401: Chưa đăng nhập.
+    - 400: Thông tin trùng hoặc không hợp lệ về logic.
+    - 422: Thông tin không hợp lệ.
     """
     if (current_user_data.role == 0 and current_user_data.id != booking.userID):
         raise HTTPException(
@@ -59,6 +68,14 @@ nhật thông tin đơn đặt phòng của người dùng hiện tại.
 async def delete_booking_by_id(booking_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận booking_id (ID của đơn đặt phòng) để xoá đơn đặt phòng.
-- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 403: Không có quyền.
+    - 401: Chưa đăng nhập.
+    - 422: Thông tin không hợp lệ.
     """
+    booking = booking_services.get_booking_by_id(booking_id)
+    if (current_user_data.role == 0 and current_user_data.id != booking.userID):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail=f"No permission")
     return booking_services.delete_booking(booking_id)
