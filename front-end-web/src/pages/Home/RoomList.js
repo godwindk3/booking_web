@@ -54,7 +54,7 @@ const RoomList = ({ accommodationId }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `/room/${selectedRoomId}`,
+        `/room/update_room/${selectedRoomId}`,
         {
           accommodationID: accommodationId,
           ...updateFormData,
@@ -85,7 +85,7 @@ const RoomList = ({ accommodationId }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        '/room/',
+        '/room/create_room',
         {
           accommodationID: accommodationId,
           ...createFormData,
@@ -114,7 +114,7 @@ const RoomList = ({ accommodationId }) => {
   const handleDeleteRoom = async (roomId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`/room/${roomId}`, {
+      await axios.delete(`/room/delete_room/${roomId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
