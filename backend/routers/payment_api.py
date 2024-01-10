@@ -21,7 +21,10 @@ async def fetch_all_payments():
 async def fetch_payment_by_id(payment_id: int):
     """
 - Hàm nhận payment_id (ID của phương thức giao dịch) để lấy ra thông tin của phương thức giao dịch có ID đó.
-- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 404: Payment với ID đó không tồn tại.
     """
     return payment_services.get_payment_by_id(payment_id)
 
@@ -30,8 +33,13 @@ async def fetch_payment_by_id(payment_id: int):
 async def create_payment(payment: validation_models.Payment, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận payment_method (phương thức thanh toán) để tạo ra một phương thức giao dịch mới.
-- Trả về 201 là tạo thành công, 422 là tạo không thành công hoặc lỗi.
 - Cần role admin để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 400: Sai logic trong dữ liệu.
+    - 401: Chưa đăng nhập.
+    - 403: Không có quyền.
     """
     
     if (current_user_data.role != 2):
@@ -45,8 +53,14 @@ async def update_payment(payment_id: int, payment: validation_models.Payment, cu
     """
 - Hàm nhận payment_id (ID của giao dịch) và payment_method (phương thức thanh toán) 
 để cập nhật phương thức giao dịch đó.
-- Trả về 200 là cập nhật thành công, 422 là cập nhật không thành công hoặc lỗi.
 - Cần role admin để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 400: Sai logic trong dữ liệu.
+    - 401: Chưa đăng nhập.
+    - 404: Payment với ID đó không tồn tại.
+    - 403: Không có quyền.
 
     """
     
@@ -60,8 +74,13 @@ async def update_payment(payment_id: int, payment: validation_models.Payment, cu
 async def delete_payment(payment_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận payment_id (ID của giao dịch) để xoá giao dịch có ID đó.
-- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
 - Cần role admin để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 401: Chưa đăng nhập.
+    - 404: Payment với ID đó không tồn tại.
+    - 403: Không có quyền.
     """
     
     if (current_user_data.role != 2):

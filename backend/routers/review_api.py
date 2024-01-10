@@ -12,9 +12,11 @@ router = APIRouter(prefix="/review", tags=["REVIEW"])
 async def fetch_all_reviews(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - API lấy ra tất cả Reviews.
-- Trả về 200 là lấy thành công.
 - Cần role admin để gọi API.
-
+- Status code:
+    - 200: Thành công.
+    - 401: Chưa đăng nhập.
+    - 403: Không có quyền.
     """
     
     if (current_user_data.role < 2):
@@ -27,8 +29,10 @@ async def fetch_all_reviews(current_user_data: validation_models.User = Depends(
 async def fetch_review_by_id(review_id: int):
     """
 - Hàm nhận review_id (ID của review) để lấy ra review có ID đó.
-- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
-
+- Status code:
+    - 200: Thành công.
+    - 404: Review với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     return review_services.get_review_by_id(review_id)
 
@@ -37,7 +41,10 @@ async def fetch_review_by_id(review_id: int):
 async def fetch_reviews_by_user_id(user_id: int):
     """
 - Hàm nhận user_id (ID của người dùng) để lấy ra tất cả review của người dùng có ID đó.
-- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 404: không tồn tại user với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     return review_services.get_reviews_of_user(user_id)
 
@@ -46,7 +53,10 @@ async def fetch_reviews_by_user_id(user_id: int):
 async def fetch_reviews_of_accommodation(accommodation_id: int):
     """
 - Hàm nhận accommodation_id (ID của khách sạn) để lấy ra review về khách sạn có ID đó.
-- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 404: không tồn tại khách sạn với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     return review_services.get_reviews_of_accommodation(accommodation_id)
 

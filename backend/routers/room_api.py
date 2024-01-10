@@ -29,7 +29,10 @@ async def fetch_unavailable_dates(room_id: int):
     """
 - Hàm nhận room_id (ID của phòng) để lấy ra các ngày đã có khách đặt trước phòng có ID 
 đó.
-- Trả về 200 là lấy thành công, 422 là lấy không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 422: Truyền thông tin không hợp lệ.
+    - 404: Phòng với ID đó không tồn tại.
 
     """
 
@@ -42,8 +45,13 @@ async def create_room(room: validation_models.Room, current_user_data: validatio
 - Hàm nhận accommodationID (ID của khách sạn), room_name (tên phòng), capacity (sức 
 chứa), price (giá tiền / đêm), status (tình trạng của phòng), tier (hạng phòng) và info 
 (thông tin phòng) để tạo một phòng mới của khách sạn có ID đó.
-- Trả về 201 là tạo thành công, 422 là tạo không thành công hoặc lỗi.
 - Cần role admin hoặc manager quản lý khách sạn chứa phòng đó mới được gọi API.
+- Status code:
+    - 201: Thành công.
+    - 400: Truyền thông tin sai logic.
+    - 422: Truyền thông tin ko hợp lệ.
+    - 401: Chưa đăng nhập
+    - 403: Không có quyền.
     """
     
     if (current_user_data.role < 1):
@@ -63,8 +71,13 @@ async def update_room(room_id: int, room: validation_models.Room, current_user_d
 - Hàm nhận room_id (ID của phòng), accommodationID (ID của khách sạn), room_name 
 (tên phòng), capacity (sức chứa), price (giá tiền / đêm), status (tình trạng của phòng), 
 tier (hạng phòng) và info (thông tin phòng) để cập nhật thông tin một phòng có ID đó.
-- Trả về 200 là cập nhật thành công, 422 là cập nhật không thành công hoặc lỗi.
 - Cần role admin hoặc manager quản lý khách sạn chứa phòng đó mới được gọi API.
+- Status code:
+    - 200: Thành công.
+    - 401: Chưa đăng nhập.
+    - 403: Không có quyền.
+    - 404: Phòng với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     
     if (current_user_data.role < 1):
@@ -83,7 +96,12 @@ async def delete_room(room_id: int, current_user_data: validation_models.User = 
     """
 - Hàm nhận room_id (ID của phòng) để xoá phòng có ID đó.
 - Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
-- Cần role admin hoặc manager quản lý khách sạn chứa phòng đó mới được gọi API.
+- Status code:
+    - 200: Thành công.
+    - 401: Chưa đăng nhập.
+    - 403: Không có quyền.
+    - 404: Phòng với ID đó không tồn tại.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     
     if (current_user_data.role < 1):
