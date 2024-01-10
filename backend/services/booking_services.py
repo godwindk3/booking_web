@@ -38,7 +38,7 @@ def get_bookings_of_user(user_id):
 
 def create_booking(booking: validation_models.Booking):
 
-    room_services.get_room_by_id(booking.roomID)
+    room = room_services.get_room_by_id(booking.roomID)
 
     temp = db.query(data_models.User).filter(
         data_models.User.id == booking.userID).first()
@@ -68,13 +68,18 @@ def create_booking(booking: validation_models.Booking):
 
     __check_overlapping_bookings(booking)
 
+    diff = booking.checkout_date - booking.checkin_date
+    print("=================================================")
+    print(type(booking.checkout_date))
+    
+
     new_booking = data_models.Booking(
         userID=booking.userID,
         accommodationID=booking.accommodationID,
         roomID=booking.roomID,
         checkin_date=booking.checkin_date,
         checkout_date=booking.checkout_date,
-        total_price=booking.total_price,
+        total_price=room.price * diff.days,
         payment_method=booking.payment_method
     )
 
