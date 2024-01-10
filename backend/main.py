@@ -13,96 +13,97 @@ import routers.payment_api as payment_api
 from fastapi.middleware.cors import CORSMiddleware
 
 description = """
-# Booking Accommodations API
+# Booking API
 
-## Overview
-The Booking Accommodations API is the foundation of a robust booking web application, designed to deliver a seamless experience for users, administrators, and managers. It exposes a variety of endpoints for managing accommodations, rooms, bookings, and more.
+## Tổng quan
+Booking API là nền tảng của một ứng dụng web đặt chỗ mạnh mẽ, được thiết kế để mang lại trải nghiệm mượt mà cho người dùng, quản trị viên và quản lý. Nó mở ra nhiều điểm cuối để quản lý chỗ ở, phòng, đặt chỗ và nhiều hơn nữa.
 
-## List of APIs:
+## Danh sách API:
 
 ### - Admin
-- Empowers administrators with unrestricted access to system-wide operations.
+- Đưa quyền cho quản trị viên thực hiện các hoạt động không hạn chế trên toàn hệ thống.
 
 ### - Manager
-- Enables managers to oversee users, rooms, and bookings within their assigned accommodations.
+- Cho phép quản lý giám sát người dùng, phòng và đặt chỗ trong chỗ ở được giao.
 
 ### - User
-- Provides users with functionality to update, delete their profiles, and manage their bookings.
+- Cung cấp chức năng cho người dùng cập nhật, xóa hồ sơ của họ và quản lý đặt chỗ của họ.
 
 ### - Accommodation
-- Manages operations related to accommodations, including creation, modification, and deletion.
+- Quản lý các hoạt động liên quan đến chỗ ở, như tạo, sửa đổi và xóa.
 
 ### - Room
-- Handles room-related tasks, such as adding, updating, and deleting rooms within accommodations.
+- Xử lý các công việc liên quan đến phòng, bao gồm thêm, cập nhật và xóa phòng trong chỗ ở.
 
 ### - Amenity
-- Allows the addition and modification of amenities associated with accommodations.
+- Cho phép thêm và sửa đổi các tiện nghi liên quan đến chỗ ở.
 
 ### - Image
-- Manages images associated with accommodations or rooms.
+- Quản lý hình ảnh liên quan đến chỗ ở hoặc phòng.
 
 ### - Booking
-- Facilitates booking-related operations, including creation, modification, and viewing of bookings.
+- Hỗ trợ các hoạt động liên quan đến đặt chỗ, bao gồm tạo, sửa đổi và xem đặt chỗ.
 
 ### - Review
-- Handles user reviews for accommodations.
+- Xử lý đánh giá của người dùng cho chỗ ở.
 
 ### - Authentication
-- Manages user authentication and authorization.
+- Quản lý xác thực và ủy quyền người dùng.
 
-## Roles:
-### Admin (Role ID: 2)
-- Has unrestricted access to all functionalities within the system.
+## Vai trò:
+### Admin (ID Vai trò: 2)
+- Có quyền truy cập không hạn chế vào tất cả các chức năng trong hệ thống.
 
-### Manager (Role ID: 1)
-- Can manage users, rooms, and bookings specific to their assigned accommodations.
+### Manager (ID Vai trò: 1)
+- Có thể quản lý người dùng, phòng và đặt chỗ cụ thể cho chỗ ở được giao.
 
-### User (Role ID: 0)
-- Can update, delete their profile, and perform CRUD operations on their bookings.
+### User (ID Vai trò: 0)
+- Có thể cập nhật, xóa hồ sơ của họ và thực hiện các hoạt động CRUD trên đặt chỗ của họ.
 
 """
 
 tags_metadata = [
     {
         "name": "AUTHENTICATION",
-        "description": "Authenticate users (login or register). Note: Admin registration is not allowed."
+        "description": "Xác thực người dùng (đăng nhập hoặc đăng ký)."
     },
     {
         "name": "USER",
-        "description": "Provides functionality to view, create, update, or delete users. Viewing and creating require admin privileges."
+        "description": "Cung cấp chức năng xem, tạo, cập nhật hoặc xóa người dùng. Xem và tạo yêu cầu quyền quản trị viên."
     },
     {
         "name": "BOOKING",
-        "description": "Facilitates booking-related operations, including creation, modification, and viewing of bookings. Users cannot view, create, update, or delete other users' bookings."
+        "description": "Hỗ trợ các hoạt động liên quan đến đặt chỗ, bao gồm tạo, sửa đổi và xem đặt chỗ. Người dùng không thể xem, tạo, cập nhật hoặc xóa đặt chỗ của người dùng khác."
     },
     {
         "name": "ACCOMMODATION",
-        "description": "Manages operations related to accommodations, such as creation, modification, and deletion."
+        "description": "Quản lý các hoạt động liên quan đến chỗ ở, như tạo, sửa đổi và xóa."
     },
     {
         "name": "ROOM",
-        "description": "Handles room-related tasks, including adding, updating, and deleting rooms within accommodations. Managers cannot create, update, or delete other managers' rooms."
+        "description": "Xử lý các công việc liên quan đến phòng, bao gồm thêm, cập nhật và xóa phòng trong chỗ ở. Quản lý không thể tạo, cập nhật hoặc xóa phòng của quản lý khác."
     },
     {
         "name": "AMENITY",
-        "description": "Allows the addition and modification of amenities associated with accommodations. Managers cannot create, update, or delete other managers' amenities."
+        "description": "Cho phép thêm và sửa đổi các tiện nghi liên quan đến chỗ ở. Quản lý không thể tạo, cập nhật hoặc xóa tiện nghi của quản lý khác."
     },
     {
         "name": "IMAGE",
-        "description": "Manages images associated with accommodations or rooms."
+        "description": "Quản lý hình ảnh liên quan đến chỗ ở hoặc phòng."
     },
     {
         "name": "REVIEW",
-        "description": "Handles user reviews for accommodations."
+        "description": "Xử lý đánh giá của người dùng cho chỗ ở."
     }
 ]
 
 app = FastAPI(
-    title="API Booking Accommodations",
+    title="Booking API",
     description=description,
     redoc_url="/documentation",
     openapi_tags=tags_metadata
 )
+
 
 
 app.add_middleware(
