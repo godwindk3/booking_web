@@ -21,17 +21,19 @@
   background: var(--base-white,#fff);
   box-shadow: var(--shadow-sm);
   width: 1200px;
-  left: 136.4px;
+
+  margin-left: auto;
+  margin-right: auto;
 
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column; 
 
   border-color: #fc6c85;
   box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
 }
-
 .create-hotel-input-container {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -99,7 +101,7 @@
   flex-grow: 1;
   justify-content: space-between;
   gap: 2px;
-  padding: 0px 175px;
+  padding: 0px 500px;
 }
 .update-hotel-button {
   padding         : 10px;
@@ -112,7 +114,7 @@
   font-family: Arial;
   font-size: 17px;
   height: 73.6px;
-  width: 500px;
+  width: 200px;
 
   background-color: #FC6C85;
   border: #FC6C85;

@@ -67,6 +67,52 @@ const ImageAccommodation = ({ accommodationId }) => {
     }
   };
 
+  /////////////////////////////////////////////////////////////////////////////////////////////// image upload button .js
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(file);
+  };
+
+  const handleImageUpload = async () => {
+    try {
+      // Check if an image is selected
+      if (!selectedImage) {
+        console.error('No image selected for upload.');
+        return;
+      }
+
+      // Get the token from local storage
+      const token = localStorage.getItem('token');
+
+      // Create a FormData object to send the image file
+      const formData = new FormData();
+      formData.append('file', selectedImage);
+
+      // Make a POST request to upload the image
+      const response = await axios.post(
+        `image/accommodation/upload/${accommodationId}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      console.log('Image upload successful. Response:', response.data);
+      alert('Image upload successful')
+
+      // Reset the selected image
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Error uploading image:', error.message);
+    }
+  };
+  /////////////////////////////////////////////////////////////////////////////////////////////// image upload button .js
+
   const PrevArrow = (props) => (
     <button {...props} className="slider-arrow slider-arrow-prev">
       <div class="arrow-left"></div>
@@ -101,6 +147,16 @@ const ImageAccommodation = ({ accommodationId }) => {
             <button className='delete-image-button' onClick={() => deleteImage(imageData[index].id)}>Xoá Ảnh Này</button>
           </div>
         ))}
+
+        <div> 
+          <label for="images" class="drop-container" id="dropcontainer">
+            <span class="drop-title">Thêm ảnh tại đây</span>
+
+            <input className='acco-image-file-input' type="file" onChange={handleImageChange} id="images" accept="image/*" required/>
+          </label>
+          
+          <button className='upload-acco-image-button' onClick={handleImageUpload}>Upload Ảnh Khách Sạn</button>
+        </div>
       </Slider>
 
     </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 import AccommodationAmenityButton from './AccommodationAmenityButton';
 import AccommodationDetachButton from './AccommodationDetachButton';
+import './AccommodationAmenity.css'
 
 const AccommodationAmenity = ({ accommodationId }) => {
   const [amenities, setAmenities] = useState([]);
@@ -27,9 +28,9 @@ const AccommodationAmenity = ({ accommodationId }) => {
 
   return (
     <div>
-      <h3>Các tiện ích hiện tại của khách sạn</h3>
+      <h2 className='h2-view-amenity-header'>Các tiện ích hiện tại của khách sạn</h2>
       {loading && <p>Loading amenities...</p>}
-      {!loading && amenities.length === 0 && <p>No amenities available for this accommodation.</p>}
+      {!loading && amenities.length === 0 && <p>Khách sạn của bạn chưa có tiện ích nào</p>}
       {!loading && amenities.length > 0 && (
         <ul>
           {amenities.map((amenity) => (

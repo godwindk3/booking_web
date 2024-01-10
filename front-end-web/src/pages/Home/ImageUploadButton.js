@@ -50,7 +50,12 @@ const ImageUploadButton = ({ accommodationId }) => {
 
   return (
     <div className='upload-acco-image-button-container'>
-      <input className='upload-acco-image-button file-input' type="file" onChange={handleImageChange} />
+      <label for="images" class="drop-container" id="dropcontainer">
+        <span class="drop-title">Drop files here</span>
+        or
+        <input className='acco-image-file-input' type="file" onChange={handleImageChange} />
+      </label>
+      
       <button className='upload-acco-image-button' onClick={handleImageUpload}>Upload Ảnh Khách Sạn</button>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 import PaymentButton from './PaymentButton';
 import PaymentDetachButton from './PaymentDetachButton';
+import './AccommodationPaymentMethods.css'
 const AccommodationPaymentMethods = ({ accommodationId }) => {
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,9 +27,9 @@ const AccommodationPaymentMethods = ({ accommodationId }) => {
 
   return (
     <div>
-      <h3>Các phương thức thanh toán hiện tại của khách sạn</h3>
+      <h2 className='h2-view-payment-methods-header'>Các phương thức thanh toán hiện tại của khách sạn</h2>
       {loading && <p>Loading payment methods...</p>}
-      {!loading && paymentMethods.length === 0 && <p>No payment methods available for this accommodation.</p>}
+      {!loading && paymentMethods.length === 0 && <p>Khách sạn của bạn chưa có phương thức thanh toán nào</p>}
       {!loading && paymentMethods.length > 0 && (
         <ul>
           {paymentMethods.map((paymentMethod) => (
