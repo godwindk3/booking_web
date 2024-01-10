@@ -146,7 +146,7 @@ const NavigationBar = ({ keyProp,isLoggedIn, onLogout }) => {
             </div>
 
             <div className="flex gap-24 h-full align-center cursor-pointer Header_nav_container">
-              <NavLink exact to="/gethotel" style={{ textDecoration: 'none' }}>
+              <NavLink exact to="/getaccommodation" style={{ textDecoration: 'none' }}>
                 <button className="h-full flex align-center nav-button">
                   Tìm khách sạn
                 </button>

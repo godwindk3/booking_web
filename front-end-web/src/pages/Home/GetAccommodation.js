@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
+import { Link } from 'react-router-dom';
 
 const GetAccommodation = () => {
   const [accommodations, setAccommodations] = useState([]);
