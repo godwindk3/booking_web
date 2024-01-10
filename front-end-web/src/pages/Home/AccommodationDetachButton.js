@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from './axiosConfig';
+import './AccommodationDetachButton.css'
 
 const AccommodationDetachButton = ({ accommodationId, amenityId }) => {
   const handleDetach = async () => {
@@ -29,7 +30,7 @@ const AccommodationDetachButton = ({ accommodationId, amenityId }) => {
   };
 
   return (
-    <button onClick={handleDetach}>Loại bỏ tiện ích</button>
+    <button className='detach-amenity-button' onClick={handleDetach}>x</button>
   );
 };
 

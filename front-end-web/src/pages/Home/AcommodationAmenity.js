@@ -28,22 +28,30 @@ const AccommodationAmenity = ({ accommodationId }) => {
 
   return (
     <div>
-      <h2 className='h2-view-amenity-header'>Các tiện ích hiện tại của khách sạn</h2>
-      {loading && <p>Loading amenities...</p>}
-      {!loading && amenities.length === 0 && <p>Khách sạn của bạn chưa có tiện ích nào</p>}
-      {!loading && amenities.length > 0 && (
-        <ul>
-          {amenities.map((amenity) => (
-            <li key={amenity.id}>{amenity.name}
-            <>
-            <AccommodationDetachButton accommodationId={accommodationId} amenityId={amenity.id} />
-            </>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className='your-hotel-amenity-card'>
+        <h2 className='h2-view-amenity-header'>Các tiện ích hiện tại của khách sạn</h2>
+        <p>Nhấn vào nút x để xoá tiện ích tương ứng</p>
+
+        {loading && <p>Loading amenities...</p>}
+        {!loading && amenities.length === 0 && <p>Khách sạn của bạn chưa có tiện ích nào</p>}
+
+        <div className='your-hotel-amenity-list'>
+          {!loading && amenities.length > 0 && (
+            <ul className='your-hotel-amenity-list-ul'>
+              {amenities.map((amenity) => (
+                <li className='your-hotel-amenity-list-li' key={amenity.id}>{amenity.name}
+                  <div className="your-hotel-amenity-item">
+                    <AccommodationDetachButton accommodationId={accommodationId} amenityId={amenity.id} />
+                    </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+      </div>
       <>
-      <AccommodationAmenityButton accommodationId={accommodationId}/>
+        <AccommodationAmenityButton accommodationId={accommodationId}/>
       </>
     </div>
   );

@@ -12,6 +12,8 @@
 .h2-header {
   margin-top: 30px;
   margin-bottom: 30px;
+  font-family: Arial;
+  color: black;
 }
 .create-hotel-card {
   margin-top: 30px;

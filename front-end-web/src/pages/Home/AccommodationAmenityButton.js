@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
+import './AccommodationAmenityButton.css'
 
 const AccommodationAmenityButton = ({ accommodationId }) => {
   const [amenities, setAmenities] = useState([]);
@@ -56,26 +57,47 @@ const AccommodationAmenityButton = ({ accommodationId }) => {
     }
   };
 
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   return (
     <div>
-      <button onClick={() => setShowPopup(true)}>Toàn bộ các tiện ích</button>
-
+      {/* <button className='all-amenities-button' onClick={() => setShowPopup(true)}>Toàn bộ các tiện ích</button> */}
+      <button className='all-amenities-button' onClick={togglePopup}>Toàn bộ các tiện ích</button>
+      
       {showPopup && (
-        <div>
-          <h3>Các tiện ích được hỗ trợ</h3>
+        <div className="add-amenity-card">
+          <h2 className='h2-amenities-header'>Các tiện ích được hỗ trợ</h2>
+          <p>Nhấn vào tiện ích để thêm vào khách sạn của bạn</p>
+
           {loading && <p>Loading amenities...</p>}
-          {!loading && amenities.length === 0 && <p>No amenities available for this accommodation.</p>}
-          {!loading && amenities.length > 0 && (
-            <ul>
-              {amenities.map((amenity) => (
-                <li key={amenity.id}>
-                  {amenity.name}
-                  <button onClick={() => handleAttach(amenity.id)}>Thêm tiện ích</button>
-                </li>
-              ))}
-            </ul>
-          )}
-          <button onClick={() => setShowPopup(false)}>Close</button>
+          {!loading && amenities.length === 0 && <p>Không có tiện ích nào dành cho khách sạn của bạn</p>}
+
+          <div className='acco-amenity-list'>
+            {!loading && amenities.length > 0 && (
+              // <ul>
+              //   {amenities.map((amenity) => (
+              //     <div key={amenity.id}>
+              //       {amenity.name}
+              //       <button onClick={() => handleAttach(amenity.id)}>Thêm tiện ích</button>
+              //     </div>
+              //   ))}
+              // </ul>
+
+              <ul className='acco-amenity-list-ul'>
+                {amenities.map((amenity) => (
+                  <li className='acco-amenity-list-li' key={amenity.id}>
+                    <div className="amenity-item">
+                      <button className='acco-amenity-list-button' onClick={() => handleAttach(amenity.id)}>{amenity.name}</button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          {/* <button className='acco-amenity-list-close-button' onClick={() => setShowPopup(false)}>Close</button> */}
         </div>
       )}
     </div>

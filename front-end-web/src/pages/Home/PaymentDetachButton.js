@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from './axiosConfig';
+import './PaymentDetachButton.css';
 
 const PaymentDetachButton = ({ accommodationId, paymentId }) => {
   const handleDetach = async () => {
@@ -23,7 +24,7 @@ const PaymentDetachButton = ({ accommodationId, paymentId }) => {
   };
 
   return (
-    <button onClick={handleDetach}>Loại bỏ phương thức</button>
+    <button className='detach-payment-method-button' onClick={handleDetach}>x</button>
   );
 };
 

@@ -1,0 +1,21 @@
+.detach-amenity-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    color           : #666;
+    border-radius   : 100px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+
+    background-color: #fff;
+    border: 2px solid #FC6C85;
+    
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detach-amenity-button:hover {
+    background-color: #fd3355;
+    color: white;
+}
