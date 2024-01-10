@@ -27,7 +27,7 @@ const AccommodationAmenity = ({ accommodationId }) => {
 
   return (
     <div>
-      <h3>All Accommodation Amenities:</h3>
+      <h3>Các tiện ích hiện tại của khách sạn</h3>
       {loading && <p>Loading amenities...</p>}
       {!loading && amenities.length === 0 && <p>No amenities available for this accommodation.</p>}
       {!loading && amenities.length > 0 && (
