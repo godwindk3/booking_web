@@ -18,8 +18,10 @@ router = APIRouter(prefix="/user", tags=["USER"])
 @router.get("/", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
 async def fetch_current_user_info(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
-    - API lấy ra thông tin của người dùng hiện tại.
-    - Trả về 200 là lấy thông tin thành công.
+- API lấy ra thông tin của người dùng hiện tại.
+- Status code:
+    - 200: Thành công.
+    - 401: Chưa đăng nhập.
 
     """
     if (current_user_data is None):
@@ -32,7 +34,9 @@ async def fetch_current_user_info(current_user_data: validation_models.User = De
 async def fetch_manager_accommodation(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - API lấy ra thông tin của khách sạn mà người dùng hiện tại quản lý.
-- Trả về 200 là lấy thông tin thành công.
+- Status code:
+    - 200: Thành công.
+    - 401: Chưa đăng nhập.
     """
     if (current_user_data.role < 1):
         raise HTTPException(
@@ -48,7 +52,10 @@ async def update_current_user_info(user: validation_models.User, current_user_da
 (nhận các giá trị 0, 1 hoặc 2) dùng để cập nhật thông tin tài khoản. Role 0 dành cho tài 
 khoản người dùng bình thường, role 1 dành cho tài khoản của quản lý khách sạn, role 2 
 dành cho tài khoản của admin.
-- Trả về 200 là cập nhật thành công, 422 là cập nhật không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 422: Dữ liệu truyền vào không hợp lệ.
+    - 401: Chưa đăng nhập.
 
     """
     if (user.role == 2 and current_user_data.role < 2):
@@ -59,4 +66,10 @@ dành cho tài khoản của admin.
 
 @router.delete("/", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
 async def delete_current_user(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
+    """
+- API dùng để xoá tài khoản người dùng hiện tại.
+- Status code:
+    - 200: Thành công.
+    - 401: Chưa đăng nhập.
+    """
     return user_services.delete_user(current_user_data.id)

@@ -19,8 +19,8 @@ router = APIRouter(prefix="/amenity", tags=["AMENITY"])
 async def fetch_all_room_amenities():
     """
 - API lấy ra thông tin tất cả tiện ích của một phòng.
-- Trả về 200 là lấy thông tin thành công.
-
+- Status code:
+    - 200: Thành công.
     """
     return room_ammenity_services.get_all_room_ammenities()
 
@@ -29,7 +29,8 @@ async def fetch_all_room_amenities():
 async def fetch_all_accommodation_amenities():
     """
 - API lấy ra thông tin tất cả tiện ích của một khách sạn.
-- Trả về 200 là lấy thông tin thành công.
+- Status code:
+    - 200: Thành công.
     """
     return acco_ammenity_services.get_all_acco_ammenities()
 
@@ -38,8 +39,10 @@ async def fetch_all_accommodation_amenities():
 async def fetch_room_amenity_by_id(amenity_id: int):
     """
 - Hàm nhận amenity_id (ID của tiện ích) để lấy ra thông tin của tiện ích có ID đó.
-- Trả về 200 là lấy thông tin thành công, 422 là lấy thông tin không thành công hoặc lỗi.
-
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy tiện ích với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     return room_ammenity_services.get_room_ammenity_by_id(amenity_id)
 
@@ -48,7 +51,10 @@ async def fetch_room_amenity_by_id(amenity_id: int):
 async def fetch_accommodation_amenity_by_id(amenity_id: int):
     """
 - Hàm nhận amenity_id (ID của tiện ích) để lấy ra thông tin của tiện ích có ID đó.
-- Trả về 200 là lấy thông tin thành công, 422 là lấy thông tin không thành công hoặc lỗi.
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy tiện ích với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
 
     """
     return acco_ammenity_services.get_acco_ammenity_by_id(amenity_id)
@@ -58,7 +64,10 @@ async def fetch_accommodation_amenity_by_id(amenity_id: int):
 async def fetch_amenities_of_room(room_id: int):
     """
 - Hàm nhận room_id (ID của phòng) để lấy ra tất các các tiện ích của phòng có ID đó.
-- Trả về 200 nếu thành công, 422 nếu lỗi.
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy phòng với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     return room_ammenity_services.get_ammenities_of_room(room_id)
 
@@ -67,7 +76,10 @@ async def fetch_amenities_of_room(room_id: int):
 async def fetch_amenities_of_accommodation(accommodation_id: int):
     """
 - Hàm nhận accommodation_id (ID của khách sạn) để lấy ra tất cả các tiện ích của khách sạn có ID đó.
-- Trả về 200 nếu thành công, 422 nếu lỗi.
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy khách sạn với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
     """
     return acco_ammenity_services.get_all_amenities_of_accommodation(accommodation_id)
 
@@ -76,8 +88,13 @@ async def fetch_amenities_of_accommodation(accommodation_id: int):
 async def create_new_room_amenity(room_amenity: validation_models.RoomAmenity, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận name (tên tiện ích) để tạo thêm một tiện ích phòng.
-- Trả về 201 là tạo thành công, 422 là tạo không thành công hoặc lỗi.
 - Cần role admin để có thể gọi API.
+- Status code:
+    - 201: Thành công.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 400: Tiện ích đã tồn tại.
+    - 401: Chưa đăng nhập.
     """
     
     if (current_user_data.role < 2):
@@ -90,8 +107,13 @@ async def create_new_room_amenity(room_amenity: validation_models.RoomAmenity, c
 async def create_new_accommodation_amenity(accommodation_amenity: validation_models.AccommodationAmenity, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận name (tên tiện ích) để tạo thêm một tiện ích khách sạn
-- Trả về 201 là tạo thành công, 422 là tạo không thành công hoặc lỗi
 - Cần role admin để có thể gọi API.
+- Status code:
+    - 201: Thành công.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 400: Tiện ích đã tồn tại.
+    - 401: Chưa đăng nhập.
     """
     if (current_user_data.role < 2):
         raise HTTPException(
@@ -105,8 +127,14 @@ async def attach_new_amenity_to_room(amenity_ref: validation_models.RoomAmenityR
     """
 - Hàm nhận roomID (ID của phòng) và room_amenityID (ID của tiện ích phòng) để thêm 
 một tiện ích vào phòng cho trước.
-- Trả về 201 là thêm thành công, 422 là thêm không thành công hoặc lỗi.
 - Cần role admin hoặc manager để gọi API.
+- Status code:
+    - 201: Thành công.
+    - 404: Không tìm thấy phòng với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 400: Tiện ích đã tồn tại.
+    - 401: Chưa đăng nhập.
     """
     
     if (current_user_data.role == 0):
@@ -127,8 +155,14 @@ async def attach_new_amenity_to_accommodation(amenity_ref: validation_models.Acc
     """
 - Hàm nhận accommodationID (ID của khách sạn) và amenityID (ID của tiện ích khách sạn) 
 để thêm một tiện ích vào khách sạn cho trước.
-- Trả về 201 là thêm thành công, 422 là thêm không thành công hoặc lỗi.
 - Cần role admin hoặc manager để gọi API.
+- Status code:
+    - 201: Thành công.
+    - 404: Không tìm thấy khách sạn với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 400: Tiện ích đã tồn tại.
+    - 401: Chưa đăng nhập.
     """
     
     if (current_user_data.role == 0):
@@ -149,8 +183,13 @@ async def detach_amenity_from_room(room_id: int, amenity_id: int, current_user_d
     """
 - Hàm nhận roomID (ID của phòng) và room_amenityID (ID của tiện ích phòng) để xoá 
 tiện ích tại phòng cho trước
-- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi
 - Cần role admin hoặc manager để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy phòng hoặc tiện ích với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 401: Chưa đăng nhập.
     """
     
     if (current_user_data.role == 0):
@@ -173,8 +212,13 @@ async def detach_amenity_from_accommodation(accommodation_id: int, amenity_id: i
     """
 - Hàm nhận accommodationID (ID của khách sạn) và amenityID (ID của tiện ích khách sạn) 
 để xoá tiện ích tại khách sạn cho trước.
-- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi
 - Cần role admin hoặc manager để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy khách sạn hoặc tiện ích với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 401: Chưa đăng nhập.
     """
     
     if (current_user_data.role == 0):
@@ -195,8 +239,14 @@ async def update_room_amenity(amenity_id: int, amenity: validation_models.RoomAm
     """
 - Hàm nhận name (tên tiện ích phòng) và amenity_id tương ứng (ID của tiện ích phòng) 
 để cập nhật thông tin tiện ích phòng đó.
-- Trả về 200 là cập nhật thành công, 422 là cập nhật không thành công hoặc lỗi.
 - Cần role admin để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy tiện ích với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 400: Dữ liệu trùng.
+    - 401: Chưa đăng nhập.
     """
     
     if (current_user_data.role < 2):
@@ -210,8 +260,14 @@ async def update_accommodation_amenity(amenity_id: int, amenity: validation_mode
     """
 - Hàm nhận name (tên tiện ích khách sạn) và amenity_id tương ứng (ID của tiện ích khách 
 sạn) để cập nhật thông tin tiện ích khách đó.
-- Trả về 200 là cập nhật thành công, 422 là cập nhật không thành công hoặc lỗi.
 - Cần role admin để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy tiện ích với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 400: Dữ liệu trùng.
+    - 401: Chưa đăng nhập.
     """
     
     if (current_user_data.role < 2):
@@ -224,8 +280,13 @@ sạn) để cập nhật thông tin tiện ích khách đó.
 async def delete_room_amenity(amenity_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận amenity_id (ID của tiện ích phòng) để xoá tiện ích phòng đó.
-- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
 - Cần role admin để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy tiện ích với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 401: Chưa đăng nhập.
     """
     
     if (current_user_data.role < 2):
@@ -239,8 +300,13 @@ async def delete_room_amenity(amenity_id: int, current_user_data: validation_mod
 async def delete_accommodation_amenity(amenity_id: int, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận amenity_id (ID của tiện ích khách sạn) để xoá tiện ích khách sạn đó.
-- Trả về 200 là xoá thành công, 422 là xoá không thành công hoặc lỗi.
 - Cần role admin để gọi API.
+- Status code:
+    - 200: Thành công.
+    - 404: Không tìm thấy tiện ích với ID đó.
+    - 422: Truyền dữ liệu không hợp lệ.
+    - 403: Không có quyền truy cập.
+    - 401: Chưa đăng nhập.
     """
     
     if (current_user_data.role < 2):
