@@ -1,0 +1,35 @@
+.upload-acco-image-button-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 2px;
+    padding: 0px 175px;
+
+    margin-top: 80px;
+}
+.upload-acco-image-button {
+    padding         : 10px;
+    color           : #fff;
+    border          : none;
+    border-radius   : 100px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+
+    font-family: Arial;
+    font-size: 17px;
+    height: auto + 10px;
+    width: 500px;
+
+    background-color: #FC6C85;
+    border: #FC6C85;
+    
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.upload-acco-image-button:hover {
+    /* background-color: #0056b3; */
+    background-color: #fd3355;
+}
+
