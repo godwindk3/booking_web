@@ -8,6 +8,7 @@ import './OwnerDashboard.css';
 import RoomList from './RoomList';
 import ImageAccommodation from './ImageAccommodation';
 import ImageUploadButton from './ImageUploadButton';
+import AccommodationAmenity from './AcommodationAmenity';
 
 const OwnerDashboard = () => {
   const [formData, setFormData] = useState({
@@ -295,6 +296,10 @@ const OwnerDashboard = () => {
                 <ImageAccommodation accommodationId={accommodation.id} />
                 <ImageUploadButton accommodationId={accommodation.id} />
               </div>
+              <>
+                <AccommodationAmenity accommodationId={accommodation.id} />
+                
+              </>
 
               <hr className='view-hotel-hr'/>
               <div>

@@ -3,6 +3,7 @@ import axios from './axiosConfig';
 import ImageRoom from './ImageRoom';
 import ImageRoomUpload from './ImageRoomUpload';
 import './RoomList.css';
+import RoomAmenity from './RoomAmenity';
 
 const RoomList = ({ accommodationId }) => {
   const [rooms, setRooms] = useState([]);
@@ -124,16 +125,44 @@ const RoomList = ({ accommodationId }) => {
     }
   };
 
+  // const handleRoomSelect = (roomId) => {
+  //   setSelectedRoomId(roomId);
+  //   setUpdateFormData({
+  //     room_name: '',
+  //     capacity: '',
+  //     price: '',
+  //     status: true,
+  //     tier: '',
+  //     info: '',
+  //   });
+  // };
   const handleRoomSelect = (roomId) => {
     setSelectedRoomId(roomId);
-    setUpdateFormData({
-      room_name: '',
-      capacity: '',
-      price: '',
-      status: true,
-      tier: '',
-      info: '',
-    });
+
+    // Find the selected room in the rooms array
+    const selectedRoom = rooms.find(room => room.id === roomId);
+
+    // If the selected room is found, use its values as defaults
+    if (selectedRoom) {
+      setUpdateFormData({
+        room_name: selectedRoom.room_name || '',
+        capacity: selectedRoom.capacity || '',
+        price: selectedRoom.price || '',
+        status: selectedRoom.status || true,
+        tier: selectedRoom.tier || '',
+        info: selectedRoom.info || '',
+      });
+    } else {
+      // If the selected room is not found, use default values
+      setUpdateFormData({
+        room_name: '',
+        capacity: '',
+        price: '',
+        status: true,
+        tier: '',
+        info: '',
+      });
+    }
   };
 
   return (
@@ -225,8 +254,9 @@ const RoomList = ({ accommodationId }) => {
               <br />
               <button onClick={() => handleRoomSelect(room.id)}>Cập nhật phòng</button>
               <button onClick={() => handleDeleteRoom(room.id)}>Xóa phòng</button>
-              <ImageRoomUpload roomId={room.id} onButtonClick={handleButtonClick}/>
-              <ImageRoom roomId={room.id}/>
+              <ImageRoomUpload roomId={room.id} onButtonClick={handleButtonClick} />
+              <ImageRoom roomId={room.id} />
+              <RoomAmenity roomId={room.id} />
               {selectedRoomId === room.id && (
                 <div>
                   {/* Input fields for updating room details */}
