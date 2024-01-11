@@ -278,7 +278,7 @@ class Booking(BaseModelConfig):
     roomID: int
     checkin_date: date
     checkout_date: date
-    total_price: float
+    total_price: float = 0.0
     payment_method: int
 
     model_config = {
