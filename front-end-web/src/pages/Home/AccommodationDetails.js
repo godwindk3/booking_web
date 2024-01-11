@@ -5,6 +5,8 @@ import UserTakeAmenity from './UserTakeAmenity';
 import UserTakePayment from './UserTakePayment';
 import UserTakeAccommodationImages from './UserTakeAccommodationImages';
 import UserTakeRooms from './UserTakeRooms';
+import RoomAvailabilityButton from './RoomAvailabilityButton';
+
 const AccommodationDetails = () => {
   const { accommodationId } = useParams();
   const [accommodation, setAccommodation] = useState(null);
@@ -36,6 +38,7 @@ const AccommodationDetails = () => {
       <UserTakeAccommodationImages accommodationId={accommodation.id}/>
       <UserTakeAmenity accommodationId={accommodation.id}/>
       <UserTakePayment accommodationId={accommodation.id}/>
+      <RoomAvailabilityButton accommodationId={accommodation.id}/>
       <UserTakeRooms accommodationId={accommodation.id}/>
       
     </div>
