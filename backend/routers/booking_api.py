@@ -24,7 +24,9 @@ checkin/checkout và giá tiền.
     - 401: Chưa đăng nhập.
     """
     return booking_services.get_bookings_of_user(current_user_data.id)
-
+@router.get("/{booking_id}", response_model=validation_models.BookingOut, status_code=status.HTTP_200_OK)
+async def fetch_booking_by_id(booking_id: int):
+    return booking_services.get_booking_by_id(booking_id)
 
 @router.post("/", response_model=validation_models.BookingOut, status_code=status.HTTP_201_CREATED)
 async def create_booking_by_current_user(booking: validation_models.Booking, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
