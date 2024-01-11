@@ -57,7 +57,10 @@ def add_payment_method_to_accommodation(payment_id: int, accommodation_id: int):
     
     
 
-    temp = db.query(data_models.AccommodationPayment).filter(data_models.AccommodationPayment.paymentID == payment_id).first()
+    temp = db.query(data_models.AccommodationPayment).filter(
+        data_models.AccommodationPayment.paymentID == payment_id,
+        data_models.AccommodationPayment.accommodationID == accommodation_id
+    ).first()
     if (temp is not None):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Payment with ID {payment_id} already exist in Accommodation ID {accommodation_id}.")
     
@@ -75,11 +78,12 @@ def remove_payment_method_from_accommodation(accommodation_id: int, payment_id: 
     get_payment_by_id(payment_id)
     temp = db.query(data_models.Accommodation).filter(data_models.Accommodation.id == accommodation_id).first()
     
+
     if (temp is None):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Accommodation with ID={id} does not exists.")
 
     temp = db.query(data_models.AccommodationPayment).filter(
-        payment_id == data_models.AccommodationPayment.id, accommodation_id == data_models.AccommodationPayment.accommodationID).first()
+        payment_id == data_models.AccommodationPayment.paymentID, accommodation_id == data_models.AccommodationPayment.accommodationID).first()
     
     db.delete(temp)
     db.commit()
