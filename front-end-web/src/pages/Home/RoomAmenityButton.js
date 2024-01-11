@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 
+import './RoomAmenityButton.css'
+
 const RoomAmenityButton = ({ roomId }) => {
   const [amenities, setAmenities] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -56,26 +58,45 @@ const RoomAmenityButton = ({ roomId }) => {
     }
   };
 
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   return (
     <div>
-      <button onClick={() => setShowPopup(true)}>Show Room Amenities</button>
+      <button className='all-room-amenities-button' onClick={togglePopup}>Tất cả tiện ích phòng</button>
 
       {showPopup && (
         <div>
-          <h3>All Room Amenities:</h3>
+          {/* <h3>All Room Amenities:</h3> */}
+          <p>Nhấn vào tiện ích để thêm vào phòng</p>
+
           {loading && <p>Loading amenities...</p>}
-          {!loading && amenities.length === 0 && <p>No amenities available for this accommodation.</p>}
-          {!loading && amenities.length > 0 && (
-            <ul>
-              {amenities.map((amenity) => (
-                <li key={amenity.id}>
-                  {amenity.name}
-                  <button onClick={() => handleAttach(amenity.id)}>Attach</button>
-                </li>
-              ))}
-            </ul>
-          )}
-          <button onClick={() => setShowPopup(false)}>Close</button>
+          {!loading && amenities.length === 0 && <p>Không có tiện ích phòng</p>}
+
+          <div className='acco-amenity-list'>
+            {!loading && amenities.length > 0 && (
+              // <ul>
+              //   {amenities.map((amenity) => (
+              //     <li key={amenity.id}>
+              //       {amenity.name}
+              //       <button onClick={() => handleAttach(amenity.id)}>Attach</button>
+              //     </li>
+              //   ))}
+              // </ul>
+
+              <ul className='acco-amenity-list-ul'>
+                {amenities.map((amenity) => (
+                  <li className='acco-amenity-list-li' key={amenity.id}>
+                    <div className="amenity-item">
+                      <button className='acco-amenity-list-button' onClick={() => handleAttach(amenity.id)}>{amenity.name}</button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          {/* <button onClick={() => setShowPopup(false)}>Close</button> */}
         </div>
       )}
     </div>

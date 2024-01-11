@@ -42,7 +42,7 @@ const AccommodationAmenity = ({ accommodationId }) => {
                 <li className='your-hotel-amenity-list-li' key={amenity.id}>{amenity.name}
                   <div className="your-hotel-amenity-item">
                     <AccommodationDetachButton accommodationId={accommodationId} amenityId={amenity.id} />
-                    </div>
+                  </div>
                 </li>
               ))}
             </ul>
