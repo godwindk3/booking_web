@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from './axiosConfig';
 
+import './UserTakeAmenity.css';
+
 const UserTakeAmenity = ({ accommodationId }) => {
   const [amenities, setAmenities] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,12 +29,15 @@ const UserTakeAmenity = ({ accommodationId }) => {
       {!loading && amenities.length === 0 && <p>No amenities available.</p>}
       {!loading && amenities.length > 0 && (
         <div>
-          <h2>Tiện ích khách sạn</h2>
-          <ul>
+          {/* <h2>Tiện ích khách sạn</h2> */}
+          <div className='user-acco-amenity-list-ul'>
             {amenities.map((amenity) => (
-              <li key={amenity.id}>{amenity.name}</li>
+              <li className='user-acco-amenity-list-li' key={amenity.id}>
+                {/* {amenity.name} */}
+                <button className='user-acco-amenity-list-button'>{amenity.name}</button>
+              </li>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>

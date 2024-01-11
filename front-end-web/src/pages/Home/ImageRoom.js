@@ -151,9 +151,9 @@ const ImageRoom = ({ roomId, onButtonClick }) => {
         ))}
 
         <div>
-          <label for="images" class="drop-container-room" id="dropcontainer">
-            <span class="drop-title">Thêm ảnh tại đây</span>
-            <input className='room-image-file-input' type="file" onChange={handleImageChange} id="images" accept="image/*" required />
+          <label for="image" className="drop-container-room" id="dropcontainer-room">
+            <span className="drop-title-room">Thêm ảnh tại đây</span>
+            <input className='room-image-file-input' type="file" onChange={handleImageChange} id="image" accept="image/*" required />
           </label>
 
           <button className='add-room-image-button' onClick={handleImageUpload}>Tải ảnh lên</button>

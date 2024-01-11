@@ -196,7 +196,7 @@ const RoomList = ({ accommodationId }) => {
             <div key={room.id}>
               {console.log(room.id)}
               {/* <strong>Tên phòng:</strong> {room.room_name} */}
-              <button className={`item-room-button ${roomPopups[room.id] ? 'active' : ''}`} onClick={() => toggleRoomPopup(room.id)}> {room.room_name} </button>
+              <button className={`item-room-button item-room-button-padding ${roomPopups[room.id] ? 'active' : ''}`} onClick={() => toggleRoomPopup(room.id)}> {room.room_name} </button>
 
               {roomPopups[room.id] && (
                 <div className='room-card'>

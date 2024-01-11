@@ -44,7 +44,7 @@ const TakeAccommodationByBookingId = ({ bookingId }) => {
 
   return (
     <div>
-      <h2>Khách sạn bạn đã review</h2>
+      {/* <h2>Khách sạn bạn đã review</h2> */}
       {error && <p>{error}</p>}
       {accommodationDetails && (
         <>

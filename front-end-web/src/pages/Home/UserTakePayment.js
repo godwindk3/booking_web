@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from './axiosConfig';
 
+import './UserTakePayment.css'
+
 const UserTakePayment = ({ accommodationId }) => {
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,12 +29,15 @@ const UserTakePayment = ({ accommodationId }) => {
       {!loading && paymentMethods.length === 0 && <p>No payment methods available.</p>}
       {!loading && paymentMethods.length > 0 && (
         <div>
-          <h2>Các phương thức thanh toán được chấp nhận</h2>
-          <ul>
+          {/* <h2>Các phương thức thanh toán được chấp nhận</h2> */}
+          <div className='user-acco-amenity-list-ul'>
             {paymentMethods.map((paymentMethod) => (
-              <li key={paymentMethod.id}>{paymentMethod.payment_method}</li>
+              <li className='user-acco-amenity-list-li' key={paymentMethod.id}>
+                {/* {paymentMethod.payment_method} */}
+                <button className='user-acco-amenity-list-button'>{paymentMethod.payment_method}</button>
+              </li>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>

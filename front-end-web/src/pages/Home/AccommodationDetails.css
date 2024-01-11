@@ -1,0 +1,113 @@
+/* hotel name + location */
+.h2-view-hotel-header {
+    margin-top: 30px;
+    font-family: Arial;
+    color: black;
+}
+.your-hotel-container {
+    flex-direction: column;
+    display: flex;
+    gap: 32px;
+    padding: 50px 100px;
+    font-family: Arial;
+    box-sizing: border-box;
+}
+.hotel-header-section {
+    display: flex;
+    flex-grow: 1;
+    gap: 16px;
+}
+.hotel-header-title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 1 0;
+}
+.hotel-header-title-section-h4 {
+    margin: 0;
+    color: #FC6C85;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+}
+.gap-32 {
+    gap: 32px;
+}
+.flex {
+    display: flex;
+}
+.gap-16 {
+    gap: 16px;
+}
+.flex-grow {
+    flex-grow: 1;
+}
+.flex-col {
+    flex-direction: column;
+}
+.hotel-location-p {
+    font-size: 14px;
+    font-family: Arial;
+    color: black;
+}
+
+/* details */
+.hotel-detail-container {
+    padding: 0px 80px;
+    gap: 40px;
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+
+    margin: auto;
+
+    box-sizing: border-box;
+    font-family: Arial;
+}
+.margin-top-50 {
+    margin-top: 50px;
+}
+.w-full {
+    width: 100%;
+}
+.gap-32 {
+    gap: 32px;
+}
+.flex {
+    display: flex;
+}
+
+.hotel-info-n-rooms {
+    width: 1000px;
+}
+.hotel-info {
+    text-align: left;
+}
+
+
+/* amenity + payment */
+.hotel-amenity-payment_amenity-card {
+    margin-bottom: 30px;
+    border-radius: 32px;
+    border: 1px solid var(--gray-200,#eaecf0);
+    background: var(--base-white,#fff);
+    box-shadow: var(--shadow-sm);
+    width: 292.65px;
+    font-family: Arial;
+    border-color: #fc6c85;
+    box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+    margin-left: auto;
+    margin-right: auto;
+
+    flex-direction: column; 
+
+    padding: 10px;
+}
+.cac-tien-ich {
+    font-family: Arial;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}

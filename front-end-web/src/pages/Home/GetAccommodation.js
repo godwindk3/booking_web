@@ -143,11 +143,11 @@ const GetAccommodation = () => {
     <div>
       <h2>Danh sách khách sạn</h2>
       {error && <p>{error}</p>}
-      <ul>
+      <div>
         {accommodations.map((accommodation) => (
           <AccommodationItem key={accommodation.id} accommodation={accommodation} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

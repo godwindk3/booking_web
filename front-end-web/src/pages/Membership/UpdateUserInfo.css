@@ -1,0 +1,60 @@
+.create-hotel-button2 {
+    padding         : 10px;
+    color           : #fff;
+    border          : none;
+    border-radius   : 100px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+  
+    font-family: Arial;
+    font-size: 17px;
+    height: 50px;
+    width: 1000px;
+  
+    background-color: #FC6C85;
+    border: #FC6C85;
+    
+    padding: 16px 20px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    position: relative;
+    margin-left: 100px;
+    margin-bottom: 10px;
+  }
+  .create-hotel-button2:hover {
+    background-color: #fd3355;
+  }
+
+.update-user-info-close-popup-button {
+    padding         : 10px;
+    color           : #fff;
+    border          : none;
+    border-radius   : 100px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+  
+    font-family: Arial;
+    font-size: 17px;
+    height: auto;
+    width: auto;
+  
+    background-color: #FC6C85;
+    border: #FC6C85;
+    
+    padding: 16px 20px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+.update-user-info-close-popup-button:hover {
+    background-color: #fd3355;
+}

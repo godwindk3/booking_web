@@ -1,0 +1,59 @@
+.user-booking-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user-booking-components {
+    padding-left: 20px;
+    width: 200px;
+}
+.user-booking-components2 {
+    padding-left: 20px;
+    width: 250px;
+}
+
+.dat-phong-khong-thanh-cong {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.dat-phong-khong-thanh-cong2 {
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+.user-booking-popup-close-button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #0000008a;
+    font-family: Arial;
+    font-size: 17px;
+    height: auto;
+    background-color: #FC6C85;
+    border: #FC6C85;
+    border-radius: 100px;
+    padding: 16px 20px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+.user-booking-popup-close-button:hover {
+    color: white;
+    background-color: #fd3355;
+}
+
+.select-payment-method-button {
+    display: flex;
+    width: 200px;
+    height: 73.6px;
+    padding: 10px;
+    border: 1px solid #EAEAEA;
+    border-radius: 100px;
+    outline: none;
+    transition: border-color 0.3s;
+    color: #0000008a
+}
+.select-payment-method-button:focus {
+    border-color: #FC6C85;
+}

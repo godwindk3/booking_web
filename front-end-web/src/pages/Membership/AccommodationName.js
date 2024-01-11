@@ -24,7 +24,7 @@ const AccommodationName = ({ accommodationId }) => {
 
   return (
     <div>
-      <h4>Tên khách sạn:  {accommodation.name}</h4>
+      <h4>{accommodation.name}</h4>
     </div>
   );
 };

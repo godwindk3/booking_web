@@ -1,0 +1,43 @@
+.room-item-room-button {
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.margin-top-30 {
+    margin-top: 30px;
+}
+
+.user-get-room-card {
+    margin-bottom: 30px;
+    border-radius: 32px;
+    border: 1px solid var(--gray-200,#eaecf0);
+    background: var(--base-white,#fff);
+    box-shadow: var(--shadow-sm);
+    font-family: Arial;
+    border-color: #fc6c85;
+    box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+    margin-left: auto;
+    margin-right: auto;
+
+    /* max-width: 966.55px; */
+
+    flex-direction: column; 
+    padding: 20px;
+
+    justify-content: center;
+    display: flex;
+    align-items: center;
+
+    margin-top: 30px;
+}
+.user-get-room-info-card {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.user-view-room-info-hr {
+    width: 600px;
+    padding-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}

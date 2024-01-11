@@ -1,0 +1,70 @@
+.accommodation-list-container {
+    gap: 20px;
+    flex-direction: column;
+    display: flex;
+}
+
+.accommodation-card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 32px;
+    border: 1px solid var(--gray-200,#eaecf0);
+    background: var(--base-white,#fff);
+    box-shadow: var(--shadow-sm);
+    width: 1000px;
+    font-family: Arial;
+    border-color: #fc6c85;
+    box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+    margin-left: auto;
+    margin-right: auto;
+
+    flex-direction: column; 
+}
+.accommodation-container {
+    height: 250px;
+    width: 1000px;
+}
+.accommodation-container:link { 
+    text-decoration: none; 
+} 
+.accommodation-container:visited { 
+    text-decoration: none; 
+} 
+.accommodation-container:hover { 
+    text-decoration: none; 
+} 
+.accommodation-container:active { 
+    text-decoration: none; 
+}
+
+.acco-img-container {
+    padding: 16px;
+    position: relative;
+}
+.acco-img {
+    max-width: 345px;
+    max-height: 230px;
+    border-radius: 24px;
+
+    box-shadow: 0px 5px 20px 0px rgba(252, 108, 132, 0.666);
+}
+.acco-content-container {
+    height: 250px;
+    width: 550px;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-right: 16px;
+}
+
+.acco-name {
+    margin: 0;
+    color: #FC6C85;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 44px;
+}
+
+.acco-location {
+    color: black;
+}

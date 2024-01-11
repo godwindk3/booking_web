@@ -305,7 +305,7 @@ const OwnerDashboard = () => {
 
               <hr className='view-hotel-hr'/>
               <div>
-              <AccommodationPaymentMethods accommodationId={accommodation.id}/>
+                <AccommodationPaymentMethods accommodationId={accommodation.id}/>
               </div>
 
               <hr className='view-hotel-hr'/>
