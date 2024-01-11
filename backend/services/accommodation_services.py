@@ -2,7 +2,6 @@ import ultraimport
 validation_models = ultraimport("__dir__/../models/validation_models.py")
 data_models = ultraimport("__dir__/../models/data_models.py")
 database = ultraimport("__dir__/../database.py")
-payment_services = ultraimport("__dir__/../services/payment_services.py")
 
 db = database.SessionLocal()
 from fastapi import HTTPException, status
