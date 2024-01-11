@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../Home/axiosConfig';
-
+import TakeAccommodationByBookingId from './TakeAccommodationByBookingId';
+import DeleteBookingButton from './DeleteBookingButton';
+import DeleteReviewButton from './DeleteReviewButton';
 const GetAllReviewOfUser = ({ userId }) => {
   const [userReviews, setUserReviews] = useState([]);
   const [error, setError] = useState(null);
@@ -14,7 +16,7 @@ const GetAllReviewOfUser = ({ userId }) => {
         setUserReviews(response.data);
       } catch (error) {
         console.error('Error fetching user reviews:', error);
-        setError('Error fetching user reviews. Please try again.');
+        // setError('Error fetching user reviews. Please try again.');
       }
     };
 
@@ -24,15 +26,15 @@ const GetAllReviewOfUser = ({ userId }) => {
 
   return (
     <div>
-      <h2>User Reviews</h2>
+      <h2>Tổng hợp các review của bạn</h2>
       {error && <p>{error}</p>}
       <ul>
         {userReviews.map((review) => (
           <li key={review.id}>
-            <p>Booking ID: {review.bookingID}</p>
+            <TakeAccommodationByBookingId bookingId={review.bookingID}/>
+            <DeleteReviewButton reviewId={review.id}/>
             <p>Rating: {review.rating}</p>
             <p>Comment: {review.comment}</p>
-            <p>User ID: {review.userID}</p>
           </li>
         ))}
       </ul>

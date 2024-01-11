@@ -88,12 +88,13 @@ import MembershipPayment from './MembershipPayment';
 import DeleteBookingButton from './DeleteBookingButton';
 import CreateReview from './CreateReview';
 import GetAllReviewOfUser from './GetAllReviewOfUser';
+import UpdateUserInfo from './UpdateUserInfo';
 
 const MembershipClassPage = () => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState(null);
   const [userID, setUserID] = useState(null); // New state to store the userID
-
+  const [role, setRole] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -118,6 +119,7 @@ const MembershipClassPage = () => {
 
         // Set the userID state
         setUserID(decodedToken.userID);
+        setRole(decodedToken.role)
 
         // Send a GET request to the /booking/ API with token validation
         const response = await axios.get('/booking/', {
@@ -155,7 +157,7 @@ const MembershipClassPage = () => {
       const decodedPayload = JSON.parse(atob(payloadBase64));
 
       // Check if the "userID" attribute exists in the payload
-      if (decodedPayload.userID) {
+      if (decodedPayload.userID || decodedPayload.role) {
         return decodedPayload;
       } else {
         console.error('Token does not contain userID');
@@ -171,7 +173,9 @@ const MembershipClassPage = () => {
 
   return (
     <div>
-      <h2>Your Bookings</h2>
+      <h2>Update Infor</h2>
+      <UpdateUserInfo role={role}/>
+      <h2>Phòng bạn đã đặt</h2>
       {error && <p>{error}</p>}
       <ul>
         {bookings.map((booking) => (
@@ -187,9 +191,9 @@ const MembershipClassPage = () => {
               bookingId={booking.id}
               onDeleteSuccess={() => handleBookingDelete(booking.id)}
             />
-            <CreateReview bookingId={booking.id} userId={userID}/>
             <MembershipPayment paymentId={booking.payment_method} />
             <RoomDetailsButton roomId={booking.roomID} />
+            <CreateReview bookingId={booking.id} userId={userID}/>
           </li>
         ))}
         <></>

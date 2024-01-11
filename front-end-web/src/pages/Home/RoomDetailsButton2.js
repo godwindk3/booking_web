@@ -33,7 +33,7 @@ const RoomDetailsButton2 = ({ roomId, accommodationId }) => {
 
   return (
     <div>
-      <button onClick={handleButtonClick}>Chi tiết phòng</button>
+      <button onClick={handleButtonClick}>Chi tiết phòng {roomId}</button>
       {isPopupOpen && (
         <div className="popup">
           {roomDetails ? (

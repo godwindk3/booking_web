@@ -35,7 +35,7 @@ const CreateReview = ({ bookingId, userId }) => {
 
   return (
     <div>
-      <h2>Create Review</h2>
+      <h2>Cảm nhận của bạn?</h2>
       <div>
         <label htmlFor="rating">Rating:</label>
         <input

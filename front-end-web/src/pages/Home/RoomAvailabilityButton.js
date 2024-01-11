@@ -36,11 +36,11 @@ const RoomAvailabilityButton = ({ accommodationId }) => {
 
     return (
         <>
-            <button onClick={handleButtonClick}>Check Room Availability</button>
+            <button onClick={handleButtonClick}>Tìm phòng trống theo ngày</button>
             {isPopupOpen && (
                 <div className="popup-container">
                     <div className="popup-content">
-                        <label htmlFor="checkin-date">Check-in Date:</label>
+                        <label htmlFor="checkin-date">Ngày Check-in</label>
                         <input
                             type="date"
                             id="checkin-date"
@@ -48,7 +48,7 @@ const RoomAvailabilityButton = ({ accommodationId }) => {
                             onChange={(e) => setCheckinDate(e.target.value)}
                         />
 
-                        <label htmlFor="checkout-date">Check-out Date:</label>
+                        <label htmlFor="checkout-date">Ngày Check-out</label>
                         <input
                             type="date"
                             id="checkout-date"
@@ -56,7 +56,7 @@ const RoomAvailabilityButton = ({ accommodationId }) => {
                             onChange={(e) => setCheckoutDate(e.target.value)}
                         />
 
-                        <button onClick={handleFindButtonClick}>Find</button>
+                        <button onClick={handleFindButtonClick}>Tìm kiếm</button>
 
                         {/* Display the available rooms */}
                         {availableRooms.map((room) => (
