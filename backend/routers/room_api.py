@@ -42,7 +42,7 @@ async def fetch_unavailable_dates(room_id: int):
 
     return room_services.get_exist_dates(room_id)
 
-@router.get("/get_available_rooms/{accommodation_id}", response_model=List[validation_models.RoomOut], status_code=status.HTTP_200_OK)
+@router.post("/get_available_rooms/{accommodation_id}", response_model=List[validation_models.RoomOut], status_code=status.HTTP_200_OK)
 async def fetch_available_room_of_accommodation(accommodation_id: int, date_range: validation_models.CheckInOutDates):
     """
 - API nhận vào request body là ngày checkin, checkout dự kiến và ID của khách sạn, trả về list các phòng còn trống trong khoảng ngày checkin đến checkout đó.
