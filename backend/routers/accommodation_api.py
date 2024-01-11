@@ -94,6 +94,10 @@ async def fetch_manager_by_acco_id(id: int, current_user_data: validation_models
 
     return manager
 
+@router.get("/{id}/get_price",response_model=validation_models.PriceRangeFilter, status_code=status.HTTP_200_OK)
+async def fetch_accommodation_price(id: int):
+    return accommodation_services.get_price(id)
+
 
 @router.post("/", response_model=validation_models.AccommodationOut, status_code=status.HTTP_201_CREATED)
 async def create_accommodation(accommodation: validation_models.Accomodation, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
