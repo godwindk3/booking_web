@@ -13,4 +13,4 @@ async def search_filter_accommodation(string_query: str):
 
 @router.post("/amenity", response_model=List[validation_models.AccommodationOut], status_code=status.HTTP_200_OK)
 async def filter_amenities(amenity_ids: List[validation_models.AmenityIDFilter]):
-    return filter_amenities.filter_accommodation_by_amenities(amenity_ids)
+    return filter_services.filter_accommodation_by_amenities(amenity_ids)
