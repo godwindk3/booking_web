@@ -453,3 +453,8 @@ class AccommodationImageOut(BaseModelConfig):
 
 class AmenityIDFilter(BaseModelConfig):
     id: int
+
+
+class PriceRangeFilter(BaseModelConfig):
+    min_price: float
+    max_price: float

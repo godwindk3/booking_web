@@ -25,6 +25,22 @@ def get_manager(accommodation_id: int):
         data_models.User.id == data_models.Manager.userID
     ).first()
 
+def get_price(accommodation_id: int):
+    get_accommodation_by_id(accommodation_id)
+
+    rooms = db.query(data_models.Room).filter(data_models.Room.accommodationID == accommodation_id).all()
+    if (len(list(rooms)) == 0):
+        return {
+            "min_price":0,
+            "max_price":0
+        }
+    
+    min_price = min([room.price for room in rooms])
+    max_price = max([room.price for room in rooms])
+
+    price_range = validation_models.PriceRangeFilter(min_price=min_price, max_price=max_price)
+    return price_range
+
 
 def create_accommodation(accommodation: validation_models.Accomodation):
     new_accommodation = data_models.Accommodation(
