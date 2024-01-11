@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 
-const ImageRoom = ({ roomId }) => {
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+import './ImageRoom.css';
+
+const ImageRoom = ({ roomId, onButtonClick }) => {
   const [imageData, setImageData] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -61,19 +67,99 @@ const ImageRoom = ({ roomId }) => {
     }
   };
 
+  /////////////////////////////////////////////////////////////////////////////////////////////// image room upload.js
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (event) => {
+      const file = event.target.files[0];
+      setSelectedImage(file);
+  };
+
+  const handleImageUpload = async () => {
+      try {
+          // Check if an image is selected
+          if (!selectedImage) {
+              console.error('No image selected for upload.');
+              return;
+          }
+
+          // Get the token from local storage
+          const token = localStorage.getItem('token');
+
+          // Create a FormData object to send the image file
+          const formData = new FormData();
+          formData.append('file', selectedImage);
+
+          // Make a POST request to upload the image
+          const response = await axios.post(
+              `/image/room/upload/${roomId}`,
+              formData,
+              {
+                  headers: {
+                      Authorization: `Bearer ${token}`,
+                      'Content-Type': 'multipart/form-data',
+                  },
+              }
+          );
+
+          console.log('Image upload successful. Response:', response.data);
+          alert('Image upload successful')
+          // Reset the selected image
+          setSelectedImage(null);
+
+          // Call the onButtonClick function after successful upload
+          if (onButtonClick) {
+              onButtonClick();
+          }
+      } catch (error) {
+          console.error('Error uploading image:', error.message);
+      }
+  };
+  /////////////////////////////////////////////////////////////////////////////////////////////// image room upload.js
+
+  const PrevArrow = (props) => (
+    <button {...props} className="slider-arrow-room slider-arrow-prev">
+      <div class="arrow-left"></div>
+    </button>
+  );
+  const NextArrow = (props) => (
+    <button {...props} className="slider-arrow-room slider-arrow-next">
+      <div class="arrow-right"></div>
+    </button>
+  );
+  const settings = {
+    dots: true, // Hiển thị các chấm chỉ số ở dưới slider
+    infinite: true, // Vô hạn quay lại các ảnh khi chạm đến cuối cùng
+    speed: 500, // Tốc độ chuyển đổi giữa các ảnh (ms)
+    slidesToShow: 1, // Số lượng ảnh hiển thị trên mỗi trang
+    slidesToScroll: 1, // Số lượng ảnh được chuyển đổi khi trượt slider   
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
+
   return (
     <div>
+      <Slider {...settings} className='room-slider-container'>
+        {imageUrls.map((imageUrl, index) => (
+          <div key={index}>
+            <img className='slider-container-room-img'
+              src={imageUrl}
+              alt={`Accommodation Image ${index + 1}`}
+            />
+            <button className='delete-room-image-button' onClick={() => deleteImage(imageData[index].id)}>Xoá ảnh này</button>
+          </div>
+        ))}
 
-      {imageUrls.map((imageUrl, index) => (
-        <div key={index}>
-          <img
-            src={imageUrl}
-            alt={`Accommodation Image ${index + 1}`}
-            style={{ width: '300px', height: 'auto' }}
-          />
-          <button onClick={() => deleteImage(imageData[index].id)}>Delete</button>
+        <div>
+          <label for="images" class="drop-container-room" id="dropcontainer">
+            <span class="drop-title">Thêm ảnh tại đây</span>
+            <input className='room-image-file-input' type="file" onChange={handleImageChange} id="images" accept="image/*" required />
+          </label>
+
+          <button className='add-room-image-button' onClick={handleImageUpload}>Tải ảnh lên</button>
         </div>
-      ))}
+
+      </Slider>
     </div>
   );
 };

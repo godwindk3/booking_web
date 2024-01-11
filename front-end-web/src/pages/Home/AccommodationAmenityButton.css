@@ -65,7 +65,8 @@
 .acco-amenity-list-ul {
     display: flex;
     flex-wrap: wrap;
-    margin-right: 40px;
+    margin-left: 40px;
+    margin-right: 80px;
     margin-bottom: 30px;
 }
 .acco-amenity-list-li {
