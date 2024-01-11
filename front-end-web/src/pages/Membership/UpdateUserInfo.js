@@ -108,6 +108,8 @@
 import React, { useState } from 'react';
 import axios from '../Home/axiosConfig';
 
+import './UpdateUserInfo.css'
+
 const UpdateUserInfo = ({ role }) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -161,54 +163,58 @@ const UpdateUserInfo = ({ role }) => {
 
   return (
     <div>
-      <label>
-        Email:
+      <label className='create-hotel-input-container'>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder='Email'
         />
       </label>
-      <label>
-        Name:
+
+      <label className='create-hotel-input-container'>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder='Tên'
         />
       </label>
-      <label>
-        Password:
+
+      <label className='create-hotel-input-container'>
         <input
           type={showPasswords ? 'text' : 'password'} // Toggle between text and password
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder='Mật khẩu'
         />
       </label>
-      <label>
-        Confirm Password:
+
+      <label className='create-hotel-input-container'>
         <input
           type={showPasswords ? 'text' : 'password'} // Toggle between text and password
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          placeholder='Xác nhận mật khẩu'
         />
       </label>
-      <button onClick={() => setShowPasswords(!showPasswords)}>
-        {showPasswords ? 'Hide' : 'Show'} Passwords
+
+      <button className='create-hotel-button2' onClick={() => setShowPasswords(!showPasswords)}>
+        {showPasswords ? 'Ẩn' : 'Hiện'} mật khẩu
       </button>
-      <button onClick={handleUpdateUserInfo}>Update User Info</button>
+      <button className='create-hotel-button' onClick={handleUpdateUserInfo}>Cập nhật tài khoản</button>
 
       {showSuccessPopup && (
         <div className="popup success-popup">
-          <p>User information updated successfully.</p>
-          <button onClick={() => setShowSuccessPopup(false)}>Close</button>
+          <p>Cập nhật thành công</p>
+          <button className='update-user-info-close-popup-button' onClick={() => setShowSuccessPopup(false)}>Close</button>
         </div>
       )}
 
       {showFailurePopup && (
         <div className="popup failure-popup">
-          <p>Error updating user information. Please try again.</p>
-          <button onClick={() => setShowFailurePopup(false)}>Close</button>
+          <p>Cập nhật không thành công. Hãy thử lại</p>
+          <button className='update-user-info-close-popup-button' onClick={() => setShowFailurePopup(false)}>Close</button>
         </div>
       )}
     </div>

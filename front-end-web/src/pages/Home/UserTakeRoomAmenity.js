@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from './axiosConfig';
 
+import './UserTakeRoomAmenity.css'
+
 const UserTakeRoomAmenity = ({ roomId }) => {
   const [roomAmenities, setRoomAmenities] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,10 +30,10 @@ const UserTakeRoomAmenity = ({ roomId }) => {
       {!loading && roomAmenities.length > 0 && (
         <div>
           <h2>Tiện ích phòng</h2>
-          <ul>
+          <ul className='user-acco-amenity-list-ul'>
             {roomAmenities.map((amenity) => (
-              <li key={amenity.id}>
-                <p>{amenity.name}</p>
+              <li className='user-acco-amenity-list-li' key={amenity.id}>
+                <button className='user-acco-amenity-list-button'>{amenity.name}</button>
               </li>
             ))}
           </ul>

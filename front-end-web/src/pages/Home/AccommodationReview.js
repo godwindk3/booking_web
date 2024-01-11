@@ -23,16 +23,15 @@ const AccommodationReview = ({ accommodationId }) => {
 
   return (
     <div>
-      <h2>Accommodation Reviews</h2>
+      {/* <h2>Accommodation Reviews</h2> */}
       <ul>
         {reviews.map((review) => (
-          <li key={review.id}>
-            <p>Booking ID: {review.bookingID}</p>
-            <p>Comment: {review.comment}</p>
-            <p>Rating: {review.rating}</p>
-            <p>User ID: {review.userID}</p>
-            <p>-------------------------------------------</p>
-          </li>
+          <ul key={review.id}>
+            {/* <li>Booking ID: {review.bookingID}</li> */}
+            <li>User ID {review.userID} rated: {review.rating}</li>
+            <>Comment: {review.comment}</>
+            
+          </ul>
         ))}
       </ul>
     </div>

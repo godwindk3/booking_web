@@ -26,7 +26,7 @@ const GetAllReviewOfUser = ({ userId }) => {
 
   return (
     <div>
-      <h2>Tổng hợp các review của bạn</h2>
+      {/* <h2>Tổng hợp các review của bạn</h2> */}
       {error && <p>{error}</p>}
       <ul>
         {userReviews.map((review) => (

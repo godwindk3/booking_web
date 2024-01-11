@@ -1,0 +1,32 @@
+.user-acco-amenity-list-ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.user-acco-amenity-list-li {
+    display: flex;
+    align-items: center;
+}
+
+.user-acco-amenity-list-button {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-family: Arial;
+    font-size: 13px;
+    padding: 8px;
+    color: black;
+    border-radius: 100px;
+
+    transition: background-color 0.3s ease;
+    background-color: #fff;
+    border: 2px solid #FC6C85;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-acco-amenity-list-button:hover {
+    color: white;
+    background-color: #fd3355;
+}

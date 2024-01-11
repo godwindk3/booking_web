@@ -237,8 +237,9 @@
     border: #fff;
     font-family: Arial;
     font-size: 17px;
-    width: max-content;
-
+    width: max-content;    
+}
+.item-room-button-padding {
     padding: 10px 100px;
 }
 .item-room-button:hover {

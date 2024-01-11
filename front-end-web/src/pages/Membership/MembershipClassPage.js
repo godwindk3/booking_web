@@ -90,6 +90,8 @@ import CreateReview from './CreateReview';
 import GetAllReviewOfUser from './GetAllReviewOfUser';
 import UpdateUserInfo from './UpdateUserInfo';
 
+import './MembershipClassPage.css'
+
 const MembershipClassPage = () => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState(null);
@@ -173,33 +175,49 @@ const MembershipClassPage = () => {
 
   return (
     <div>
-      <h2>Update Infor</h2>
-      <UpdateUserInfo role={role}/>
-      <h2>Phòng bạn đã đặt</h2>
-      {error && <p>{error}</p>}
-      <ul>
-        {bookings.map((booking) => (
-          <li key={booking.id}>
-            <AccommodationName accommodationId={booking.accommodationID} />
-            <Link to={`/getaccommodation/${booking.accommodationID}`}>
-              Thông tin chi tiết khách sạn
-            </Link>
-            , <strong>Ngày check-in</strong> {booking.checkin_date},{' '}
-            <strong>Ngày check-out</strong> {booking.checkout_date},{' '}
-            <strong>Chi phí</strong> {booking.total_price + 'VND'}{' '}
-            <DeleteBookingButton
-              bookingId={booking.id}
-              onDeleteSuccess={() => handleBookingDelete(booking.id)}
-            />
-            <MembershipPayment paymentId={booking.payment_method} />
-            <RoomDetailsButton roomId={booking.roomID} />
-            <CreateReview bookingId={booking.id} userId={userID}/>
-          </li>
-        ))}
-        <></>
-      </ul>
-          <GetAllReviewOfUser userId={userID}/>
+      <div className="create-hotel-card">
+        <h2 className='h2-header'>Cập nhật tài khoản</h2>
+        <UpdateUserInfo role={role}/>
+      </div>
 
+      
+      <h2 className='h2-header'>Phòng bạn đã đặt</h2>
+        <div className="create-hotel-card">
+        {error && <p>{error}</p>}
+        <ul>
+          {bookings.map((booking) => (
+            <li key={booking.id}>
+              {/* <AccommodationName accommodationId={booking.accommodationID} /> */}
+              <Link to={`/getaccommodation/${booking.accommodationID}`}>
+                <AccommodationName accommodationId={booking.accommodationID} />
+              </Link>
+              <strong>Ngày check-in</strong> {booking.checkin_date}{' '}
+              <br/>
+              <strong>Ngày check-out</strong> {booking.checkout_date}{' '}
+              <br/>
+              <strong>Chi phí</strong> {booking.total_price + 'VND'}{' '}
+              
+              <MembershipPayment paymentId={booking.payment_method} />
+
+              <DeleteBookingButton
+                bookingId={booking.id}
+                onDeleteSuccess={() => handleBookingDelete(booking.id)}
+              />
+              
+              <RoomDetailsButton roomId={booking.roomID} />
+              <CreateReview bookingId={booking.id} userId={userID}/>
+            </li>
+          ))}
+          <></>
+        </ul>
+      </div>
+
+      
+      <h2 className='h2-header'>Review bạn đã đăng</h2>
+      <div className="create-hotel-card">
+        <GetAllReviewOfUser userId={userID}/>
+      </div>
+      
     </div>
   );
 };

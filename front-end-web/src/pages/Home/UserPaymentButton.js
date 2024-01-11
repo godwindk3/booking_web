@@ -133,6 +133,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 
+import './UserPaymentButton.css'
+
 const UserPaymentButton = ({ accommodationId, roomId }) => {
     const [checkinDate, setCheckinDate] = useState('');
     const [checkoutDate, setCheckoutDate] = useState('');
@@ -225,55 +227,71 @@ const UserPaymentButton = ({ accommodationId, roomId }) => {
 
     return (
         <div>
-            <label>
-                Check-in Date:
-                <input
-                    type="date"
-                    value={checkinDate}
-                    onChange={(e) => setCheckinDate(e.target.value)}
-                />
-            </label>
-            <label>
-                Check-out Date:
-                <input
-                    type="date"
-                    value={checkoutDate}
-                    onChange={(e) => setCheckoutDate(e.target.value)}
-                />
-            </label>
-            <label>
-                Payment Method:
-                <select
-                    value={selectedPaymentMethod}
-                    onChange={(e) => setSelectedPaymentMethod(e.target.value)}
-                >
-                    <option value="">Select Payment Method</option>
-                    {paymentMethods.map((method) => (
-                        <option key={method.id} value={method.id}>
-                            {method.payment_method}
-                        </option>
-                    ))}
-                </select>
-            </label>
-            <button onClick={handleButtonClick}>Book Now</button>
+            <h2>Đặt phòng</h2>
+            <br/>
+
+            <div className="user-booking-box">
+                <div className='user-booking-components'>
+                    <label>
+                        Ngày Check-in:
+                        <input
+                            type="date"
+                            value={checkinDate}
+                            onChange={(e) => setCheckinDate(e.target.value)}
+                        />
+                    </label>
+                </div>
+
+                <div className='user-booking-components'>
+                    <label>
+                        Ngày Check-out:
+                        <input
+                            type="date"
+                            value={checkoutDate}
+                            onChange={(e) => setCheckoutDate(e.target.value)}
+                        />
+                    </label>
+                </div>
+
+                <div className='user-booking-components2'>
+                    <label>
+                        Phương thức thanh toán:
+                        <select className="select-payment-method-button"
+                            value={selectedPaymentMethod}
+                            onChange={(e) => setSelectedPaymentMethod(e.target.value)}
+                        >
+                            <option value="">Chọn phương thức thanh toán</option>
+                            {paymentMethods.map((method) => (
+                                <option key={method.id} value={method.id}>
+                                    {method.payment_method}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                </div>
+
+                <div className='user-booking-components'>
+                    <button className='user-booking-popup-close-button' onClick={handleButtonClick}>Đặt phòng ngay</button>
+                </div>
+            </div>
 
             {showSuccessPopup && (
                 <div className="popup">
-                    <p>Booking created successfully!</p>
-                    <button onClick={() => setShowSuccessPopup(false)}>Close</button>
+                    <div className='dat-phong-khong-thanh-cong'>Booking created successfully!</div>
+                    <button className='user-booking-popup-close-button' onClick={() => setShowSuccessPopup(false)}>Close</button>
                 </div>
             )}
 
             {showFailurePopup && (
                 <div className="popup">
-                    <p>Booking failed. Please check the following:</p>
+                    <div className='dat-phong-khong-thanh-cong'>Đặt phòng không thành công!</div>
                     <ul>
-                        <li>Make sure you have selected a payment method.</li>
-                        <li>Ensure that the check-in and check-out dates are valid.</li>
+                        <li>Hãy chắc chắn rằng bạn đã chọn một trong các phương thức thanh toán</li>
+                        <li>Hãy chắc chắn rằng ngày check-in và check-out là hợp lệ</li>
                         {/* Add more specific checks based on your requirements */}
                     </ul>
-                    <p>Please review your selections and try again.</p>
-                    <button onClick={() => setShowFailurePopup(false)}>Close</button>
+                    <div className='dat-phong-khong-thanh-cong2'>Hãy kiểm tra và thử lại!</div>
+                    <button className='user-booking-popup-close-button' onClick={() => setShowFailurePopup(false)}>Đóng</button>
                 </div>
             )}
 

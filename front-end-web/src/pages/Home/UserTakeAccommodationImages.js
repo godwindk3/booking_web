@@ -70,7 +70,7 @@ const UserTakeAccommodationImages = ({ accommodationId }) => {
 
   return (
     <div>
-      <h2 className='h2-view-image-acco-header'>Ảnh khách sạn</h2>
+      {/* <h2 className='h2-view-image-acco-header'>Ảnh khách sạn</h2> */}
      
       <Slider {...settings} className='slider-container'>
         {imageUrls.map((imageUrl, index) => (
