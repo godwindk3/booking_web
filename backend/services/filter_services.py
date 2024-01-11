@@ -27,6 +27,21 @@ def filter_accommodation_by_amenities(amenity_ids: List[validation_models.Amenit
             data_models.Accommodation.id == data_models.AccommodationAmenities.accommodationID
         ).all()
 
+
+def filter_accommodation_by_price(price_range:validation_models.PriceRangeFilter):
+    accommodations = accommodation_services.get_all_accommodations()
+    ids = []
+    for accommodation in accommodations:
+        range_ = accommodation_services.get_price(accommodation.id)
+        min_price_ = range_.min_price
+        max_price_ = range_.max_price
+
+        if (price_range.min_price >= min_price_ and price_range.max_price <= max_price_):
+            ids.append(accommodation.id)
+
+    return db.query(data_models.Accommodation).filter(data_models.Accommodation.id.in_(ids)).all()
+
+
 # res = search_accommodation_by_name("V")
 
 # for _ in res:
@@ -39,5 +54,12 @@ def filter_accommodation_by_amenities(amenity_ids: List[validation_models.Amenit
 
 # res = filter_accommodation_by_amenities(json_list)
 
+# for _ in res:
+#     print(_.name)
+
+
+# temp = validation_models.PriceRangeFilter(min_price=100, max_price=100.5)
+
+# res = filter_accommodation_by_price(temp)
 # for _ in res:
 #     print(_.name)
