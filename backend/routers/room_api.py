@@ -23,6 +23,10 @@ async def fetch_all_rooms(current_user_data: validation_models.User = Depends(oa
             status_code=status.HTTP_403_FORBIDDEN, detail="No permission.")
     return room_services.get_all_rooms()
 
+@router.get("/get_room/{room_id}", response_model=validation_models.RoomOut, status_code=status.HTTP_200_OK)
+async def fetch_room_by_id(room_id: int):
+    return room_services.get_room_by_id(room_id)
+
 
 @router.get("/get_room/{room_id}/unavailable_dates", response_model=List[validation_models.CheckInOutDates], status_code=status.HTTP_200_OK)
 async def fetch_unavailable_dates(room_id: int):
