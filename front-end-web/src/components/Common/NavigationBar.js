@@ -102,12 +102,12 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './NavigationBar.css';
 
-const NavigationBar = ({ keyProp,isLoggedIn, onLogout }) => {
+const NavigationBar = ({ keyProp, isLoggedIn, onLogout }) => {
   const [showAdditionalButton, setShowAdditionalButton] = useState(false);
   const [userRole, setUserRole] = useState(null);
   const [logoutTrigger, setLogoutTrigger] = useState(false); // new state
   const navigate = useNavigate();
-  
+
 
   useEffect(() => {
     // Update the showAdditionalButton state based on the user's login status
@@ -120,7 +120,7 @@ const NavigationBar = ({ keyProp,isLoggedIn, onLogout }) => {
       const decodedPayload = JSON.parse(atob(payload));
       setUserRole(decodedPayload.role);
     }
-  }, [isLoggedIn,keyProp]); // add logoutTrigger to the dependency array
+  }, [isLoggedIn, keyProp]); // add logoutTrigger to the dependency array
 
   const handleLogout = () => {
     onLogout(); // Notify the higher-level component about the logout
@@ -156,10 +156,29 @@ const NavigationBar = ({ keyProp,isLoggedIn, onLogout }) => {
                   Về chúng tôi
                 </button>
               </NavLink>
+              {/* {userRole === 1 ? (
+                <NavLink exact to="/ownerdashboard" style={{ textDecoration: 'none' }}>
+                  <button className="h-full flex align-center doitac-button gap-24 nav-button">
+                    Quản lý khách sạn của bạn
+                  </button>
+                </NavLink>
+              ) : (
+                <NavLink exact to="/ownerregister" style={{ textDecoration: 'none' }}>
+                  <button className="h-full flex align-center doitac-button gap-24 nav-button">
+                    Trở thành đối tác của chúng tôi
+                  </button>
+                </NavLink>
+              )} */}
               {userRole === 1 ? (
                 <NavLink exact to="/ownerdashboard" style={{ textDecoration: 'none' }}>
                   <button className="h-full flex align-center doitac-button gap-24 nav-button">
                     Quản lý khách sạn của bạn
+                  </button>
+                </NavLink>
+              ) : userRole === 2 ? (
+                <NavLink exact to="/accountmanagement" style={{ textDecoration: 'none' }}>
+                  <button className="h-full flex align-center doitac-button gap-24 nav-button">
+                    Quản lý tài khoản
                   </button>
                 </NavLink>
               ) : (

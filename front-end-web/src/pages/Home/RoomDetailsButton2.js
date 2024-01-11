@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../Home/axiosConfig';
-import UserTakeRoomImages from '../Home/UserTakeRoomImages';
-import UserTakeRoomAmenity from '../Home/UserTakeRoomAmenity';
-
-const RoomDetailsButton = ({ roomId }) => {
+import UserTakeRoomImages from './UserTakeRoomImages';
+import UserTakeRoomAmenity from './UserTakeRoomAmenity';
+import UserPaymentButton from './UserPaymentButton';
+const RoomDetailsButton2 = ({ roomId, accommodationId }) => {
   const [roomDetails, setRoomDetails] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -33,7 +33,7 @@ const RoomDetailsButton = ({ roomId }) => {
 
   return (
     <div>
-      <button onClick={handleButtonClick}>Chi tiết phòng</button>
+      <button onClick={handleButtonClick}>Chi tiết phòng {roomId}</button>
       {isPopupOpen && (
         <div className="popup">
           {roomDetails ? (
@@ -46,6 +46,8 @@ const RoomDetailsButton = ({ roomId }) => {
               <p>Hạng phòng {roomDetails.tier}</p>
               <UserTakeRoomAmenity roomId={roomDetails.id}/>
               <UserTakeRoomImages roomId={roomDetails.id}/>
+              <UserPaymentButton roomId={roomDetails.id} accommodationId={accommodationId}/>
+              
               <button onClick={handleClosePopup}>Đóng</button>
             </div>
           ) : (
@@ -57,4 +59,4 @@ const RoomDetailsButton = ({ roomId }) => {
   );
 };
 
-export default RoomDetailsButton;
+export default RoomDetailsButton2;
