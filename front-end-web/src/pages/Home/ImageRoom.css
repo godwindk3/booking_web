@@ -184,24 +184,24 @@
     margin-right: auto;
     box-shadow: 0px 5px 20px 0px rgba(252, 108, 132, 0.666);
 }  
-.drop-container:hover {
+.drop-container-room:hover {
     background: #eee;
     border-color: #111;
 }  
-.drop-container:hover .drop-title {
+.drop-container-room:hover .drop-title {
     color: #222;
 }
-.drop-title {
+.drop-title-room {
     color: #444;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     transition: color .2s ease-in-out;
 }
-.drop-container.drag-active {
+.drop-container-room.drag-active {
     background: #eee;
     border-color: #111;
 }
-.drop-container.drag-active .drop-title {
+.drop-container-room.drag-active .drop-title {
     color: #222;
 }
