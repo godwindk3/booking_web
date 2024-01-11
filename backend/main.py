@@ -9,6 +9,7 @@ import routers.amenity_api as amenity_api
 import routers.image_api as image_api
 import routers.review_api as review_api
 import routers.payment_api as payment_api
+import routers.filter_api as filter_api
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -124,6 +125,7 @@ app.include_router(amenity_api.router)
 app.include_router(image_api.router)
 app.include_router(review_api.router)
 app.include_router(payment_api.router)
+app.include_router(filter_api.router)
 
 @app.get("/")
 async def hello_world():

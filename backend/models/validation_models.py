@@ -448,3 +448,8 @@ class AccommodationImageOut(BaseModelConfig):
             ]
         }
     }
+
+
+
+class AmenityIDFilter(BaseModelConfig):
+    id: int
