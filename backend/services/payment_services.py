@@ -59,7 +59,7 @@ def add_payment_method_to_accommodation(payment_id: int, accommodation_id: int):
 
     temp = db.query(data_models.AccommodationPayment).filter(
         data_models.AccommodationPayment.paymentID == payment_id,
-        data_models.AccommodationPayment.accommodation_id == accommodation_id
+        data_models.AccommodationPayment.accommodationID == accommodation_id
     ).first()
     if (temp is not None):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Payment with ID {payment_id} already exist in Accommodation ID {accommodation_id}.")
