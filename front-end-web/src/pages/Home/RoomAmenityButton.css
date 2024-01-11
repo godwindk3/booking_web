@@ -1,0 +1,28 @@
+.all-room-amenities-button {
+    padding         : 10px;
+    color           : #fff;
+    border          : none;
+    border-radius   : 100px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+
+    font-family: Arial;
+    font-size: 17px;
+    height: auto;
+    width: 200px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+
+    background-color: #FC6C85;
+    border: #FC6C85;
+    
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.all-room-amenities-button:hover {
+    background-color: #fd3355;
+}

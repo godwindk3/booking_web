@@ -29,7 +29,7 @@ const RoomAmenityDetachButton = ({ roomId, amenityId }) => {
   };
 
   return (
-    <button onClick={handleDetach}>Detach</button>
+    <button className='detach-amenity-button' onClick={handleDetach}>x</button>
   );
 };
 

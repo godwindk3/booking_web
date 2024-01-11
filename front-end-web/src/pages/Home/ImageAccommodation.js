@@ -155,7 +155,7 @@ const ImageAccommodation = ({ accommodationId }) => {
             <input className='acco-image-file-input' type="file" onChange={handleImageChange} id="images" accept="image/*" required/>
           </label>
           
-          <button className='upload-acco-image-button' onClick={handleImageUpload}>Upload Ảnh Khách Sạn</button>
+          <button className='upload-acco-image-button' onClick={handleImageUpload}>Tải ảnh lên</button>
         </div>
       </Slider>
 

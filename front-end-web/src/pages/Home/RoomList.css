@@ -1,3 +1,34 @@
+/* create room popup button */
+.create-room-popup-button {
+    padding         : 10px;
+    color           : #fff;
+    border          : none;
+    border-radius   : 100px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+
+    font-family: Arial;
+    font-size: 17px;
+    height: auto;
+    width: 300px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    background-color: #FC6C85;
+    border: #FC6C85;
+    
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.create-room-popup-button:hover {
+    background-color: #fd3355;
+}
+
 /* create room */
 .create-room-list-card {
     margin-top: 30px;
@@ -37,10 +68,9 @@
 .create-room-list-container::placeholder {
     color: #0000008a
 }
- .create-room-list-container input:focus {
+.create-room-list-container input:focus {
     border-color: #FC6C85;
 }
-
 .create-room-button {
     padding         : 10px;
     color           : #fff;
@@ -71,11 +101,153 @@
     background-color: #fd3355;
 }
 
-
-
 /* view room list */
 .view-roomlist-header-h2 {
     margin-top: 30px;
     font-family: Arial;
     color: black;
+}
+.room-card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 32px;
+    border: 1px solid var(--gray-200,#eaecf0);
+    background: var(--base-white,#fff);
+    box-shadow: var(--shadow-sm);
+    width: 1200px;
+    font-family: Arial;
+    border-color: #fc6c85;
+    box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+    margin-left: auto;
+    margin-right: auto;
+
+    /* position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    flex-direction: column; 
+}
+.room-info {
+    font-family: Arial;
+    font-size: 17px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.update-room-button-container {
+    /* margin-left: 10px;  */
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 2px;
+    padding: 0px 333px;
+
+    margin-top: 20px;
+}
+.update-room-button {
+    padding         : 10px;
+    color           : #fff;
+    border          : none;
+    border-radius   : 100px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+  
+    font-family: Arial;
+    font-size: 17px;
+    height: auto;
+    width: 200px;
+  
+    background-color: #FC6C85;
+    border: #FC6C85;
+    
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.update-room-button:hover {
+    /* background-color: #0056b3; */
+    background-color: #fd3355;
+}
+
+.view-room-info-hr {
+    width: 900px;
+    padding-left: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.view-room-info-hr2 {
+    width: 900px;
+    padding-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.update-room-p {
+    margin-left: 120px;
+    font-family: Arial;
+    font-size: 15px;
+    color: #666;
+}
+.confirm-update-room-button {
+    padding         : 10px;
+    color           : #fff;
+    border          : none;
+    border-radius   : 100px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+
+    font-family: Arial;
+    font-size: 17px;
+    height: 50px;
+    width: 1000px;
+
+    background-color: #FC6C85;
+    border: #FC6C85;
+    
+    padding: 16px 20px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    margin-left: 100px;
+    margin-bottom: 60px;
+}
+.confirm-update-room-button:hover {
+    background-color: #fd3355;
+}
+
+.h2-room-header {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: Arial;
+    color: black;
+    font-size: 33px;
+}
+
+.item-room-button {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: #fff;
+    font-family: Arial;
+    font-size: 17px;
+    width: max-content;
+
+    padding: 10px 100px;
+}
+.item-room-button:hover {
+    cursor: pointer;
+    color: #FC6C85;
+    text-decoration: underline;
+}
+.item-room-button.active {
+    cursor: pointer;
+    color: #FC6C85;
+    text-decoration: underline;
 }
