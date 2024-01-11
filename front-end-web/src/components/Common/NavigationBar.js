@@ -177,7 +177,7 @@ const NavigationBar = ({ keyProp,isLoggedIn, onLogout }) => {
                   {showAdditionalButton && (
                     <NavLink exact to="/membership" style={{ textDecoration: 'none' }}>
                       <button className="flex align-center gap-24 login-button">
-                        Membership
+                        Thông tin
                       </button>
                     </NavLink>
                   )}

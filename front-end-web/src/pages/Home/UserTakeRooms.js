@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from './axiosConfig';
 import UserTakeRoomImages from './UserTakeRoomImages';
 import UserTakeRoomAmenity from './UserTakeRoomAmenity';
+import UserPaymentButton from './UserPaymentButton';
 const UserTakeRooms = ({ accommodationId }) => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,6 +44,10 @@ const UserTakeRooms = ({ accommodationId }) => {
                 </>
                 <>
                 <UserTakeRoomImages roomId={room.id}/>
+                </>
+                <>
+                <UserPaymentButton accommodationId={accommodationId} roomId={room.id}/>
+                {/* aaaaaaaaaaaaaaaaaaaaa */}
                 </>
               </li>
               
