@@ -62,6 +62,9 @@ import OwnerRegister from './pages/Home/OwnerRegister.js';
 import OwnerDashboard from './pages/Home/OwnerDashboard.js';
 import PrivateOwnerRoute from './pages/Home/PrivateOwnerRoute.js';
 import AccommodationDetails from './pages/Home/AccommodationDetails.js';
+import AdminDashboardPage from './pages/Admin/AdminDashboardPage.js';
+import PrivateAdminRoute from './pages/Admin/PrivateAdminRoute.js';
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token') !== null);
   const [key, setKey] = useState(0);
@@ -88,7 +91,6 @@ const App = () => {
           <Route path="/ownerregister" element={<OwnerRegister />} />
           <Route path="/getaccommodation/" element={<GetAccommodation />} />
           <Route path="/getaccommodation/:accommodationId" element={<AccommodationDetails />} />
-
           {/* <Route path="/ownerdashboard" element={<OwnerDashboard />} /> */}
           <Route
             path="/membership"
@@ -96,6 +98,14 @@ const App = () => {
               <PrivateRoute>
                 <MembershipPage />
               </PrivateRoute>
+            }
+          />
+          <Route
+            path="/accountmanagement"
+            element={
+              <PrivateAdminRoute>
+                <AdminDashboardPage />
+              </PrivateAdminRoute>
             }
           />
           <Route

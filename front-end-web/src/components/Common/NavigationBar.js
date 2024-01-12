@@ -178,7 +178,7 @@ const NavigationBar = ({ keyProp, isLoggedIn, onLogout }) => {
               ) : userRole === 2 ? (
                 <NavLink exact to="/accountmanagement" style={{ textDecoration: 'none' }}>
                   <button className="h-full flex align-center doitac-button gap-24 nav-button">
-                    Quản lý tài khoản
+                    Quản lý tài khoản người dùng
                   </button>
                 </NavLink>
               ) : (
