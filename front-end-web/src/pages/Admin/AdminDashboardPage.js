@@ -4,13 +4,16 @@ import AdminAmenity from './AdminAmenity';
 const AdminDashboardPage = () => {
   return (
     <div>
-      <h1>Admin Dashboard</h1>
-      
-      {/* Render other admin components as needed */}
-      <AdminPayment />
+      <h2 className='h2-header'>THƯA NGÀI &lt;3</h2>
 
-      {/* Add more components as needed */}
-      <AdminAmenity/>
+      <div >
+        <AdminAmenity/>
+      </div>
+
+      <div className="create-hotel-card">
+        <AdminPayment />
+      </div>
+
     </div>
   );
 };

@@ -141,7 +141,7 @@ const GetAccommodation = () => {
 
   return (
     <div>
-      <h2>Danh sách khách sạn</h2>
+      <h2 className='h2-header'>Danh sách khách sạn</h2>
       {error && <p>{error}</p>}
       <div>
         {accommodations.map((accommodation) => (

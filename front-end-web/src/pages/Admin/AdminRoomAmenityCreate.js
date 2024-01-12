@@ -46,8 +46,9 @@ const AdminRoomAmenityCreate = () => {
 
   return (
     <div>
-      <h2>Create Room Amenity</h2>
-      <div>
+      <h2 className='h2-header'>Tạo tiện ích phòng</h2>
+
+      {/* <div>
         <label>
           Amenity Name:
           <input
@@ -59,7 +60,21 @@ const AdminRoomAmenityCreate = () => {
       </div>
       <div>
         <button onClick={handleCreateRoomAmenity}>Create Room Amenity</button>
-      </div>
+      </div> */}
+
+      <form className='admin-create-payment-input-container'>
+        <label className='admin-create-payment-p'>Tiện ích phòng</label>
+
+        <div className='admin-create-paymentmethod-input-and-button'>
+          <input 
+            type="text"
+            value={amenityName}
+            onChange={(e) => setAmenityName(e.target.value)}
+          />
+          <button onClick={handleCreateRoomAmenity}>Tạo tiện ích phòng</button>
+        </div>
+      </form>
+
       {errorMessage && (
         <div style={{ color: 'red', marginTop: '10px' }}>{errorMessage}</div>
       )}

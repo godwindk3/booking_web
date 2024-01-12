@@ -46,8 +46,9 @@ const AdminAccommodationAmenityCreate = () => {
 
   return (
     <div>
-      <h2>Create Accommodation Amenity</h2>
-      <div>
+      <h2 className='h2-header'>Tạo tiện ích khách sạn</h2>
+
+      {/* <div>
         <label>
           Amenity Name:
           <input
@@ -59,7 +60,21 @@ const AdminAccommodationAmenityCreate = () => {
       </div>
       <div>
         <button onClick={handleCreateAccommodationAmenity}>Create Accommodation Amenity</button>
-      </div>
+      </div> */}
+
+      <form className='admin-create-payment-input-container'>   
+        <label className='admin-create-payment-p'>Tiện ích khách sạn</label>
+
+        <div className='admin-create-paymentmethod-input-and-button'>
+          <input
+            type="text"
+            value={amenityName}
+            onChange={(e) => setAmenityName(e.target.value)}
+          />
+          <button onClick={handleCreateAccommodationAmenity}>Tạo tiện ích khách sạn</button>
+        </div>
+      </form>
+
       {errorMessage && (
         <div style={{ color: 'red', marginTop: '10px' }}>{errorMessage}</div>
       )}
