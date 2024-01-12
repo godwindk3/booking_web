@@ -259,7 +259,7 @@ async def update_room_amenity(amenity_id: int, amenity: validation_models.RoomAm
 async def update_accommodation_amenity(amenity_id: int, amenity: validation_models.AccommodationAmenity, current_user_data: validation_models.User = Depends(oauth2.get_current_user)):
     """
 - Hàm nhận name (tên tiện ích khách sạn) và amenity_id tương ứng (ID của tiện ích khách 
-sạn) để cập nhật thông tin tiện ích khách đó.
+sạn) để cập nhật thông tin tiện ích khách sạn đó.
 - Cần role admin để gọi API.
 - Status code:
     - 200: Thành công.

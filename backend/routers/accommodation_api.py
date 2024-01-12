@@ -96,6 +96,13 @@ async def fetch_manager_by_acco_id(id: int, current_user_data: validation_models
 
 @router.get("/{id}/get_price",response_model=validation_models.PriceRangeFilter, status_code=status.HTTP_200_OK)
 async def fetch_accommodation_price(id: int):
+    """
+- API nhận vào ID của khách sạn và trả về giá thấp nhất và cao nhất của phòng trong khách sạn có ID đó.
+- Status code:
+    - 200: Thành công.
+    - 422: Truyền dữ liệu.
+    - 404: Không tìm thấy khách sạn với ID đó.
+    """
     return accommodation_services.get_price(id)
 
 

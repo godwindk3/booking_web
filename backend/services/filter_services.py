@@ -42,6 +42,16 @@ def filter_accommodation_by_price(price_range:validation_models.PriceRangeFilter
     return db.query(data_models.Accommodation).filter(data_models.Accommodation.id.in_(ids)).all()
 
 
+def filter_accommodations_by_location(location_query: str):
+    accommodations = accommodation_services.get_all_accommodations()
+
+    ids = []
+
+    for accommodation in accommodations:
+        if (location_query.lower().strip() in accommodation.location.lower()):
+            ids.append(accommodation.id)
+
+    return db.query(data_models.Accommodation).filter(data_models.Accommodation.id.in_(ids)).all()
 # res = search_accommodation_by_name("V")
 
 # for _ in res:
