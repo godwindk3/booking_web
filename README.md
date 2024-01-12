@@ -17,6 +17,8 @@
         - chmod +x run_server.sh
         - chmod +x run.sh
 
+        - bash run.sh
+
 
     
 
