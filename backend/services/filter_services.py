@@ -36,7 +36,9 @@ def filter_accommodation_by_price(price_range:validation_models.PriceRangeFilter
         min_price_ = range_.min_price
         max_price_ = range_.max_price
 
-        if (price_range.min_price >= min_price_ and price_range.max_price <= max_price_):
+        print(accommodation.name)
+
+        if (price_range.min_price <= min_price_ and price_range.max_price >= max_price_):
             ids.append(accommodation.id)
 
     return db.query(data_models.Accommodation).filter(data_models.Accommodation.id.in_(ids)).all()
