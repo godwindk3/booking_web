@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import axios from './axiosConfig';
 
+import './FilterAccommodation.css'
+
 const FilterAccommodation = ({ accommodationId }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState('');
@@ -32,25 +34,27 @@ const FilterAccommodation = ({ accommodationId }) => {
       {searchResults.length > 0 && (
         <div>
           <h2 className='h2-header'>Kết quả tìm kiếm:</h2>
-
-          <div className="create-hotel-card">
-          <ul>
+          
+          <div>
             {searchResults.map((result) => (
-              <li key={result.id}>
-                {/* <strong>Name:</strong>  */}
-                {/* Use Link to make the Name clickable and navigate to the specified route */}
-
-                <Link to={`/getaccommodation/${result.id}`}>
-                  {result.name}
+              <div className="filter-accommodation-card" key={result.id}>
+                <Link to={`/getaccommodation/${result.id}`} className='filter-accommodation-container'>
+                  <div className='filter-accommodation-li'>
+                    {/* <strong>Name:</strong> */}
+                    {result.name}
+                    <br />
+                    {/* <strong>Location:</strong> */}
+                    {result.location}
+                    <br />
+                    {/* <strong>Info:</strong> */}
+                    {/* {result.info} */}
+                  </div>
                 </Link>
-
-                <br />
-                <strong>Location:</strong> {result.location}<br />
-                <strong>Info:</strong> {result.info}
-              </li>
+              </div>
             ))}
-          </ul>
           </div>
+
+          
         </div>
       )}
     </div>

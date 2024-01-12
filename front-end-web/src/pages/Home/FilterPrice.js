@@ -46,21 +46,28 @@ const FilterPrice = ({ minPrice, maxPrice }) => {
 
       {searchResults.length > 0 && (
         <div>
-          <h3>Search Results:</h3>
-          <ul>
+          <h2 className='h2-header'>Kết quả tìm kiếm:</h2>
+          <div>
             {searchResults.map((result) => (
-              <li key={result.id}>
-                <strong>Name:</strong>
+              <div className="filter-accommodation-card" key={result.id}>
+
                 {/* Use Link to make the Name clickable and navigate to the specified route */}
-                <Link to={`/getaccommodation/${result.id}`}>
-                  {result.name}
+                <Link to={`/getaccommodation/${result.id}`} className='filter-accommodation-container'>
+                  <div className='filter-accommodation-li'>
+                    {/* <strong>Name:</strong> */}
+                    {result.name}
+                    <br />
+                    {/* <strong>Location:</strong>  */}
+                    {result.location}
+                    <br />
+                    {/* <strong>Info:</strong>  */}
+                    {/* {result.info} */}
+                  </div>
                 </Link>
-                <br />
-                <strong>Location:</strong> {result.location}<br />
-                <strong>Info:</strong> {result.info}
-              </li>
+
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>
