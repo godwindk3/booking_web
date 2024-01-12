@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from '../Home/axiosConfig';
 
+import './AdminCreatePayment.css'
+
 const AdminCreatePayment = () => {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -46,9 +48,9 @@ const AdminCreatePayment = () => {
 
   return (
     <div>
-      <h2>Create Payment</h2>
-      <div>
-        <label>
+      <h2 className='h2-header'>Tạo phương thức thanh toán</h2>
+      {/* <div>
+        <label className='update-hotel-p'>
           Payment Method:
           <input
             type="text"
@@ -56,16 +58,29 @@ const AdminCreatePayment = () => {
             onChange={(e) => setPaymentMethod(e.target.value)}
           />
         </label>
-      </div>
-      <div>
-        <button onClick={handleCreatePayment}>Create Payment</button>
-      </div>
+      </div> */}
+
+      <form className='admin-create-payment-input-container'>
+        <label className='admin-create-payment-p'>Phương thức thanh toán</label>
+
+        <div className='admin-create-paymentmethod-input-and-button'>
+          <input 
+            type="text"
+            value={paymentMethod}
+            onChange={(e) => setPaymentMethod(e.target.value)}
+          />
+
+          <button onClick={handleCreatePayment}>Tạo phương thức</button>
+        </div>
+      </form>
+
       {errorMessage && (
         <div style={{ color: 'red', marginTop: '10px' }}>{errorMessage}</div>
       )}
       {successMessage && (
         <div style={{ color: 'green', marginTop: '10px' }}>{successMessage}</div>
       )}
+
     </div>
   );
 };

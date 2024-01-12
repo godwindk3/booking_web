@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from '../Home/axiosConfig';
 
+import './AdminDeletePaymentButton.css';
+
 const AdminDeletePaymentButton = ({ paymentId }) => {
   const handleDeletePayment = async () => {
     try {
@@ -31,8 +33,8 @@ const AdminDeletePaymentButton = ({ paymentId }) => {
   };
 
   return (
-    <button onClick={handleDeletePayment}>
-      Delete Payment
+    <button className='detach-amenity-button' onClick={handleDeletePayment}>
+      x
     </button>
   );
 };

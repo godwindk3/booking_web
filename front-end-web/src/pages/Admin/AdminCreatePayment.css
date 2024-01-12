@@ -1,0 +1,56 @@
+.admin-create-paymentmethod-input-and-button {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.admin-create-payment-p {
+    margin-left: 20px;
+    font-family: Arial;
+    font-size: 15px;
+    color: #666;
+}
+.admin-create-payment-input-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.admin-create-payment-input-container input {
+    width: 800px;
+    height: 40px;
+    padding: 16px 20px;
+    border: 1px solid #EAEAEA;
+    border-radius: 100px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+.admin-create-payment-input-container input:focus {
+    border-color: #FC6C85;
+}
+
+.admin-create-payment-input-container button {
+    padding         : 10px;
+    color           : #fff;
+    border          : none;
+    border-radius   : 100px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+
+    font-family: Arial;
+    font-size: 17px;
+    height: 73.6px;
+    width: auto;
+
+    background-color: #FC6C85;
+    border: #FC6C85;
+    
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin-create-payment-input-container button:hover {
+    background-color: #fd3355;
+}

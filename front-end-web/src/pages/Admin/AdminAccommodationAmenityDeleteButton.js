@@ -38,7 +38,7 @@ const AdminAccommodationAmenityDeleteButton = ({ amenityId }) => {
 
   return (
     <div>
-      <button onClick={handleDeleteAccommodationAmenity}>Delete Accommodation Amenity</button>
+      <button className='detach-amenity-button' onClick={handleDeleteAccommodationAmenity}>x</button>
       {errorMessage && (
         <div style={{ color: 'red', marginTop: '10px' }}>{errorMessage}</div>
       )}

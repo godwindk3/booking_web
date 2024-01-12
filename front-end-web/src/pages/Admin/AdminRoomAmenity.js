@@ -27,21 +27,29 @@ const AdminRoomAmenity = () => {
 
   return (
     <div>
-        <AdminRoomAmenityCreate/>
-      <h2>Room Amenities List</h2>
+      <AdminRoomAmenityCreate/>
+      <hr className='admin-payment-hr'></hr>
+      <h2 className='h2-header'>Danh sách tiện ích phòng</h2>
+
       {loading && <p>Loading room amenities...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      {!loading && !error && (
-        <ul>
-          {roomAmenities.map((amenity) => (
-            <li key={amenity.id}>
-              <p>ID: {amenity.id}</p>
-              <p>Name: {amenity.name}</p>
-              <AdminRoomAmenityDeleteButton amenityId={amenity.id}/>
-            </li>
-          ))}
-        </ul>
-      )}
+
+      <div className='your-hotel-amenity-list'>
+        {!loading && !error && (
+          <ul className='your-hotel-amenity-list-ul'>
+            {roomAmenities.map((amenity) => (
+              <li className='your-hotel-amenity-list-li' key={amenity.id}>
+                {/* <p>ID: {amenity.id}</p> */}
+                {amenity.name}
+
+                <div className="your-hotel-amenity-item">
+                  <AdminRoomAmenityDeleteButton amenityId={amenity.id}/>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
