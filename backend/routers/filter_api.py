@@ -15,6 +15,6 @@ async def search_filter_accommodation(string_query: str):
 async def filter_amenities(amenity_ids: List[validation_models.AmenityIDFilter]):
     return filter_services.filter_accommodation_by_amenities(amenity_ids)
 
-@router.post("/price", response_model=List[validation_models.AccommodationAmenityOut], status_code=status.HTTP_200_OK)
+@router.post("/price", response_model=List[validation_models.AccommodationOut], status_code=status.HTTP_200_OK)
 async def filter_prices(price_range: validation_models.PriceRangeFilter):
     return filter_services.filter_accommodation_by_price(price_range)
