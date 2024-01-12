@@ -16,10 +16,12 @@ const PaymentDetachButton = ({ accommodationId, paymentId }) => {
       );
 
       console.log('Payment method removed successfully');
+      alert('Payment method removed successfully')
       // Additional logic after successful removal
       // You may want to update the UI or perform other actions
     } catch (error) {
       console.error('Error during payment removal:', error.message);
+      alert('Fail' + error.message)
     }
   };
 

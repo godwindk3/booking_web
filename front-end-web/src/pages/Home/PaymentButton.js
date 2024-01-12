@@ -40,10 +40,12 @@ const PaymentButton = ({ accommodationId }) => {
       );
 
       console.log('Payment method attached successfully');
+      alert('Payment method attached successfully')
       // Additional logic after successful attachment
       // You may want to update the UI or perform other actions
     } catch (error) {
       console.error('Error during payment attachment:', error.message);
+      alert('Fail' + error.message)
     }
   };
 

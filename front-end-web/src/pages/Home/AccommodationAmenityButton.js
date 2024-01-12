@@ -49,6 +49,7 @@ const AccommodationAmenityButton = ({ accommodationId }) => {
         // You may want to update the UI or perform other actions
       } else {
         console.error('Amenity attachment failed');
+        alert('Amenity attached fail')
         
         // Additional logic after failed attachment
       }
