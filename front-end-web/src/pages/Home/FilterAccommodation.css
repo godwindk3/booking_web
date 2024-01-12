@@ -1,0 +1,42 @@
+.filter-accommodation-container {
+    color: black;
+}
+.filter-accommodation-container:hover {
+    color: #fc6c85;
+}
+.filter-accommodation-container:link { 
+    text-decoration: none; 
+} 
+.filter-accommodation-container:visited { 
+    text-decoration: none; 
+} 
+.filter-accommodation-container:hover { 
+    text-decoration: none; 
+} 
+.filter-accommodation-container:active { 
+    text-decoration: none; 
+}
+
+.filter-accommodation-card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 32px;
+    border: 1px solid var(--gray-200,#eaecf0);
+    background: var(--base-white,#fff);
+    box-shadow: var(--shadow-sm);
+    width: 1057.6px;
+    font-family: Arial;
+    border-color: #fc6c85;
+    box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+    margin-left: auto;
+    margin-right: auto;
+
+    flex-direction: column; 
+}
+
+.filter-accommodation-li {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
