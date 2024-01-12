@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import axios from './axiosConfig';
 
 const FilterPrice = ({ minPrice, maxPrice }) => {
@@ -19,7 +20,6 @@ const FilterPrice = ({ minPrice, maxPrice }) => {
 
         setSearchResults(response.data);
         setError('');
-        console.log(response.data)
       } catch (error) {
         console.error('Error filtering by price:', error);
         setSearchResults([]);
@@ -42,7 +42,6 @@ const FilterPrice = ({ minPrice, maxPrice }) => {
 
   return (
     <div>
-
       {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
 
       {searchResults.length > 0 && (
@@ -51,7 +50,12 @@ const FilterPrice = ({ minPrice, maxPrice }) => {
           <ul>
             {searchResults.map((result) => (
               <li key={result.id}>
-                <strong>Name:</strong> {result.name}<br />
+                <strong>Name:</strong>
+                {/* Use Link to make the Name clickable and navigate to the specified route */}
+                <Link to={`/getaccommodation/${result.id}`}>
+                  {result.name}
+                </Link>
+                <br />
                 <strong>Location:</strong> {result.location}<br />
                 <strong>Info:</strong> {result.info}
               </li>
