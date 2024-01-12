@@ -115,7 +115,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# app.include_router(admin_api.router)
+app.include_router(admin_api.router)
 app.include_router(authentication_api.router)
 app.include_router(user_api.router)
 app.include_router(booking_api.router)
