@@ -31,21 +31,26 @@ const FilterAccommodation = ({ accommodationId }) => {
 
       {searchResults.length > 0 && (
         <div>
-          <h3>Search Results:</h3>
+          <h2 className='h2-header'>Kết quả tìm kiếm:</h2>
+
+          <div className="create-hotel-card">
           <ul>
             {searchResults.map((result) => (
               <li key={result.id}>
-                <strong>Name:</strong> 
+                {/* <strong>Name:</strong>  */}
                 {/* Use Link to make the Name clickable and navigate to the specified route */}
+
                 <Link to={`/getaccommodation/${result.id}`}>
                   {result.name}
                 </Link>
+
                 <br />
                 <strong>Location:</strong> {result.location}<br />
                 <strong>Info:</strong> {result.info}
               </li>
             ))}
           </ul>
+          </div>
         </div>
       )}
     </div>
