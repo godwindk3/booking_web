@@ -3,7 +3,8 @@ import axios from '../Home/axiosConfig';
 import UserTakeRoomImages from './UserTakeRoomImages';
 import UserTakeRoomAmenity from './UserTakeRoomAmenity';
 import UserPaymentButton from './UserPaymentButton';
-const RoomDetailsButton2 = ({ roomId, accommodationId }) => {
+import UserPaymentButton2 from './UserPaymentButton2';
+const RoomDetailsButton2 = ({ roomId, accommodationId, checkin, checkout }) => {
   const [roomDetails, setRoomDetails] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -46,8 +47,8 @@ const RoomDetailsButton2 = ({ roomId, accommodationId }) => {
               <p>Hạng phòng {roomDetails.tier}</p>
               <UserTakeRoomAmenity roomId={roomDetails.id}/>
               <UserTakeRoomImages roomId={roomDetails.id}/>
-              <UserPaymentButton roomId={roomDetails.id} accommodationId={accommodationId}/>
-              
+              {/* <UserPaymentButton roomId={roomDetails.id} accommodationId={accommodationId}/> */}
+              <UserPaymentButton2 roomId={roomDetails.id} accommodationId={accommodationId} checkinDate={checkin} checkoutDate={checkout}/>
               <button onClick={handleClosePopup}>Đóng</button>
             </div>
           ) : (

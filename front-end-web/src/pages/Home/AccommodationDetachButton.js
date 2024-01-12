@@ -22,6 +22,7 @@ const AccommodationDetachButton = ({ accommodationId, amenityId }) => {
         // You may want to update the UI or perform other actions
       } else {
         console.error('Amenity detachment failed');
+        alert('Amenity detached fail')
         // Additional logic after failed detachment
       }
     } catch (error) {
