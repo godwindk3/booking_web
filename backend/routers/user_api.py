@@ -29,7 +29,7 @@ async def fetch_current_user_info(current_user_data: validation_models.User = De
             status_code=status.HTTP_403_FORBIDDEN, detail=f"Unauthorized.")
     return user_services.get_user_by_id(current_user_data.id)
 
-@router.get("/{user_id}", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
+@router.get("/get_by_id/{user_id}", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
 async def fetch_user_by_id(user_id: int):
     return user_services.get_user_by_id(user_id)
 
