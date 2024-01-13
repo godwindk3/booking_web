@@ -8,7 +8,7 @@ const UserProfile = ({ userId }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`/user/${userId}`);
+        const response = await axios.get(`/user/get_by_id/${userId}`);
         setUserData(response.data);
         setError(null);
       } catch (error) {
