@@ -69,7 +69,7 @@ const UserTakeRoomImages = ({ roomId }) => {
 
   return (
     <div>
-      <h2 className='your-booked-hotel-header'>Ảnh phòng</h2>
+      <h2 className='your-booked-hotel-header-vcl-xin-m-day-csss'>Ảnh phòng</h2>
       <Slider {...settings} className='user-room-slider-container'>
         {imageUrls.map((imageUrl, index) => (
           <div key={index}>

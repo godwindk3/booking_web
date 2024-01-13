@@ -29,6 +29,10 @@ async def fetch_current_user_info(current_user_data: validation_models.User = De
             status_code=status.HTTP_403_FORBIDDEN, detail=f"Unauthorized.")
     return user_services.get_user_by_id(current_user_data.id)
 
+@router.get("/get_by_id/{user_id}", response_model=validation_models.UserOut, status_code=status.HTTP_200_OK)
+async def fetch_user_by_id(user_id: int):
+    return user_services.get_user_by_id(user_id)
+
 
 @router.get("/get_managed_accommodation", response_model=List[validation_models.AccommodationOut], status_code=status.HTTP_200_OK)
 async def fetch_manager_accommodation(current_user_data: validation_models.User = Depends(oauth2.get_current_user)):

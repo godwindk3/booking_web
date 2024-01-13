@@ -47,7 +47,7 @@ const RoomDetailsButton = ({ roomId }) => {
 
             <div className='your-booked-hotel-card'>
               <div className='your-booked-hotel-container'>
-                <h2 className='your-booked-hotel-header2'>{roomDetails.room_name}</h2>
+                <h2 className='your-booked-hotel-header-vcl-xin-m-day-csss'>{roomDetails.room_name}</h2>
 
                 <div className='your-booked-hotel-details'>
                   <div> <strong>Sức chứa:</strong> {roomDetails.capacity}</div>

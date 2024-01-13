@@ -1,0 +1,38 @@
+.
+├── create_db.py
+├── database.py
+├── main.py
+├── models
+│   ├── data_models.py
+│   └── validation_models.py
+├── requirements.txt
+├── routers
+│   ├── accommodation_api.py
+│   ├── admin_api.py
+│   ├── amenity_api.py
+│   ├── authentication_api.py
+│   ├── booking_api.py
+│   ├── filter_api.py
+│   ├── image_api.py
+│   ├── payment_api.py
+│   ├── review_api.py
+│   ├── room_api.py
+│   └── user_api.py
+├── services
+│   ├── acco_ammenity_services.py
+│   ├── acco_image_services.py
+│   ├── accommodation_services.py
+│   ├── auth_services.py
+│   ├── booking_services.py
+│   ├── filter_services.py
+│   ├── manager_services.py
+│   ├── oauth2.py
+│   ├── payment_services.py
+│   ├── review_services.py
+│   ├── room_ammenity_services.py
+│   ├── room_image_services.py
+│   ├── room_services.py
+│   ├── user_services.py
+│   └── utils.py
+└── tree_structure.txt
+

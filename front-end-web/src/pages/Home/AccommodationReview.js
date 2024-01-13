@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 
 import './AccommodationReview.css'
+import UserProfile from './GetUserNameById';
 
 const AccommodationReview = ({ accommodationId }) => {
   const [reviews, setReviews] = useState([]);
@@ -50,9 +51,17 @@ const AccommodationReview = ({ accommodationId }) => {
         {reviews.map((review) => (
           <ul className='get-acco-review-ul' key={review.id}>
             {/* <li>Booking ID: {review.bookingID}</li> */}
-            <div className='get-your-review'>
+
+            {/* <div className='get-your-review'>
               <div>User ID {review.userID}</div>
 
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+              {generateRatingStars(review.rating)}
+              {generateUnratedStars(review.rating)}
+            </div> */}
+
+            <div className='get-your-review'> 
+              <UserProfile userId={review.userID}/> 
               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
               {generateRatingStars(review.rating)}
               {generateUnratedStars(review.rating)}
