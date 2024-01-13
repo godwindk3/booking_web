@@ -9,7 +9,7 @@
     - Frontend:
         - cd vào folder front-end-web: cd front-end-web
         - Chạy lệnh: npm install
-- Cách tạo file .env(Đã có ví dụ trong .env.example)
+- Cách tạo file .env (Đã có ví dụ trong .env.example)
   - DB_USER_NAME= nhập tên người dùng database(postgres) ví dụ : DB_USER_NAME=postgres
   - DB_HOST= địa chỉ url ví dụ : DB_HOST=localhost
   - DB_NAME= tên databse ví dụ : DB_NAME=booking
