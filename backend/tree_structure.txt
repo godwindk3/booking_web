@@ -1,0 +1,75 @@
+.
+├── create_db.py
+├── database.py
+├── __init__.py
+├── main.py
+├── models
+│   ├── data_models.py
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── data_models.cpython-310.pyc
+│   │   └── validation_models.cpython-310.pyc
+│   └── validation_models.py
+├── __pycache__
+│   ├── database.cpython-310.pyc
+│   └── main.cpython-310.pyc
+├── requirements.txt
+├── routers
+│   ├── accommodation_api.py
+│   ├── admin_api.py
+│   ├── amenity_api.py
+│   ├── authentication_api.py
+│   ├── booking_api.py
+│   ├── filter_api.py
+│   ├── image_api.py
+│   ├── payment_api.py
+│   ├── __pycache__
+│   │   ├── accommodation_api.cpython-310.pyc
+│   │   ├── admin_api.cpython-310.pyc
+│   │   ├── amenity_api.cpython-310.pyc
+│   │   ├── authentication_api.cpython-310.pyc
+│   │   ├── booking_api.cpython-310.pyc
+│   │   ├── filter_api.cpython-310.pyc
+│   │   ├── image_api.cpython-310.pyc
+│   │   ├── payment_api.cpython-310.pyc
+│   │   ├── review_api.cpython-310.pyc
+│   │   ├── room_api.cpython-310.pyc
+│   │   └── user_api.cpython-310.pyc
+│   ├── review_api.py
+│   ├── room_api.py
+│   └── user_api.py
+├── services
+│   ├── acco_ammenity_services.py
+│   ├── acco_image_services.py
+│   ├── accommodation_services.py
+│   ├── auth_services.py
+│   ├── booking_services.py
+│   ├── filter_services.py
+│   ├── manager_services.py
+│   ├── oauth2.py
+│   ├── payment_services.py
+│   ├── __pycache__
+│   │   ├── acco_ammenity_services.cpython-310.pyc
+│   │   ├── acco_image_services.cpython-310.pyc
+│   │   ├── accommodation_services.cpython-310.pyc
+│   │   ├── auth_services.cpython-310.pyc
+│   │   ├── booking_services.cpython-310.pyc
+│   │   ├── filter_services.cpython-310.pyc
+│   │   ├── manager_services.cpython-310.pyc
+│   │   ├── oauth2.cpython-310.pyc
+│   │   ├── payment_services.cpython-310.pyc
+│   │   ├── review_services.cpython-310.pyc
+│   │   ├── room_ammenity_services.cpython-310.pyc
+│   │   ├── room_image_services.cpython-310.pyc
+│   │   ├── room_services.cpython-310.pyc
+│   │   ├── user_services.cpython-310.pyc
+│   │   └── utils.cpython-310.pyc
+│   ├── review_services.py
+│   ├── room_ammenity_services.py
+│   ├── room_image_services.py
+│   ├── room_services.py
+│   ├── user_services.py
+│   └── utils.py
+└── tree_structure.txt
+
+7 directories, 65 files
