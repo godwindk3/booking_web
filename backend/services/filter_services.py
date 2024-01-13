@@ -56,8 +56,7 @@ def filter_accommodations_by_location(location_query: str):
     return db.query(data_models.Accommodation).filter(data_models.Accommodation.id.in_(ids)).all()
 
 
-def get_intersect_filters(list(list(validation_models.AccommodationOut))):
-    pass
+
 # res = search_accommodation_by_name("V")
 
 # for _ in res:
