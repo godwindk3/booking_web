@@ -54,6 +54,9 @@ def filter_accommodations_by_location(location_query: str):
             ids.append(accommodation.id)
 
     return db.query(data_models.Accommodation).filter(data_models.Accommodation.id.in_(ids)).all()
+
+
+
 # res = search_accommodation_by_name("V")
 
 # for _ in res:
