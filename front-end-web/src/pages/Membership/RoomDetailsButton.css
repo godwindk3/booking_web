@@ -1,0 +1,49 @@
+.your-booked-hotel-header {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: Arial;
+    color: black;  
+    font-size: 25px;
+
+    text-align: left;
+}
+.your-booked-hotel-header2 {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-family: Arial;
+    color: black;  
+    font-size: 25px;
+
+    text-align: left;
+}
+
+.your-booked-hotel-details {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.your-booked-hotel-card {
+    margin-bottom: 30px;
+    border-radius: 32px;
+
+    border: 1px solid var(--gray-200,#eaecf0);
+    background: var(--base-white,#fff);
+    box-shadow: var(--shadow-sm);
+    width: 1050px;
+    height: auto + 30px;
+
+    font-family: Arial;
+
+    border-color: #0000002b;
+
+    margin-left: auto;
+    margin-right: auto;
+    
+    flex-direction: column;
+    padding: 10px;
+}
+.your-booked-hotel-container {
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

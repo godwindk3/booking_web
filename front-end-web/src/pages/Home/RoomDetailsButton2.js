@@ -4,6 +4,9 @@ import UserTakeRoomImages from './UserTakeRoomImages';
 import UserTakeRoomAmenity from './UserTakeRoomAmenity';
 import UserPaymentButton from './UserPaymentButton';
 import UserPaymentButton2 from './UserPaymentButton2';
+
+
+
 const RoomDetailsButton2 = ({ roomId, accommodationId, checkin, checkout }) => {
   const [roomDetails, setRoomDetails] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -35,20 +38,24 @@ const RoomDetailsButton2 = ({ roomId, accommodationId, checkin, checkout }) => {
   return (
     <div>
       <button onClick={handleButtonClick}>Chi tiết phòng {roomId}</button>
+
       {isPopupOpen && (
         <div className="popup">
           {roomDetails ? (
             <div>
-              <p>Số phòng: {roomDetails.room_name}</p>
+              <p>{roomDetails.room_name}</p>
               <p>Sức chứa {roomDetails.capacity}</p>
               <p>Thông tin: {roomDetails.info}</p>
               <p>Giá(1 đêm): {roomDetails.price}</p>
               {/* <p>Trạng thái: {roomDetails.status ? 'Available' : 'Occupied'}</p> */}
               <p>Hạng phòng {roomDetails.tier}</p>
+
               <UserTakeRoomAmenity roomId={roomDetails.id}/>
               <UserTakeRoomImages roomId={roomDetails.id}/>
+
               {/* <UserPaymentButton roomId={roomDetails.id} accommodationId={accommodationId}/> */}
               <UserPaymentButton2 roomId={roomDetails.id} accommodationId={accommodationId} checkinDate={checkin} checkoutDate={checkout}/>
+
               <button onClick={handleClosePopup}>Đóng</button>
             </div>
           ) : (
@@ -56,6 +63,7 @@ const RoomDetailsButton2 = ({ roomId, accommodationId, checkin, checkout }) => {
           )}
         </div>
       )}
+      
     </div>
   );
 };

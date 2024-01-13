@@ -1,0 +1,23 @@
+.get-acco-review-card {
+    margin-bottom: 30px;
+    border-radius: 32px;
+    border: 1px solid var(--gray-200,#eaecf0);
+    background: var(--base-white,#fff);
+    box-shadow: var(--shadow-sm);
+    font-family: Arial;
+    border-color: #fc6c85;
+    box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    padding: 5px;
+    justify-content: center;
+    display: flex;
+    margin-top: 30px;
+
+    width: 905.15px;
+}
+
+.get-acco-review-ul {
+    margin-right: 40px;
+}

@@ -29,7 +29,7 @@ const UserTakeRoomAmenity = ({ roomId }) => {
       {!loading && roomAmenities.length === 0 && <p>Phòng không có tiện ích</p>}
       {!loading && roomAmenities.length > 0 && (
         <div>
-          <h2>Tiện ích phòng</h2>
+          <h2 className='your-booked-hotel-header'>Tiện ích phòng</h2>
           <ul className='user-acco-amenity-list-ul'>
             {roomAmenities.map((amenity) => (
               <li className='user-acco-amenity-list-li' key={amenity.id}>

@@ -2,10 +2,12 @@
     display: flex;
     align-items: center;
     gap: 5px;
+
+    justify-content: center;
 }
 .user-booking-components {
     padding-left: 20px;
-    width: 200px;
+    width: 170px;
 }
 .user-booking-components2 {
     padding-left: 20px;
@@ -45,7 +47,7 @@
 
 .select-payment-method-button {
     display: flex;
-    width: 200px;
+    width: auto;
     height: 73.6px;
     padding: 10px;
     border: 1px solid #EAEAEA;

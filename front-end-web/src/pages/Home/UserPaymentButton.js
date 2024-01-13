@@ -277,8 +277,8 @@ const UserPaymentButton = ({ accommodationId, roomId }) => {
 
             {showSuccessPopup && (
                 <div className="popup">
-                    <div className='dat-phong-khong-thanh-cong'>Booking created successfully!</div>
-                    <button className='user-booking-popup-close-button' onClick={() => setShowSuccessPopup(false)}>Close</button>
+                    <div className='dat-phong-khong-thanh-cong'>Đặt phòng thành công!</div>
+                    <button className='user-booking-popup-close-button' onClick={() => setShowSuccessPopup(false)}>Đóng</button>
                 </div>
             )}
 

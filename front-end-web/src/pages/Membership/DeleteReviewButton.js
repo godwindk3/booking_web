@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from '../Home/axiosConfig';
 
+import './DeleteReviewButton.css'
+
 const DeleteReviewButton = ({ reviewId }) => {
   const handleDelete = async () => {
     try {
@@ -30,7 +32,7 @@ const DeleteReviewButton = ({ reviewId }) => {
   };
 
   return (
-    <button onClick={handleDelete}>Delete Review</button>
+    <button className='user-delete-review-button' onClick={handleDelete}>Xoá Review</button>
   );
 };
 

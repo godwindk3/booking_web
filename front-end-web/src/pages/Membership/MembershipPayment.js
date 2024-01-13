@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../Home/axiosConfig';
 
+import './MembershipPayment.css'
+
 const MembershipPayment = ({ paymentId }) => {
   const [paymentData, setPaymentData] = useState({});
   const [error, setError] = useState(null);
@@ -29,14 +31,11 @@ const MembershipPayment = ({ paymentId }) => {
       {error ? (
         <p>{error}</p>
       ) : (
-        <div>
-          <p>
-            <strong>Phương thức thanh toán</strong>
-          </p>
-          <p>
-            <strong></strong> {paymentData.payment_method}
-          </p>
+
+        <div className='user-booked-payment-method'>
+            <strong className='user-booked-payment-method-title'>Phương thức thanh toán:</strong> {paymentData.payment_method}
         </div>
+
       )}
     </div>
   );

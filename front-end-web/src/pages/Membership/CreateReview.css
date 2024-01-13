@@ -1,0 +1,47 @@
+.cam-nhan-cua-ban-header {
+    font-weight: Bold;
+    font-family: Arial;
+    font-size: 25px;
+    color: #fc6c85;
+    text-align: left;
+}
+
+.your-booked-rating-comment {
+    display: flex;
+    flex-direction: row;
+    font-family: Arial;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.your-booked-comment-input {
+    width: 580px;
+}
+
+.your-booked-create-review-button {
+    margin-left: 50px;
+
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: Arial;
+    font-size: 17px;
+
+    width: auto;
+    background-color: #FC6C85;
+    border: #FC6C85;
+    padding: 16px 20px;
+
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+.your-booked-create-review-button:hover {
+    background-color: #fd3355;
+}
