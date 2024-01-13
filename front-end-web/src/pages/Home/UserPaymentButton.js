@@ -227,7 +227,7 @@ const UserPaymentButton = ({ accommodationId, roomId }) => {
 
     return (
         <div>
-            <h2>Đặt phòng</h2>
+            <h2 className='h2-dat-phong'>Đặt phòng</h2>
             <br/>
 
             <div className="user-booking-box">
@@ -277,8 +277,8 @@ const UserPaymentButton = ({ accommodationId, roomId }) => {
 
             {showSuccessPopup && (
                 <div className="popup">
-                    <div className='dat-phong-khong-thanh-cong'>Booking created successfully!</div>
-                    <button className='user-booking-popup-close-button' onClick={() => setShowSuccessPopup(false)}>Close</button>
+                    <div className='dat-phong-khong-thanh-cong'>Đặt phòng thành công!</div>
+                    <button className='user-booking-popup-close-button' onClick={() => setShowSuccessPopup(false)}>Đóng</button>
                 </div>
             )}
 

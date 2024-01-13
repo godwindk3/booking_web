@@ -166,6 +166,10 @@ vn {
   border: #fd3355;
 } */
 
+.ban-dang-tim-khach-san {
+  font-family: Arial;
+}
+
 /* ---------------------------------------------------------------------- */ 
 /* Banner */
 .img-banner-container {
@@ -296,7 +300,9 @@ vn {
 .home-popular {
   padding-top: 252px;
 }
-
+.gap-32 {
+  gap: 32px;
+}
 
 
 /* ---------------------------------------------------------------------- */ 
@@ -347,3 +353,102 @@ vn {
   cursor: pointer;
   color: #FC6C85;
 } */
+
+.nua-duoi-home-page-css {
+  margin-top: 250px;
+}
+.filter-and-result-container {
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.filter-checkboxes-card {
+  margin-bottom: 50px;
+
+  border-radius: 32px;
+  border: 1px solid var(--gray-200,#eaecf0);
+  background: var(--base-white,#fff);
+  box-shadow: var(--shadow-sm);
+  font-family: Arial;
+  border-color: #fc6c85;
+  box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+}
+.filter-checkboxes-card-h3 {
+  text-align: center;
+  font-family: Arial;
+  font-size: 30px;
+}
+.filter-search-checkboxes-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  width: 353px;
+  max-width: 400px;
+}
+.filter-search-checkboxes-li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.filter-search-checkboxes-label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.filter-search-checkboxes-amenity-name {
+  font-size: 17px;
+}
+
+
+.Intersection-section {
+  max-width: 999px;
+}
+.filter-checkboxes-result-card {
+  margin-bottom: 50px;
+
+  border-radius: 32px;
+  border: 1px solid var(--gray-200,#eaecf0);
+  background: var(--base-white,#fff);
+  box-shadow: var(--shadow-sm);
+  font-family: Arial;
+  border-color: #fc6c85;
+  box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+  width: 926.2px;
+}
+.filter-checkboxes-result-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.filter-checkboxes-result-hotel-card {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 32px;
+  border: 1px solid var(--gray-200,#eaecf0);
+  background: var(--base-white,#fff);
+  box-shadow: var(--shadow-sm);
+  border-color: #8484848d; 
+
+  font-family: Arial;
+  width: 840px;
+}
+.filter-checkboxes-result-hotel-container {
+  padding: 20px;
+}
+.filter-checkboxes-result-hotel-container-link {
+  color: black;
+}
+.filter-checkboxes-result-hotel-container-link:link { 
+  text-decoration: none; 
+} 
+.filter-checkboxes-result-hotel-container-link:visited { 
+  text-decoration: none; 
+} 
+.filter-checkboxes-result-hotel-container-link:hover { 
+  color: #fc6c85;
+} 
+.filter-checkboxes-result-hotel-container-link:active { 
+  text-decoration: none; 
+}

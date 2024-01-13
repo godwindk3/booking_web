@@ -1,0 +1,28 @@
+.find-room-by-date-result-button {
+    padding: 0;
+    margin-bottom: 30px;
+
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: #fff;
+    font-family: Arial;
+    font-size: 17px;
+    width: max-content;
+}
+.find-room-by-date-result-button:hover {
+    cursor: pointer;
+    color: #FC6C85;
+    text-decoration: underline;
+}
+.find-room-by-date-result-button.active {
+    cursor: pointer;
+    color: #FC6C85;
+    text-decoration: underline;
+}
+
+.user-roomdetailsbutton2-header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

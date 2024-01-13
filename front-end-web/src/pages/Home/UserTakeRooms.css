@@ -3,8 +3,10 @@
     margin-bottom: 30px;
 }
 
-.margin-top-30 {
+.user-take-room-margin {
     margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .user-get-room-card {
@@ -19,14 +21,14 @@
     margin-left: auto;
     margin-right: auto;
 
-    /* max-width: 966.55px; */
+    width: 905.15px;
 
     flex-direction: column; 
-    padding: 20px;
+    padding: 10px;
 
     justify-content: center;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 
     margin-top: 30px;
 }

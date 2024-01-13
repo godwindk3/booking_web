@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 
+import './GetUserNameById.css'
+
 const UserProfile = ({ userId }) => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
@@ -29,8 +31,8 @@ const UserProfile = ({ userId }) => {
       {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
       
       {userData && (
-        <div>
-          <p><strong>Khách hàng: </strong> {userData.name}</p>
+        <div >
+          <strong>{userData.name}</strong> 
         </div>
       )}
     </div>

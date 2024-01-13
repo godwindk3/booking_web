@@ -4,6 +4,10 @@ import UserTakeRoomImages from './UserTakeRoomImages';
 import UserTakeRoomAmenity from './UserTakeRoomAmenity';
 import UserPaymentButton from './UserPaymentButton';
 import UserPaymentButton2 from './UserPaymentButton2';
+
+import './RoomDetailsButton2.css';
+
+
 const RoomDetailsButton2 = ({ roomId, accommodationId, checkin, checkout }) => {
   const [roomDetails, setRoomDetails] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -32,30 +36,52 @@ const RoomDetailsButton2 = ({ roomId, accommodationId, checkin, checkout }) => {
     setIsPopupOpen(false);
   };
 
+  const [isActive, setIsActive] = useState(false);
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+    setIsActive(!isActive);
+  };
+
   return (
     <div>
-      <button onClick={handleButtonClick}>Chi tiết phòng {roomId}</button>
+      <button className={`find-room-by-date-result-button${isActive ? " active" : ""}`} 
+              onClick={togglePopup}>Chi tiết phòng {roomId}
+      </button>
+
       {isPopupOpen && (
         <div className="popup">
+
           {roomDetails ? (
-            <div>
-              <p>Số phòng: {roomDetails.room_name}</p>
-              <p>Sức chứa {roomDetails.capacity}</p>
-              <p>Thông tin: {roomDetails.info}</p>
-              <p>Giá(1 đêm): {roomDetails.price}</p>
-              {/* <p>Trạng thái: {roomDetails.status ? 'Available' : 'Occupied'}</p> */}
-              <p>Hạng phòng {roomDetails.tier}</p>
+            <div className='user-get-room-card'>
+              <h2 className='user-roomdetailsbutton2-header'>{roomDetails.room_name}</h2>
+
+              <div className='user-get-room-info-card'>
+                <div> <strong>Sức chứa:</strong> {roomDetails.capacity}</div>
+                <div> <strong>Hạng phòng:</strong> {roomDetails.tier}</div>
+                <div> <strong>Giá (1 đêm):</strong> {roomDetails.price}</div>
+                <div> <strong>Thông tin:</strong> {roomDetails.info}</div>
+                {/* <p>Trạng thái: {roomDetails.status ? 'Available' : 'Occupied'}</p> */}
+              </div>
+              
+              <hr className='user-view-room-info-hr'/>
               <UserTakeRoomAmenity roomId={roomDetails.id}/>
+
+              <hr className='user-view-room-info-hr'/>
               <UserTakeRoomImages roomId={roomDetails.id}/>
-              {/* <UserPaymentButton roomId={roomDetails.id} accommodationId={accommodationId}/> */}
+
+              <hr className='user-view-room-info-hr'/>
               <UserPaymentButton2 roomId={roomDetails.id} accommodationId={accommodationId} checkinDate={checkin} checkoutDate={checkout}/>
-              <button onClick={handleClosePopup}>Đóng</button>
+
+              {/* <button onClick={handleClosePopup}>Đóng</button> */}
             </div>
+
           ) : (
             <p>Loading...</p>
           )}
+          
         </div>
       )}
+      
     </div>
   );
 };

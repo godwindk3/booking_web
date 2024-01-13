@@ -42,49 +42,47 @@ const RoomAvailabilityButton = ({ accommodationId }) => {
     };
 
     return (
-        <>
+        <div>
             {/* <button className='find-room-by-date-button' onClick={togglePopup}>Tìm phòng trống theo ngày</button>
             {isPopupOpen && ( */}
-
-                <div className="find-room-by-date-card">
-                    <div className="find-room-by-date-searchbox">
-
-                        <div className="popup-content">
-                            <label htmlFor="checkin-date">Ngày Check-in </label>
-                            <input
-                                type="date"
-                                id="checkin-date"
-                                value={checkinDate}
-                                onChange={(e) => setCheckinDate(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="popup-content">
-                            <label htmlFor="checkout-date">Ngày Check-out </label>
-                            <input
-                                type="date"
-                                id="checkout-date"
-                                value={checkoutDate}
-                                onChange={(e) => setCheckoutDate(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="popup-content">
-                            <button className='find-room-by-date-search-button' onClick={handleFindButtonClick}>Tìm kiếm</button>
-
-                            {/* Display the available rooms */}
-                            {availableRooms.map((room) => (
-                                <div key={room.id}>
-                                {/* <UserTakeRoomImages roomId={room.id}/> */}
-                                    <RoomDetailsButton2 roomId={room.id} accommodationId={accommodationId} checkin={checkinDate} checkout={checkoutDate}/>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                
             {/* )} */}
-        </>
+
+            <div className="find-room-by-date-card">
+                <div className="find-room-by-date-searchbox">
+
+                    <div className="popup-content">
+                        <label htmlFor="checkin-date">Ngày Check-in </label>
+                        <input
+                            type="date"
+                            id="checkin-date"
+                            value={checkinDate}
+                            onChange={(e) => setCheckinDate(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="popup-content">
+                        <label htmlFor="checkout-date">Ngày Check-out </label>
+                        <input
+                            type="date"
+                            id="checkout-date"
+                            value={checkoutDate}
+                            onChange={(e) => setCheckoutDate(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="popup-content">
+                        <button className='find-room-by-date-search-button' onClick={handleFindButtonClick}>Tìm kiếm</button>
+                    </div>
+                </div>  
+            </div>
+
+            {availableRooms.map((room) => (
+                <div className='user-take-room-margin' key={room.id}>
+                    <RoomDetailsButton2 roomId={room.id} accommodationId={accommodationId} checkin={checkinDate} checkout={checkoutDate}/>
+                </div>
+            ))}
+
+        </div>
     );
 };
 

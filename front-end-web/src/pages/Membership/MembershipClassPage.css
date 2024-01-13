@@ -1,0 +1,61 @@
+.your-review-card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 32px;
+    border: 1px solid var(--gray-200,#eaecf0);
+    background: var(--base-white,#fff);
+    box-shadow: var(--shadow-sm);
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-color: #fc6c85;
+    box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+}
+
+.your-booked-card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 32px;
+    border: 1px solid var(--gray-200,#eaecf0);
+    background: var(--base-white,#fff);
+    box-shadow: var(--shadow-sm);
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-color: #fc6c85;
+    box-shadow: 0 5px 20px 0 rgba(252, 108, 132, 0.666);
+}
+.your-booked-detail-container {
+    padding: 30px;
+}
+
+.your-booked-card-hotel-name {
+    font-weight: Bold;
+    font-family: Arial;
+    font-size: 25px;
+    color: #fc6c85;
+}
+.your-booked-card-hotel-name:hover {
+    color: #fc6c85;
+}
+.your-booked-card-hotel-detail-div {
+    padding: 20px;
+}
+
+.your-booked-checin-checkout-container {
+    display: flex;
+    flex-direction: row;
+    font-family: Arial;
+    justify-content: space-between;
+}
+.your-booked-checin-date {
+    margin-right: 150px;
+}

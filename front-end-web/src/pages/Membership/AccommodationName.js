@@ -24,7 +24,7 @@ const AccommodationName = ({ accommodationId }) => {
 
   return (
     <div>
-      <h4>{accommodation.name}</h4>
+      <div>{accommodation.name}</div>
     </div>
   );
 };

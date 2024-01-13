@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
 
-import './UserPaymentButton.css';
+import './UserPaymentButton2.css';
 
 const UserPaymentButton2 = ({ accommodationId, roomId, checkinDate, checkoutDate }) => {
     const [paymentMethods, setPaymentMethods] = useState([]);
@@ -87,36 +87,53 @@ const UserPaymentButton2 = ({ accommodationId, roomId, checkinDate, checkoutDate
 
     return (
         <div>
-            <h2>Đặt phòng</h2>
+            <h2 className='h2-dat-phong'>Đặt phòng</h2>
             <br/>
 
-            <div className="user-booking-box">
-                <div className='user-booking-components2'>
-                    <label>
-                        Phương thức thanh toán:
+            <div className="userpaymentbutton2-booking-box">
+                <div className='userpaymentbutton2-booking-components2'>
+                    {/* <label className=''>
+                        <div>Phương thức thanh toán:</div>
                         <select className="select-payment-method-button"
                             value={selectedPaymentMethod}
-                            onChange={(e) => setSelectedPaymentMethod(e.target.value)}
-                        >
-                            <option value="">Chọn phương thức thanh toán</option>
-                            {paymentMethods.map((method) => (
-                                <option key={method.id} value={method.id}>
-                                    {method.payment_method}
-                                </option>
-                            ))}
+                            onChange={(e) => setSelectedPaymentMethod(e.target.value)}>
+                                
+                                <option value="">Chọn phương thức thanh toán</option>
+                                {paymentMethods.map((method) => (
+                                    <option key={method.id} value={method.id}>
+                                        {method.payment_method}
+                                    </option>
+                                ))}
                         </select>
+                    </label> */}
+
+                    <label className="userpaymentbutton2-label">
+                    <div className="userpaymentbutton2-label-text">Phương thức thanh toán:</div>
+                    <select
+                        className="select-payment-method-button userpaymentbutton2-select-width"
+                        value={selectedPaymentMethod}
+                        onChange={(e) => setSelectedPaymentMethod(e.target.value)}
+                    >
+                        <option value="">Chọn phương thức thanh toán</option>
+                        {paymentMethods.map((method) => (
+                        <option key={method.id} value={method.id}>
+                            {method.payment_method}
+                        </option>
+                        ))}
+                    </select>
                     </label>
                 </div>
 
-                <div className='user-booking-components'>
-                    <button className='user-booking-popup-close-button' onClick={handleButtonClick}>Đặt phòng ngay</button>
+                <div className='userpaymentbutton2-booking-popup-close-button-container'>
+                    <button className='userpaymentbutton2-booking-popup-close-button' onClick={handleButtonClick}>Đặt phòng ngay</button>
                 </div>
+
             </div>
 
             {showSuccessPopup && (
                 <div className="popup">
-                    <div className='dat-phong-khong-thanh-cong'>Booking created successfully!</div>
-                    <button className='user-booking-popup-close-button' onClick={() => setShowSuccessPopup(false)}>Close</button>
+                    <div className='dat-phong-khong-thanh-cong'>Đặt phòng thành công</div>
+                    <button className='user-booking-popup-close-button' onClick={() => setShowSuccessPopup(false)}>Đóng</button>
                 </div>
             )}
 

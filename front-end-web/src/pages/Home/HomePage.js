@@ -388,7 +388,7 @@ const HomePage = () => {
 
         <div className="flex flex-col justify-center gap-40 search-box card">
           <div className="flex flex-col gap-16 gray-900">
-            <h4>Bạn đang tìm khách sạn cho kỳ nghỉ của mình?</h4>
+            <h4 className='ban-dang-tim-khach-san'>Bạn đang tìm khách sạn cho kỳ nghỉ của mình?</h4>
             <p>Chúng tôi có thể đem đến cho bạn những sự lựa chọn tuyệt vời nhất, những ưu đãi tốt nhất</p>
           </div>
 
@@ -416,51 +416,91 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <div>
-        {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
 
-        <h3>Accommodation Amenities</h3>
-        <ul>
-          {amenities.map((amenity) => (
-            <li key={amenity.id}>
-              <label>
-                <input
-                  type="checkbox"
-                  value={amenity.id}
-                  checked={selectedAmenities.includes(amenity.id)}
-                  onChange={() => handleCheckboxChange(amenity.id)}
-                />
-                {amenity.name}
-                {/* {console.log('select', selectedAmenities)}
-                {console.log('object', selectedAmenitiesObjects)} */}
-              </label>
-            </li>
-          ))}
-        </ul>
 
-      </div>
-      <section className="Popular-section">
-        <div className="home-popular">
-        </div>
-      </section>
-      <section className="Intersection-section">
-        {intersection.length > 0 && (
-          <div className="intersection-container">
-            <h2>Kết quả tìm kiếm</h2>
-            <ul>
-              {intersection.map((item) => (
-                <li key={item.id}>
-                  <strong>Name:</strong>
-                  <Link to={`/getaccommodation/${item.id}`}>{item.name}</Link>
-                  <br />
-                  <strong>Location:</strong> {item.location} <br />
-                  <strong>Info:</strong> {item.info}
-                </li>
-              ))}
-            </ul>
+      <div className='nua-duoi-home-page-css'>
+        <div className='filter-and-result-container'>
+          <div className='flex gap-32'>
+
+
+            {/* Filter checkboxes */}
+            <div className='filter-checkboxes-card'>
+              {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
+
+              <h3 className='filter-checkboxes-card-h3'>Tìm kiếm theo tiện ích</h3>
+              <div className='filter-search-checkboxes-container'>
+                {amenities.map((amenity) => (
+                  <div className='filter-search-checkboxes-li' key={amenity.id}>
+                    
+                    <label className='filter-search-checkboxes-label'>
+                      <input
+                        type="checkbox"
+                        value={amenity.id}
+                        checked={selectedAmenities.includes(amenity.id)}
+                        onChange={() => handleCheckboxChange(amenity.id)}
+                        id="check-23"
+                      />
+                      
+
+                      <div className='filter-search-checkboxes-amenity-name'>
+                        {amenity.name}
+                      </div>
+                    </label>
+
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+            <section className="Intersection-section">
+              <div className='filter-checkboxes-result-card'>
+                <div className='filter-checkboxes-result-container'>
+                  <div className="intersection-container">
+                    <h3 className='filter-checkboxes-card-h3'>Kết quả tìm kiếm</h3>
+
+                    {intersection.length > 0 && (
+                        <div>
+                          {intersection.map((item) => (
+                            // <div className='filter-checkboxes-result-hotel-card' key={item.id}>
+                            //   {/* <strong>Name:</strong> */}
+                            //   <Link to={`/getaccommodation/${item.id}`}>{item.name}</Link>
+                            //   <br />
+                            //   <strong>Location:</strong> {item.location} <br />
+                            //   <strong>Info:</strong> {item.info}
+                            // </div>
+
+                            <div className="filter-checkboxes-result-hotel-card">
+                              <div className='filter-checkboxes-result-hotel-container'>
+                                <Link to={`/getaccommodation/${item.id}`} 
+                                      className='filter-checkboxes-result-hotel-container-link'
+                                      key={item.id}>
+                                  <div>
+                                    {/* <strong>Name:</strong> */}
+                                    <strong>{item.name}</strong>
+                                    <br />
+                                    Địa chỉ: {item.location} 
+                                    <br />
+                                    {/* <strong>Info:</strong> {item.info} */}
+                                  </div>
+                                </Link>
+                              </div>
+                            </div>
+
+                          ))}
+                        </div>                   
+                    )}
+
+                  </div>
+                </div>
+             </div>
+            </section>
+
           </div>
-        )}
-      </section>
+
+        </div>
+      </div>
+
     </div>
   );
 };

@@ -182,39 +182,62 @@ const MembershipClassPage = () => {
 
       
       <h2 className='h2-header'>Phòng bạn đã đặt</h2>
-        <div className="create-hotel-card">
-        {error && <p>{error}</p>}
-        <ul>
-          {bookings.map((booking) => (
-            <li key={booking.id}>
-              {/* <AccommodationName accommodationId={booking.accommodationID} /> */}
-              <Link to={`/getaccommodation/${booking.accommodationID}`}>
-                <AccommodationName accommodationId={booking.accommodationID} />
-              </Link>
-              <strong>Ngày check-in</strong> {booking.checkin_date}{' '}
-              <br/>
-              <strong>Ngày check-out</strong> {booking.checkout_date}{' '}
-              <br/>
-              <strong>Chi phí</strong> {booking.total_price + 'VND'}{' '}
-              
-              <MembershipPayment paymentId={booking.payment_method} />
+        <div className="">
+          {error && <p>{error}</p>}
 
-              <DeleteBookingButton
-                bookingId={booking.id}
-                onDeleteSuccess={() => handleBookingDelete(booking.id)}
-              />
-              
-              <RoomDetailsButton roomId={booking.roomID} />
-              <CreateReview bookingId={booking.id} userId={userID}/>
-            </li>
-          ))}
-          <></>
-        </ul>
-      </div>
+          <div>
+            {bookings.map((booking) => (
+              <div className='your-booked-card' key={booking.id}>
+
+                {/* <AccommodationName accommodationId={booking.accommodationID} /> */}
+                <div className='your-booked-detail-container'>
+
+                  <div>
+                    <Link className='your-booked-card-hotel-name' to={`/getaccommodation/${booking.accommodationID}`}>
+                      <AccommodationName accommodationId={booking.accommodationID} />
+                    </Link>
+                  </div>
+
+                  <div className='your-booked-card-hotel-detail-div'>
+                    
+                    <div className='your-booked-checin-checkout-container'>
+                      <div className='your-booked-checin-date'>
+                        <strong>Ngày check-in: </strong> {booking.checkin_date}{' '}
+                        <br/>
+                      </div>
+                      <div className='your-booked-checin-date'>
+                        <strong>Ngày check-out: </strong> {booking.checkout_date}{' '}
+                        <br/>
+                      </div>
+                      <div className='your-booked-checin-date'>
+                        <strong>Chi phí:</strong> {booking.total_price + 'VND'}{' '}
+                      </div>
+                    </div>
+
+                    <MembershipPayment paymentId={booking.payment_method} />
+
+                    <DeleteBookingButton
+                      bookingId={booking.id}
+                      onDeleteSuccess={() => handleBookingDelete(booking.id)}
+                    />
+                    
+                    <RoomDetailsButton roomId={booking.roomID} />
+                  </div>
+
+                  <CreateReview bookingId={booking.id} userId={userID}/>
+
+                </div>
+
+              </div>
+            ))}
+            <></>
+          </div>
+
+        </div>
 
       
       <h2 className='h2-header'>Review bạn đã đăng</h2>
-      <div className="create-hotel-card">
+      <div className="your-review-card">
         <GetAllReviewOfUser userId={userID}/>
       </div>
       

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from '../Home/axiosConfig';
 
+import './DeleteBookingButton.css'
+
 const DeleteBookingButton = ({ bookingId }) => {
   const handleDelete = async () => {
     try {
@@ -31,9 +33,7 @@ const DeleteBookingButton = ({ bookingId }) => {
   };
 
   return (
-    <button onClick={handleDelete}>
-      Delete Booking
-    </button>
+    <button className='user-cancel-booking-button' onClick={handleDelete}>Huỷ đặt phòng</button>
   );
 };
 

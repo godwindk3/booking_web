@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../Home/axiosConfig';
 
+import './TakeAccommodationByBookingId.css'
+
 const TakeAccommodationByBookingId = ({ bookingId }) => {
   const [accommodationId, setAccommodationId] = useState(null);
   const [accommodationDetails, setAccommodationDetails] = useState(null);
@@ -48,7 +50,7 @@ const TakeAccommodationByBookingId = ({ bookingId }) => {
       {error && <p>{error}</p>}
       {accommodationDetails && (
         <>
-          <p>Name: {accommodationDetails.name}</p>
+          <div>{accommodationDetails.name}</div>
           {/* Display other details as needed */}
         </>
       )}

@@ -39,7 +39,7 @@ const UserTakeRooms = ({ accommodationId }) => {
       {loading && <p>Loading rooms...</p>}
       {!loading && rooms.length === 0 && <p>No rooms available.</p>}
       {!loading && rooms.length > 0 && (
-        <div className='margin-top-30'>
+        <div className='user-take-room-margin'>
           {/* <h2>Tất cả các phòng của khách sạn</h2> */}
           <div>
             {rooms.map((room) => (

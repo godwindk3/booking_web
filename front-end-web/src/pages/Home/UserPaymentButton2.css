@@ -1,0 +1,43 @@
+.userpaymentbutton2-booking-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.userpaymentbutton2-booking-components2 {
+    margin-left: 20px;
+    flex: 1;
+}
+
+.userpaymentbutton2-label {
+    display: flex;
+    align-items: center;
+}
+.userpaymentbutton2-label-text {
+    margin-right: 10px;
+}
+
+.userpaymentbutton2-select-width {
+    width: 463px;
+}
+
+.userpaymentbutton2-booking-popup-close-button-container {
+    margin-right: 20px;
+}
+.userpaymentbutton2-booking-popup-close-button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: white;
+    font-family: Arial;
+    font-size: 17px;
+    height: 73.57px;
+    background-color: #FC6C85;
+    border: #FC6C85;
+    border-radius: 100px;
+    padding: 16px 20px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}

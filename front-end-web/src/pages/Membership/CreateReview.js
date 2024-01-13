@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from '../Home/axiosConfig';
 
+import './CreateReview.css'
+
 const CreateReview = ({ bookingId, userId }) => {
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState('');
@@ -35,32 +37,42 @@ const CreateReview = ({ bookingId, userId }) => {
 
   return (
     <div>
-      <h2>Cảm nhận của bạn?</h2>
-      <div>
-        <label htmlFor="rating">Rating:</label>
-        <input
-          type="number"
-          id="rating"
-          value={rating}
-          min="1"
-          max="5"
-          onChange={handleRatingChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="comment">Comment:</label>
-        <textarea id="comment" value={comment} onChange={handleCommentChange}></textarea>
-      </div>
-      <button onClick={handleCreateReview}>Create Review</button>
+      <h2 className='cam-nhan-cua-ban-header'>Cảm nhận của bạn?</h2>
 
-      {reviewData && (
+      <div className='your-booked-card-hotel-detail-div'>
+        <div className='your-booked-checin-checkout-container'>
+
+          <div className='your-booked-rating-comment'>
+            <div>
+              <label htmlFor="rating">Rating: </label>
+              <input
+                type="number"
+                id="rating"
+                value={rating}
+                min="1"
+                max="5"
+                onChange={handleRatingChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="comment">Comment: </label>
+              <input className='your-booked-comment-input' id="comment" value={comment} onChange={handleCommentChange}></input>
+            </div>
+          </div>
+
+          <button className='your-booked-create-review-button' onClick={handleCreateReview}>Tạo review</button>
+        </div>
+      </div>
+
+      {/* {reviewData && (
         <div>
           <h3>Your Review</h3>
           <p>Rating: {reviewData.rating}</p>
           <p>Comment: {reviewData.comment}</p>
           <p>reviewID: {reviewData.id}</p>
         </div>
-      )}
+      )} */}
 
       {error && <p>{error}</p>}
     </div>
