@@ -176,6 +176,7 @@ import axios from './axiosConfig';
 import FilterAccommodation from './FilterAccommodation';
 import FilterLocation from './FilterLocation';
 import FilterPrice from './FilterPrice';
+import { Link } from 'react-router-dom';
 
 
 const HomePage = () => {
@@ -236,7 +237,7 @@ const HomePage = () => {
     try {
       // Convert selectedAmenities to the required body format
       const requestBody = selectedAmenities.map((amenityId) => ({ id: amenityId }));
-  
+
       const response = await axios.post('/filter/amenity', requestBody);
       setError(null);
       setDataArrayAmenity(response.data);
@@ -449,7 +450,9 @@ const HomePage = () => {
             <ul>
               {intersection.map((item) => (
                 <li key={item.id}>
-                  <strong>Name:</strong> {item.name} <br />
+                  <strong>Name:</strong>
+                  <Link to={`/getaccommodation/${item.id}`}>{item.name}</Link>
+                  <br />
                   <strong>Location:</strong> {item.location} <br />
                   <strong>Info:</strong> {item.info}
                 </li>
