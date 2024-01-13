@@ -1,0 +1,208 @@
+.
+├── App.css
+├── App.js
+├── App.test.js
+├── components
+│   ├── Admin
+│   │   ├── AccessManagement.js
+│   │   ├── ActivityMonitoring.js
+│   │   ├── HotelManagement.js
+│   │   ├── NotificationCenter.js
+│   │   └── UserManagement.js
+│   ├── Common
+│   │   ├── Footer.css
+│   │   ├── Footer.js
+│   │   ├── Header.js
+│   │   ├── NavigationBar.css
+│   │   └── NavigationBar.js
+│   ├── HotelOwner
+│   │   ├── BookingRequests.js
+│   │   ├── DiscountRefundManagement.js
+│   │   ├── OwnerDashboard.js
+│   │   ├── OwnerRegister.js
+│   │   ├── ReviewManagement.js
+│   │   └── RoomListing.js
+│   ├── Manager
+│   │   ├── NotificationCenter.js
+│   │   ├── ReservationMonitoring.js
+│   │   ├── ReviewManagement.js
+│   │   └── RoomManagement.js
+│   └── User
+│       ├── BookingHistory.js
+│       ├── Booking.js
+│       ├── HotelSearch.js
+│       ├── NotificationCenter.js
+│       └── ReviewRecommendation.js
+├── config
+│   └── configurationFile.js
+├── containers
+│   └── ContainerName.js
+├── features
+│   ├── BookingManagement
+│   │   ├── RefundsDiscountsPage.js
+│   │   └── ReservationOptionsPage.js
+│   ├── Favorites
+│   │   └── FavoritePlacesPage.js
+│   ├── Membership
+│   │   └── MembershipClassPage.js
+│   ├── Payment
+│   │   └── OnlinePaymentPage.js
+│   ├── RatingAndReviews
+│   │   └── RatingReviewsPage.js
+│   └── Recommendation
+│       └── RecommendationPage.js
+├── index.css
+├── index.js
+├── logo.svg
+├── pages
+│   ├── About
+│   │   ├── AboutPage.css
+│   │   └── AboutPage.js
+│   ├── Admin
+│   │   ├── AdminAccommodationAmenityCreate.js
+│   │   ├── AdminAccommodationAmenityDeleteButton.js
+│   │   ├── AdminAccommodationAmenity.js
+│   │   ├── AdminAmenity.js
+│   │   ├── AdminCreatePayment.css
+│   │   ├── AdminCreatePayment.js
+│   │   ├── AdminDashboardPage.js
+│   │   ├── AdminDeletePaymentButton.css
+│   │   ├── AdminDeletePaymentButton.js
+│   │   ├── AdminPayment.css
+│   │   ├── AdminPayment.js
+│   │   ├── AdminRoomAmenityCreate.js
+│   │   ├── AdminRoomAmenityDeleteButton.js
+│   │   ├── AdminRoomAmenity.js
+│   │   ├── AdminUpdatePaymentButton.js
+│   │   └── PrivateAdminRoute.js
+│   ├── BookingManagement
+│   │   ├── RefundsDiscountsPage.js
+│   │   └── ReservationOptionsPage.js
+│   ├── Favorites
+│   │   └── FavoritePlacesPage.js
+│   ├── Home
+│   │   ├── AccommodationAmenityButton.css
+│   │   ├── AccommodationAmenityButton.js
+│   │   ├── AccommodationAmenity.css
+│   │   ├── AccommodationDetachButton.css
+│   │   ├── AccommodationDetachButton.js
+│   │   ├── AccommodationDetails.css
+│   │   ├── AccommodationDetails.js
+│   │   ├── AccommodationItem.css
+│   │   ├── AccommodationItem.js
+│   │   ├── AccommodationPaymentMethods.css
+│   │   ├── AccommodationPaymentMethods.js
+│   │   ├── AccommodationReview.js
+│   │   ├── AcommodationAmenity.js
+│   │   ├── AuthContext.js
+│   │   ├── axiosConfig.js
+│   │   ├── FilterAccommodation.css
+│   │   ├── FilterAccommodation.js
+│   │   ├── FilterAmenity.js
+│   │   ├── FilterLocation.js
+│   │   ├── FilterPrice.js
+│   │   ├── GetAccommodation.js
+│   │   ├── GetHotel.js
+│   │   ├── GetUserPage.css
+│   │   ├── GetUserPage.js
+│   │   ├── HomePage.css
+│   │   ├── HomePage.js
+│   │   ├── ImageAccommodation.css
+│   │   ├── ImageAccommodation.js
+│   │   ├── ImageRoom.css
+│   │   ├── ImageRoom.js
+│   │   ├── ImageRoomUpload.js
+│   │   ├── ImageUploadButton.css
+│   │   ├── ImageUploadButton.js
+│   │   ├── LoginPage.css
+│   │   ├── LoginPage.js
+│   │   ├── OwnerDashboard.css
+│   │   ├── OwnerDashboard.js
+│   │   ├── OwnerRegister.js
+│   │   ├── PaymentButton.css
+│   │   ├── PaymentButton.js
+│   │   ├── PaymentDetachButton.css
+│   │   ├── PaymentDetachButton.js
+│   │   ├── Popup.css
+│   │   ├── Popup.js
+│   │   ├── PrivateOwnerRoute.js
+│   │   ├── PrivateRoute.js
+│   │   ├── RegisterPage.css
+│   │   ├── RegisterPage.js
+│   │   ├── RoomAmenityButton.css
+│   │   ├── RoomAmenityButton.js
+│   │   ├── RoomAmenity.css
+│   │   ├── RoomAmenityDetachButton.js
+│   │   ├── RoomAmenity.js
+│   │   ├── RoomAvailabilityButton.css
+│   │   ├── RoomAvailabilityButton.js
+│   │   ├── RoomDetailsButton2.js
+│   │   ├── RoomList.css
+│   │   ├── RoomList.js
+│   │   ├── UserPaymentButton2.js
+│   │   ├── UserPaymentButton.css
+│   │   ├── UserPaymentButton.js
+│   │   ├── UserTakeAccommodationImages.js
+│   │   ├── UserTakeAmenity.css
+│   │   ├── UserTakeAmenity.js
+│   │   ├── UserTakePayment.css
+│   │   ├── UserTakePayment.js
+│   │   ├── UserTakeRoomAmenity.css
+│   │   ├── UserTakeRoomAmenity.js
+│   │   ├── UserTakeRoomImages.css
+│   │   ├── UserTakeRoomImages.js
+│   │   ├── UserTakeRooms.css
+│   │   └── UserTakeRooms.js
+│   ├── HotelOwner
+│   │   └── HotelOwnerDashboardPage.js
+│   ├── Manager
+│   │   └── ManagerDashboardPage.js
+│   ├── Membership
+│   │   ├── AccommodationName.js
+│   │   ├── CreateReview.js
+│   │   ├── DeleteBookingButton.js
+│   │   ├── DeleteReviewButton.js
+│   │   ├── GetAllReviewOfUser.js
+│   │   ├── MemberBookingAccommodation.js
+│   │   ├── MembershipClassPage.css
+│   │   ├── MembershipClassPage.js
+│   │   ├── MembershipPayment.js
+│   │   ├── RoomDetailsButton.js
+│   │   ├── TakeAccommodationByBookingId.js
+│   │   ├── UpdateUserInfo.css
+│   │   └── UpdateUserInfo.js
+│   ├── Payment
+│   │   └── OnlinePaymentPage.js
+│   ├── RatingAndReviews
+│   │   └── RatingReviewsPage.js
+│   ├── Recommendation
+│   │   └── RecommendationPage.js
+│   ├── Security
+│   │   ├── EmployeeTrainingPage.js
+│   │   └── SecurityPoliciesPage.js
+│   └── User
+│       └── UserDashboardPage.js
+├── redux
+│   ├── actions
+│   │   └── actionCreators.js
+│   ├── middleware.js
+│   ├── reducers
+│   │   └── rootReducer.js
+│   └── store.js
+├── reportWebVitals.js
+├── routes
+│   └── routeConfig.js
+├── services
+│   ├── ApiService.js
+│   ├── Axios.js
+│   └── UserService.js
+├── setupTests.js
+├── tests
+│   └── testFile.js
+├── translations
+│   └── translationFile.js
+├── tree_structure_frontend.txt
+└── utils
+    └── utilityFunction.js
+
+37 directories, 168 files
