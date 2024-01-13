@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axiosConfig';
-
+import UserProfile from './GetUserNameById';
 const AccommodationReview = ({ accommodationId }) => {
   const [reviews, setReviews] = useState([]);
 
@@ -28,7 +28,9 @@ const AccommodationReview = ({ accommodationId }) => {
         {reviews.map((review) => (
           <ul key={review.id}>
             {/* <li>Booking ID: {review.bookingID}</li> */}
-            <li>User ID {review.userID} rated: {review.rating}</li>
+            <li>
+              <UserProfile userId={review.userID}/> 
+              rated: {review.rating}</li>
             <>Comment: {review.comment}</>
             
           </ul>
