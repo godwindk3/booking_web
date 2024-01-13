@@ -77,7 +77,7 @@ const RoomAvailabilityButton = ({ accommodationId }) => {
             </div>
 
             {availableRooms.map((room) => (
-                <div key={room.id}>
+                <div className='user-take-room-margin' key={room.id}>
                     <RoomDetailsButton2 roomId={room.id} accommodationId={accommodationId} checkin={checkinDate} checkout={checkoutDate}/>
                 </div>
             ))}

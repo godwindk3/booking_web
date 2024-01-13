@@ -27,7 +27,7 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    color: #0000008a;
+    color: white;
     font-family: Arial;
     font-size: 17px;
     height: auto;
@@ -58,4 +58,8 @@
 }
 .select-payment-method-button:focus {
     border-color: #FC6C85;
+}
+
+.h2-dat-phong {
+    font-size: 25px;
 }

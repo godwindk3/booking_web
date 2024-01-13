@@ -25,11 +25,14 @@ const UserTakeRoomAmenity = ({ roomId }) => {
 
   return (
     <div>
+      {/* <hr className='user-view-room-info-hr'/> */}
       {loading && <p>Loading room amenities...</p>}
       {!loading && roomAmenities.length === 0 && <p>Phòng không có tiện ích</p>}
       {!loading && roomAmenities.length > 0 && (
         <div>
-          <h2 className='your-booked-hotel-header-vcl-xin-m-day-csss'>Tiện ích phòng</h2>
+          <h2 className='your-booked-hotel-header-vcl-xin-m-day-csss-cssss'>Tiện ích phòng</h2>
+
+          <div className='user-roomdetailsbutton2-amenities-list'>
           <ul className='user-acco-amenity-list-ul'>
             {roomAmenities.map((amenity) => (
               <li className='user-acco-amenity-list-li' key={amenity.id}>
@@ -37,6 +40,8 @@ const UserTakeRoomAmenity = ({ roomId }) => {
               </li>
             ))}
           </ul>
+          </div>
+
         </div>
       )}
     </div>

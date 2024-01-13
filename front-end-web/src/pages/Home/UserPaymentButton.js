@@ -227,7 +227,7 @@ const UserPaymentButton = ({ accommodationId, roomId }) => {
 
     return (
         <div>
-            <h2>Đặt phòng</h2>
+            <h2 className='h2-dat-phong'>Đặt phòng</h2>
             <br/>
 
             <div className="user-booking-box">
