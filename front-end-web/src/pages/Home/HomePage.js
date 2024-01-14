@@ -177,7 +177,7 @@ import FilterAccommodation from './FilterAccommodation';
 import FilterLocation from './FilterLocation';
 import FilterPrice from './FilterPrice';
 import { Link } from 'react-router-dom';
-
+import GetPriceAccommodation from './GetPriceAccommodation';
 
 const HomePage = () => {
   const [searchHotelName, setHotelName] = useState('');
@@ -483,7 +483,7 @@ const HomePage = () => {
                                     <br />
                                     <br />
                                     {/* <strong>Info:</strong> {item.info} */}
-                                    Giá từ: 5000000 VND - 10000000 VND / Đêm
+                                    <GetPriceAccommodation accommodationId={item.id}/>
                                   </div>
                                 </Link>
                               </div>
