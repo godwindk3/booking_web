@@ -1,4 +1,4 @@
-# Booking web app
+# Very basic Booking web app
 ## Hướng dẫn chạy và cài đặt
 
 - Cài đặt các thư viện cần thiết:
