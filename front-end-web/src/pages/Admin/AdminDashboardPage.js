@@ -4,7 +4,7 @@ import AdminAmenity from './AdminAmenity';
 const AdminDashboardPage = () => {
   return (
     <div>
-      <h2 className='h2-header'>THƯA NGÀI &lt;3</h2>
+      <h2 className='h2-header'>ADMIN</h2>
 
       <div >
         <AdminAmenity/>
