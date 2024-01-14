@@ -68,3 +68,14 @@
 .acco-location {
     color: black;
 }
+
+.accomodationitem-hr-hr-hr {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+.acco-content-container-price {
+    color: #666;
+    font-family: Arial;
+    font-weight: Bold;
+    font-size: 23px;
+}

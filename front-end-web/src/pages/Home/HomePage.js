@@ -481,7 +481,9 @@ const HomePage = () => {
                                     <br />
                                     Địa chỉ: {item.location} 
                                     <br />
+                                    <br />
                                     {/* <strong>Info:</strong> {item.info} */}
+                                    Giá từ: 5000000 VND - 10000000 VND / Đêm
                                   </div>
                                 </Link>
                               </div>

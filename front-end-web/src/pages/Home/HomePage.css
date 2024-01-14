@@ -427,7 +427,7 @@ vn {
 
   border-radius: 32px;
   border: 1px solid var(--gray-200,#eaecf0);
-  background: var(--base-white,#fff);
+  background: var(--base-white,#fff9f9);
   box-shadow: var(--shadow-sm);
   border-color: #8484848d; 
 

@@ -44,9 +44,11 @@ const AccommodationItem = ({ accommodation }) => {
               <div className='acco-location'> {accommodation.location} </div>
             </div>
 
-            <div>
-              
-            </div>
+          <hr className='accomodationitem-hr-hr-hr'/>
+
+          <div className='acco-content-container-price'>
+            <span>5000000 VND - 1000000 VND / Đêm</span>
+          </div>
 
           </div>
         </Link>
