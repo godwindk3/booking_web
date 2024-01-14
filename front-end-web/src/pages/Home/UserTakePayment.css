@@ -3,6 +3,9 @@
     flex-wrap: wrap;
     margin-bottom: 10px;
 }
+.user-acco-amenity-list-ul-add {
+    margin-right: 40px;
+}
 
 .user-acco-amenity-list-li {
     display: flex;
