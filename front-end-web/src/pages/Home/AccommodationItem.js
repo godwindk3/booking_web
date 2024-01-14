@@ -48,7 +48,7 @@ const AccommodationItem = ({ accommodation }) => {
           <hr className='accomodationitem-hr-hr-hr'/>
 
           <div className='acco-content-container-price'>
-            <span><GetPriceAccommodation accommodationId={accommodation.id}/></span>
+           <span><GetPriceAccommodation accommodationId={accommodation.id}/></span>
           </div>
 
           </div>
