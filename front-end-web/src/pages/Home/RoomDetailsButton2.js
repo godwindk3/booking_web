@@ -4,7 +4,7 @@ import UserTakeRoomImages from './UserTakeRoomImages';
 import UserTakeRoomAmenity from './UserTakeRoomAmenity';
 import UserPaymentButton from './UserPaymentButton';
 import UserPaymentButton2 from './UserPaymentButton2';
-
+import GetRoomNameBy from './GetRoomNameBy';
 import './RoomDetailsButton2.css';
 
 
@@ -45,7 +45,7 @@ const RoomDetailsButton2 = ({ roomId, accommodationId, checkin, checkout }) => {
   return (
     <div>
       <button className={`find-room-by-date-result-button${isActive ? " active" : ""}`} 
-              onClick={togglePopup}>Chi tiết phòng {roomId}
+              onClick={togglePopup}><GetRoomNameBy roomId={roomId}/>
       </button>
 
       {isPopupOpen && (
