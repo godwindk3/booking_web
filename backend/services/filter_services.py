@@ -32,7 +32,10 @@ def filter_accommodation_by_price(price_range:validation_models.PriceRangeFilter
     accommodations = accommodation_services.get_all_accommodations()
     ids = []
     for accommodation in accommodations:
+        print(accommodation.id)
         range_ = accommodation_services.get_price(accommodation.id)
+        print("asdjalskdjasldkjaskldjaskldjalsdkjaslkd", range_)
+        print("================================")
         min_price_ = range_.min_price
         max_price_ = range_.max_price
 

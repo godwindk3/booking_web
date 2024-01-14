@@ -25,6 +25,7 @@ const GetPriceAccommodation = ({ accommodationId }) => {
 
   return (
     <div className='acco-content-container-price'>
+      
       {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
       <span>Khoảng giá: {priceData.min_price} - {priceData.max_price} VND/Đêm</span>
     </div>

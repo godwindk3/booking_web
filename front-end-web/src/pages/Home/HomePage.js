@@ -483,6 +483,7 @@ const HomePage = () => {
                                     <br />
                                     <br />
                                     {/* <strong>Info:</strong> {item.info} */}
+                                    
                                     <GetPriceAccommodation accommodationId={item.id}/>
                                   </div>
                                 </Link>
