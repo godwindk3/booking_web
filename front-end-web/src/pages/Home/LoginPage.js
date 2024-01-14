@@ -216,7 +216,7 @@ const LoginPage = ({ onLogin }) => {
         if (error.response.status === 401) {
           setErrorMessage('Invalid email or password.');
         } else {
-          setErrorMessage('An unexpected error occurred. Please try again.');
+          setErrorMessage('Sai tên tài khoản hoặc mật khẩu, vui lòng thử lại');
         }
       } else {
         setErrorMessage('Network error. Please check your internet connection.');
