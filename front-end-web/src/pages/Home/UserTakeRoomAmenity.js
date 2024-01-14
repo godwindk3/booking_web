@@ -32,7 +32,7 @@ const UserTakeRoomAmenity = ({ roomId }) => {
         <div>
           <h2 className='your-booked-hotel-header-vcl-xin-m-day-csss-cssss'>Tiện ích phòng</h2>
 
-          <div className='user-roomdetailsbutton2-amenities-list'>
+          <div className='user-roomdetailsbutton2-amenities-list user-acco-amenity-list-ul-add'>
           <ul className='user-acco-amenity-list-ul'>
             {roomAmenities.map((amenity) => (
               <li className='user-acco-amenity-list-li' key={amenity.id}>
