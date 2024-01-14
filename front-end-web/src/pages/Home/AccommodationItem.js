@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './AccommodationItem.css';
+import GetPriceAccommodation from './GetPriceAccommodation';
 
 
 const AccommodationItem = ({ accommodation }) => {
@@ -47,7 +48,7 @@ const AccommodationItem = ({ accommodation }) => {
           <hr className='accomodationitem-hr-hr-hr'/>
 
           <div className='acco-content-container-price'>
-            <span>5000000 VND - 1000000 VND / Đêm</span>
+            <span><GetPriceAccommodation accommodationId={accommodation.id}/></span>
           </div>
 
           </div>
